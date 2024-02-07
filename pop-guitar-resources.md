@@ -32,3 +32,22 @@
     older fingerpicking styles.
 
 ### Ragtime guitar
+
+- [Blind Blake (S Gross early masters)](https://sfpl.bibliocommons.com/v2/record/S93C2078501)
+  - `SCORE 784.7 B619s 2007`
+  - Without a doubt Blind Blake is the most important pop ragtime
+    player. His style may be tricky to learn, he did some unusual
+    things with his thumb technique.
+- [Classic Ragtime Guitar](https://sfpl.bibliocommons.com/v2/record/S93C2629823)
+  - `https://sfpl.bibliocommons.com/v2/record/S93C2629823`
+  - Honestly this wasn't a big hit for me, but I did really like
+    both the Maple Leaf and Silver Swan arrangements.
+- [The John Pearse Album of Ragtime Guitar Solos](https://sfpl.bibliocommons.com/v2/record/S93C5765896)
+  - `SCORE 787.61 P316j`
+  - I haven't yet checked this one out, it's on my list of books to
+    look at
+- [The Complete Works of Scott Joplin](https://sfpl.bibliocommons.com/v2/record/S93C2728868)
+  - `SCORE 787.61 J747c`
+  - Most of these are in reasonable tunings (tons of drop D if I recall).
+    If I were to actually learn a big chunk of them, I'd have an entire
+    set of ragtime which could be useful for background music gigs!
