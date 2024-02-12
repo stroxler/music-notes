@@ -19,6 +19,8 @@ The Way you Look Tonight
 Blue Bossa
 Take the A Train
 Watch What Happens ... the bridge especially!
+Tune Up
+How High the Moon
 
 *weirder but maybe worth learning early*
 Moonglow               (mostly 1 key but unusual changes)
