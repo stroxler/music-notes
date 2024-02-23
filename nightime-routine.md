@@ -3,26 +3,29 @@
 Close to bed I need to be careful of overstimulating
 myself, but rote drills can be a good use of time.
 
+Some examples of what would *not* be a good idea:
+- Working on tunes. They tend to get stuck in my head.
+- Open-ended improvisation exercises, they get me overstimulated
 
-## Drilling chord progression snippets
+Some examples of what typically is pretty safe to do before bed:
+- Chord voicing drills: short progressions, often in a modulation loop
+- Various scale-oriented single-line improvisation drills, e.g.
+  - scales themselves, including scale shifting or modulation
+  - scale-based patterns, for example
+    - interval and arpeggio drills
+    - more generally, digital pattern based rills
+    - enclosure patterns, including both diatonic and chromatic
+    - pentatonic patterns
+  - ... the key thing is that to be bedtime-safe, the drills should
+    remain relatively mechanical. They can sound good, but I shouldn't
+    give myself enough freedom to get excited.
 
-My preference is to do this following modulations;
-- on guitar it's most useful short-term to focus on three-note voicings in the
-  lower-middle string set, but drop-2 and drop-3 are also valuable.
-- on piano, it's most useful to focus on simple voicings:
-  - 3 7 RH with root LH (or root + 5 bassline in 2)
-  - rootless 3 7 9 5 and 7 3 5 9 comping voicings
-
-## Drilling melodic things
-
-On piano, for now focus on running scales in the RH while playing
-root or 2nd inversion 3 and 4 note voicings, or basslines in 2. For
-now, don't try to change keys in the middle, I need to get the basic
-independence and fingerings in my hands first.
-
-On guitar, there are tons of things to do; for now:
- - drill intervals; all of them but especially 4ths
- - drill enclosures and scale shifts (not ready for this on piano)
- - get more drills from Jens Larsen, his drills are pretty great
-   and musical.
-
+Some more borderline stuff:
+- Sight reading or transposing music that isn't performance
+  material (etudes and such)
+- Reviewing tunes that I'm working on memorizing in a relaxed way
+- Rhythmic vocabulary drills. I say this is borderline, as opposed to
+  chord voicings and scale patterns being safe, because rhythms tend
+  to be more exciting and more prone to earworms.
+- Constrainted improvisation exercises; the more free they are the
+  less bedtime-safe they are :)
