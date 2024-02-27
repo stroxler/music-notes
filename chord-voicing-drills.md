@@ -31,7 +31,12 @@ it gives your ear some time to adapt to each key.
 
 ### Some examples of progressions
 
-(Fill me later)
+- A really good diatonic drill is to just run through the entire
+  IV-VII-III-VI-II-V-I; if you jump up at IV, you can use this to
+  traverse variations in voicings, e.g. move up or down one position
+  or variation each iteration; as a bonus if you struggle with any
+  iteration you can just loop it until it's locked in.
+- FILL ME WITH MORE PROGRESSIONS
 
 ### Things to focus on when playing chord drills
 
