@@ -16,3 +16,12 @@
     more advanced than the two Siskind books above; I'd try it again
     sometime later in 2024 after I've advanced some on piano.
 
+### Repertoire books for jazz
+
+- The Jazz Piano Solos series by Hal Leonard. `SCORE 786.4 J3397 V.<n>`
+  - These look promising, but they are late intermediate so out of
+    reach for me until at least late 2024. They also do include some
+    impractical things like 10ths, but not too often.
+  - There are a *lot* of these books (e.g. Cocktail Piano is v 31).
+  
+
