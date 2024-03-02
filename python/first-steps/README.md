@@ -32,3 +32,15 @@ layout pipenv
 This has the advantage of not starting a nested shell session.
 
 ## The provided tools
+
+Musescore is available from nix as `mscore.`. By backing out the
+directory, you can find the `.app` on MacOS which is important for some
+of the music21 integrations to work.
+
+Lilypond is available from nix on the path, although at the moment it
+appears the music21 integration isn't working (lilypond complains about
+a syntax error in the music21 output).
+
+I didn't install `mingus` yet, at this point I'm not convinced it's
+needed since music21 seems much more mature, but that could be worth
+exploring someday.

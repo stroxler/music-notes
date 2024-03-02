@@ -9,6 +9,7 @@ music21 = "*"
 python-fire = "*"
 jupyter = "*"
 ipython = "*"
+pygame = "*"  # needed for music21 py-native midi
 
 [dev-packages]
 pytest = "*"
