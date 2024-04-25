@@ -86,4 +86,25 @@ and that will pretty naturally lead into:
   - When heading into B, play A7, Dm, G7, C for 2 beats each
 
 
+# Some video lessons + notes on how to think about actually playing
+
+
+TODO fill me
+
+
+## What about the B section?
+
+Most of these videos focus on the "A" section; in the "B" section
+it's usually a bit easier to follow the chords, and the most
+common additional techniques are:
+- emphasizing the root on bars 1&2 and 5&6 (the 3 and 2 of the
+  overall key); this is something both the original I've Got Rhythm
+  melody and Ben Webster's often-imitated "secondary head" on
+  Cotton Tail do, I think it's become a pretty standard vocabulary,
+  especially when doodling over a head that has no B section melody.
+- explicitly playing a minor for a bar before the major, to add
+  some more implied harmony to the lines
+- playing a little outside, for example by using the extra time to do some
+  side-stepping or by using tritone substitutions / altered scales
+  to get some more interesting "modal interchange" type tension.
 
