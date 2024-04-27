@@ -157,7 +157,57 @@ Coltrane cycle for bars 1-4 then you end with a bar of C
 anyway so it will work particularly well (although sound
 more Coltrane and less Gershwin for sure).
 
+## Ideas for spicing up the B section
 
+The most common things by far are
+- turning the 2 bar 7 chords into 1 bar each of a m7 and 7 chord
+- using tritone substitutions
+
+If you want even more movement, you can start playing both the
+original *and* the tritone stub; in the extreme case you could
+play each chord for just 2 beats to give the bridge the same
+amount of movement as the head.
+
+A less-common variation is to replace the movement in 4ths
+with movement in *minor* thirds, so basically playing a single
+diminished dominant for the bridge and playing each root for 2 bars
+(ending on the G7 to go back to a bridge in C). You can play
+II-V pairs instead of just 7 chords to get some more movement.
+
+Another option is to back-cycle: take the normal changes and squeeze
+it into the last 4 bars, and add some additional II-5's leading up
+to it, like this bridge in C:
+```
+| C#m       |  F#7        |  Cm       |  F7      |
+| Bm   E7   |  Em   A7    |  Am   D7  |  Dm   G7 |
+```
+and of course you can swap out various tritone stubstitutions.
+
+
+The last two ideas from the walking bassline book both involve
+modulatin the bridge to IV, which is a super common thing to do
+in (non-Rythm-Changes) standards.
+
+The first option modulates for 4 bars, then drops back into a
+normal B section:
+```
+|  Gm7     | C7     | Fma7     | -      |
+|  Am7     | D7     | Dm7      | G7     |
+```
+The second option modulates more extensively, only dropping back
+into C right at the end:
+```
+| Fma  D7  | Gm  C7  | Am  D7   | Gm  C7 |
+| Cm   F7  | Bb  Eb7 | Fma      | Dm  G7 |
+```
+
+This hints, in my mind, at another possibility for anyone wanting
+to work on Coltrane Changes more: play any Coltrane cadence starting
+on the IV of the original key that eats up 4 or 6 bars, then drop
+back to I at the very end. A particularly appealing option (less
+cyclical than most of Coltrane's actual tunes) is the brige
+from "Have You Met Miss Jones" which is already 8 bars and centered
+on the IV chord!
 
 # Some video lessons + notes on how to think about soloing
 
