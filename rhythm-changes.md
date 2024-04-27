@@ -86,11 +86,82 @@ and that will pretty naturally lead into:
   - When heading into B, play A7, Dm, G7, C for 2 beats each
 
 
-# Some video lessons + notes on how to think about actually playing
+### Some of the more exciting outside changes to try
 
+## Backcycling and tritone subs on bars 1-4
+
+One option that sounds very different but is actually just backcycling
+is to do a 3-6-2-5- into the III that starts the 3rd bar, which means
+starting on a flat 6 / sharp 5 minor:
+```
+| G#m  C#7  | F#m  B7 | Em  A7  | Dm  G7 |
+```
+This is one of the really standard outside variations.
+
+It's obviously pretty standard to play some tritone stubstitutions; there
+are combinatorial options for how to mix things but a particularly
+interesting option because it hints at a coltrane substituion (which I'll
+cover shortly) is to play
+```
+| C  Eb7  | Ab7   G7 | C  Eb7  | Ab7   G7 |
+```
+for the first 4 bars.
+
+## Coltrane cadences on bars 1-4
+
+What gets interesting is that by just tweaking the flavor of the Ab to major we
+can extend this into a 2-bar coltrane cadence targeting Em:
+```
+| C  Eb7  | Ab   B7 | Em  A7  | Dm   G7 |
+```
+
+But at this point we've already noted a coltrane cadence, what if we just
+keep it going? This is actually a standard (ish) option that one of my
+walking bassline books has; it will feel a little more different though
+because we resolve back a bar earlier than "standard" rhythm changes:
+```
+| C  Eb7  | Ab   B7 | E   G7  | C     |
+```
+
+At this point, though, we now have a complete coltrane cycle, which
+we know we can turn around and run the opposite direction (ascending
+thirds, like the second part of Giant Steps), and it will work
+roughly the same way in terms of resolution:
+```
+| C   B7  | E   Eb7 | Ab   G7  | C     |
+```
+
+Note that with either of these, the C can pretty easily resolve into
+either a C7 or a Gm -> C7 and it will feel very natural.
+
+But in addition, ending with a bar of C will lead very naturally to...
+
+## Coltrane cadences on bars 5 and 6
+
+Another option the walking bassline book pointed out was starting
+the *second* 8 of the A section with a descending Coltrane sequence:
+```
+| Bbm  Eb7  | Ab    | Dm   G7  | C   (G7)
+```
+where the Ab generally resolves a tritone to Dm on any of the A
+sections, and we'd throw the G7 in if we're not headed into B.
+
+This works pretty well since Fm is an option anyway on bar 6,
+so the Coltrane movement to an Ab winds up just subbing in the
+relative major.
+
+Jumping straight to the Bbm from a G7 coming out of bar 4
+works and is what the book has, but you could also play a C
+there and still get a Coltrane cadence. And if you play a
+Coltrane cycle for bars 1-4 then you end with a bar of C
+anyway so it will work particularly well (although sound
+more Coltrane and less Gershwin for sure).
+
+
+
+# Some video lessons + notes on how to think about soloing
 
 TODO fill me
-
 
 ## What about the B section?
 
