@@ -99,6 +99,11 @@ the movement bIIma7b5 -> V is sort of just behaving like a suspension
 and resolution, which is of course also how a normal II -> V behaves;
 the difference is that we've moved practically all the *other* notes so
 we're getting a strongly "altered" sound.
+- Note that you *could* actually go from this to the bII7, at which point
+  you'd much more clearly be outlining a dominant suspension to regular
+  via tritone sub. But that's not usually actually how this is used, it
+  usually goes either to V (neapolitan classic cadence) or to I
+  (neapolitan plagal cadence)
 
 But in addition to resolving a tritone down, which suggests a
 Neapolitan bII -> V, I actually see it pop up a lot and resolving to *I* in
@@ -161,3 +166,33 @@ the sound is a little like ending on a sus chord except it also contains most
 of the "extra" notes from the altered dominant. But you don't have to think
 as hard about what to solo over it when you'r just using it to end :)
 
+
+## Resources
+
+- Standards:
+  - [Deluge](https://www.virtualsheetmusic.com/score/HL-39957.html)
+  - [Beatrice](https://www.google.com/imgres?q=beatriz%20lead%20sheet&imgurl=https%3A%2F%2Fmusescore.com%2Fstatic%2Fmusescore%2Fscoredata%2Fg%2F32f3b7f6194be8eed8904ae5c3146b76262f8614%2Fscore_0.svg%3Fno-cache%3D1648110670&imgrefurl=https%3A%2F%2Fmusescore.com%2Fuser%2F22351486%2Fscores%2F6362958&docid=r5oy3D1SeITZkM&tbnid=jD8dHQ12QpTfwM&vet=12ahUKEwjm396toO6FAxWxIEQIHYhFBacQM3oECBkQAA..i&w=2977&h=4208&hcb=2&ved=2ahUKEwjm396toO6FAxWxIEQIHYhFBacQM3oECBkQAA)
+  - [Night and Day](https://www.google.com/imgres?q=night%20and%20day%20lead%20sheet&imgurl=https%3A%2F%2Fminedit.com%2Fwp-content%2Fuploads%2F2019%2F07%2FScreen-Shot-2019-07-05-at-12.07.41-PM.png&imgrefurl=https%3A%2F%2Fminedit.com%2Fnight-and-day-lead-sheet%2F&docid=60PEnwQY6nTAsM&tbnid=8Wxpxi4ufWvK7M&vet=12ahUKEwjw8syXoPCFAxWVBDQIHSUUAAEQM3oECE8QAA..i&w=1112&h=1442&hcb=2&ved=2ahUKEwjw8syXoPCFAxWVBDQIHSUUAAEQM3oECE8QAA)a
+- Lessons:
+  [Jens Larson on Ma7b5 as a sub for other stuff](https://jenslarsen.nl/maj7b5-chords-arpeggios/)
+  [Jens Larson on options to play over Ma7b5](https://jenslarsen.nl/improvising-and-using-maj75-chords/)
+  [Jens Larson on borrowing from minor](https://jenslarsen.nl/tag/neapolitan-chord/), covers bVI and bII
+
+
+Since there's also some connection to Phrygian chords and scales, you can potentially
+find even more resources by looking at lessons covering and examples of Phrygian
+sounds. It actually pops up in several ways:
+- a neapolitan chord is actually aligned with a phrygian mode built off the root,
+  so phrygian vs the key signature is a modal interchange you can lean into for
+  bIIma7 <-> I movements.
+- the bVIma7b5 is basically the same as a V phrygian, i.e. an *altered* V7sus.
+- The VIIma7b5 is actually a bVII phrygian... that's probably not the most
+  obvious way to think of it (it'san altered V off the 3rd, which is really what
+  you'll tend to hear), but it is in some ways like a "backdoor phrygian"
+
+... while I'm thinking of phrygian, it's worth noting one other funny connection: I
+remember OpenStudio folks mentioning that E7 resolves to C, it's the last of the four
+dominants in the G7 diminished cycle. What's interesting is that E *phrygian*, which
+is an altered suspended E dominant, is actually *diatonic* in C! In fact, the Mark
+Levine book uses G7/E as his *intro* to phrygians. He has it resolve to A, but you
+could make it go to C instead.
