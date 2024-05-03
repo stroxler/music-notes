@@ -1,0 +1,163 @@
+# Major 7 b5 (and #11) chords
+
+My fellow ensemble members in my jazz group love to use
+a few flavors of this chord in ways that don't match up
+with typical "classical" jazz sounds, so I wanted to gather
+notes on:
+- ways to think of the function of the chord, which depends
+  a lot on the context it's used in
+- examples of tunes using it in various ways, which is important
+  because by listening and maybe transcribing I can get these
+  chords in my ear.
+
+
+## Tonic and subdominant chords (lydian mode)
+
+The most obvious use of a Ma7#11 is as the VI chord in major, or the bVI in
+minor. These are subdominant chords, diatonic to the key signature, and it will
+sound absolutely natural.
+
+In this setting, playing the #11 is just a way to add some extra color (either
+to comping or to solo lines) relative to playing the bare major 7 chord or one
+of the two obvious pentatonics (from the root or 5). If you're playing
+pentatonic licks, you can play off of the 2 (i.e. a D major pentatonic against
+Cma7#11) if you want to lean even more into the lydian sound.
+
+This same idea can be extended in two ways:
+- you can usually get away with using the #11 and a lydian vocabulary on
+  the *tonic*, assuming (for comping) that the melody doesn't use a suspension
+  to 4 and (for soling) that your rhythm section doesn't try "planing" over
+  a suspension or subdominant sound. It's usually a fairly mild sound; it can
+  be particularly nice as a way to end a piece or section.
+- you can borrow from the minor to play a bVIma7#11 as a borrowed subdominant;
+  this is going to sound relatively "outside" and there are actually a few
+  ways to think of it:
+  - obviously it's a borrowed subdominant, how I introduced it
+  - if you omit the 5, it's actually the same *notes* as a V phrygian, which
+    is what I like to call a semi-dominant chord that is sort of both dominant
+    and subdominant at the same time.
+  - If you play it over the 7 (as in, e.g., an Abma7b5 over a G) then it
+    actually *is* a G phrygian, which can be spelled other ways too such
+    G7susb9 or Bb7/G
+    - aside: the spelling Bb7/Gb, which Mark Levine uses, is a little weird
+      because there's no Bb, it's really a rootless Bb13/G. Although if you do
+      include the Bb it will work fine, then it's a G7susb9#9 which is kind of
+      leaning into the same "altered subdominant" sound coming from C minor
+      (and obviously Bb is in most of the scales you'd play against Abma7b5).
+  - ... so it's basically an "altered suspended" sound that you can think of
+    as having elements of both subdominant and altered dominant sounds.
+
+## The VII ma7b5 chord
+
+Jens Larsen has a lesson that explores Ma7b5 more statically by looking
+at all the chords it can sub for (his video is more focused on when you
+can use solo lines *derived* from the arpeggio vs the chord per se, but
+that's beside the point).
+
+In it, he points out that a Bma7b5 chord is actually spelling the most
+important notes of a G7alt:
+- the 3 (which is the root of Bma)
+- the #5/b13 (which is the 3 of Bma)
+- the 7 (which is the #11 of Bma)
+- the #9 (which is the 7 of Bma)
+
+As a result, Bma7b5 is actually just Galt/B, and is very much a dominant
+chord against C (major or minor).
+
+If you play the normal 5 (so F#) that muddies things quite a bit according
+to classical harmony, but it actually still works similarly, which seems
+like it can be explained in two not-mutually-exclusive ways:
+- it's just an extra "outside" note that resolves chromatically, giving
+  us more crunch and more modal interchange flavor
+- it's also the minor blues note, and we're already playing an altered
+  dominant sound borrowed from minor so in some ways the F# just "blueses
+  it up" some more, since you can pretty much always play a blues scale
+  of the current implied key and it will sort of work.
+
+Aside: This is also an idea you can use to get some not-just-chromatic ideas
+when faced with a series of ascending maj7 chords (e.g. Charlie Mingus's
+Opus 4) - if you lean into the #11 before switching, you'll get something
+that feels more like a dominant -> tonic resolution.
+
+## The bIIma7 chord
+
+This one is really important becuase it pops up a *ton* in my fellow
+ensemble members' compositions.
+
+In classical theory, this is considered a subdominant chord which wants
+to resolve to V. I think this actually does happen - I've seen quite a few
+cases where people take the chord down a tritone to a 7 chord... one example
+is Ama7 -> D7 which Charlie Mingus uses a couple times in
+"Sue's Changes" and also in the 
+
+An alternative and equivalent way of viewing it in this setting is as a
+tritone substitution for the Vsus chord (which in the process again
+outlines a more altered / almost-phrygian sound, but it's even a little
+more outside than phrygian because it has the b5 of V - this is spicy, but
+it's also normal to play on an altered dominant). As a result,
+the movement bIIma7b5 -> V is sort of just behaving like a suspension
+and resolution, which is of course also how a normal II -> V behaves;
+the difference is that we've moved practically all the *other* notes so
+we're getting a strongly "altered" sound.
+
+But in addition to resolving a tritone down, which suggests a
+Neapolitan bII -> V, I actually see it pop up a lot and resolving to *I* in
+both major *and* minor. This is exactly what my colleage's compositions do.
+In that case, it's actually behaving kind of like the opposite suspension...
+
+... what do I mean by this? Remember that a G7sus is really pretty much
+the same as a Csus, which is pretty much the same as an Fadd9. So
+subdominant, suspended tonic, and suspended dominant are all kind of the
+same sound. So when we play a G7sus to C, which is sort of a standard
+cadence, it's also kind of the same as an F to C which is a Plagal
+cadence.
+
+...if we then accept bIIma7#11 as a borrowed neapolitan subdominant, then
+bIIma7 -> I(ma or mi) is really just a plagal movement, and also behaves
+a lot like just suspending and resolving.
+
+And since a subdominant is also kind of the same as a suspension of the tonic,
+it's not super surprising that you can also choose to leave the bass alone
+(so play bIIma7#11 over it's 7, which is the root of the key) at which point
+it's more clearly acting like an "altered tonic suspension" in terms of bass.
+
+It's been hard for me to wrap my ear around this sound. I need to do some
+listening for sure. Here are some starting points:
+- "Deluge" by Wayne Shorter leans really heavily into this because
+  it "resolves" the main melody to the minor root and goes to bIIma
+  at the same time. The sound is *really* cool and maybe a good starting
+  point.
+- "Beatrice" uses it in both directions in minor *and* major and the
+  sound is pretty clear cut as in Deluge because it just goes up and
+  back down again
+- "You Stepped Out of a Dream" uses it repeatedly in both directions,
+  although things are modulating fast enough that it isn't crystal clear
+- "A Child Is Born" uses this sound too, to some extent but it spells
+  the chords differently: it goes Bbma -> Ebm/Bb -> Bbma. But
+  Ebm/Bb, if you play it as a minor 9, has the notes D#, F, F#, and A#
+  which are all the components of a Bma#11 except the B!
+
+There may also be some similarities to the harmony/melody interaction
+in "Night And Day"... it's not obvious to me just looking at the latter,
+but there's an Fm -> Em which I suppose you could actually think
+of as playing Dbma -> Cma with the 3rds in the bass. My ensemble director
+and members have specifically called that tune out as being similar
+to some of the tunes using bIIma7 -> Ima.
+- ... "Night and Day" is also interesting in that it gets to the Fm by way of
+  F#mib5 which is a little bit of an unusual jump straight from Cma, and
+  probably one that I should get better at.
+- I suppose if we think of IVm -> tonic as being a similar sound to
+  bIIma -> tonic then there actually are quite a few more tunes that
+  have that kind of effect. I bet that bIIma works well as a sub for
+  IVm in a lot of those tunes!
+
+### bonus: bIIma7#11 as a final chord
+
+Finally, it's also popular to *end* a tune (either in major or minor)
+on the bIIma7#11.
+
+In that context I think it again functions like an extra-crunchy suspension,
+the sound is a little like ending on a sus chord except it also contains most
+of the "extra" notes from the altered dominant. But you don't have to think
+as hard about what to solo over it when you'r just using it to end :)
+
