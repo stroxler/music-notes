@@ -186,6 +186,9 @@ as hard about what to solo over it when you'r just using it to end :)
   [Jens Larson on options to play over Ma7b5](https://jenslarsen.nl/improvising-and-using-maj75-chords/)
   [Jens Larson on borrowing from minor](https://jenslarsen.nl/tag/neapolitan-chord/), covers bVI and bII
 
+## Related topics
+
+### Phrygian modes and chords, and relationships to maj7b5 chords:
 
 Since there's also some connection to Phrygian chords and scales, you can potentially
 find even more resources by looking at lessons covering and examples of Phrygian
@@ -204,3 +207,30 @@ dominants in the G7 diminished cycle. What's interesting is that E *phrygian*, w
 is an altered suspended E dominant, is actually *diatonic* in C! In fact, the Mark
 Levine book uses G7/E as his *intro* to phrygians. He has it resolve to A, but you
 could make it go to C instead.
+
+### The bVI minor chord
+
+This isn't at all a maj7#11 chord obviously, but it actually maybe comes up in some
+of the same contexts, and is loosely connected:
+- The bVI minor chord, if it resolves to I (especially to a minor I) functions
+  like a twist on an altered dominant: it is the b9, 3, and b13 of the
+  V chord:
+  - If you play it as minor 6, that's the 7 of V so it's even more dominant
+  - If you play it as a minor major 7 that's the root
+  - If you play it as a minor 7, then you're playing the blue note of the
+    resolving minor (this is like playing the natural 5 in a VIImaj7#11, as
+    discussed above - it's the same note). This will make it sound less
+    like a dominant resolution, but you still get a lot of the same voice leading.
+  - ... context is that this is really a big deal in "Someday", the reharm
+    of "Someday My Prince Will Come", in which the Ebm7 often goes to the Gm7,
+    but at other times instead it's a Gbma7#11 going to G.
+- There are two ways of thinking how this chord connects with the others outlined:
+  - The bVI minor 7 (or minor 13 really) is almost the same as VIImaj7#11,
+    as noted in the "Someday" example above
+  - In addition, it's interesting to compare
+    - bVIma7b5 is just an inversion of a V phrygian (with the natural 5 of the V)
+      with the 7 of the V chord omitted (if you add a 6 then it's the full thing)
+    - bVIma7 is an inversion of a V phrygian with a #5 (so more altered),
+      again with the 7 of the V cord omitted (again, you can add a 6)
+    - bVImi6 is an inversion of V altered; it's relationship to bVIma6 is the same
+      as Phrygian vs altered dominant: a suspended -> regular dominant sound.
