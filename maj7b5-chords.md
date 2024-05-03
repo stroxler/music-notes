@@ -143,27 +143,36 @@ listening for sure. Here are some starting points:
 - "Beatrice" uses it in both directions in minor *and* major and the
   sound is pretty clear cut as in Deluge because it just goes up and
   back down again
-- "You Stepped Out of a Dream" uses it repeatedly in both directions,
-  although things are modulating fast enough that it isn't crystal clear
 - "A Child Is Born" uses this sound too, to some extent but it spells
   the chords differently: it goes Bbma -> Ebm/Bb -> Bbma. But
   Ebm/Bb, if you play it as a minor 9, has the notes D#, F, F#, and A#
   which are all the components of a Bma#11 except the B!
-
-There may also be some similarities to the harmony/melody interaction
-in "Night And Day"... it's not obvious to me just looking at the latter,
-but there's an Fm -> Em which I suppose you could actually think
-of as playing Dbma -> Cma with the 3rds in the bass. My ensemble director
-and members have specifically called that tune out as being similar
-to some of the tunes using bIIma7 -> Ima.
-- ... "Night and Day" is also interesting in that it gets to the Fm by way of
-  F#mib5 which is a little bit of an unusual jump straight from Cma, and
-  probably one that I should get better at.
-- I suppose if we think of IVm -> tonic as being a similar sound to
-  bIIma -> tonic then there actually are quite a few more tunes that
-  have that kind of effect. I bet that bIIma works well as a sub for
-  IVm in a lot of those tunes!
-
+- "Night and Day" uses the bVI major quite a bit, generally resolving
+  down to V dominant (in a major key - so Bma -> Bb7 -> Ebma). It also
+  uses VIm -> IIIm, which is actually closely related to bIImab5 -> Ima
+  because you're just using the thirds as the roots, and in fact you
+  can probably reharm that bit easily (i.e. make Abm7 an Ebma7b5 and
+  Gm7 an Ebma).
+  - In general, this probably means lots of tunes that use VImi -> IImi
+    can probably be reharm'ed into bIIma7b5 -> Ima. Interestingly this
+    includes bars 6-7 of rhythm changes!
+  - I'll throw another point out there: VImi is sort of like bVII7,
+    if you think of the minor as a minor 6. But bIIma7b5 is kind of
+    like bVII minor. This means that bVII minor - especially
+    bVIIm6 or bVIIm13 - are actually closely related to the neapolitan
+    chord and function sort of like altered subdominants, implying that
+    - bVIIm -> I is sort of an altered plagal cadence.
+    - you can probably sub bIIma7(#11) in for it most of the time
+- "You Stepped Out of a Dream" uses quite a couple of I -> bIIma7
+  transitions, although usually in the context of the bIIma7 serving
+  as part of a transition rather than going back to I. But interestingly
+  in the transition, the old bII generally becomes VI and moves to V
+  of a new key, as we resolve down a major 3rd (which is a Coltrane
+  jump!). That's interesting because the key chord is functioning
+  as a subdominant either way - it's forming a subdominant bridge
+  across the key change.
+  - It also has one transition that *could* be read as bVIIma7 -> V7
+    although the key isn't really implied that strongly.
 ### bonus: bIIma7#11 as a final chord
 
 Finally, it's also popular to *end* a tune (either in major or minor)
@@ -180,11 +189,37 @@ as hard about what to solo over it when you'r just using it to end :)
 - Standards:
   - [Deluge](https://www.virtualsheetmusic.com/score/HL-39957.html)
   - [Beatrice](https://www.google.com/imgres?q=beatriz%20lead%20sheet&imgurl=https%3A%2F%2Fmusescore.com%2Fstatic%2Fmusescore%2Fscoredata%2Fg%2F32f3b7f6194be8eed8904ae5c3146b76262f8614%2Fscore_0.svg%3Fno-cache%3D1648110670&imgrefurl=https%3A%2F%2Fmusescore.com%2Fuser%2F22351486%2Fscores%2F6362958&docid=r5oy3D1SeITZkM&tbnid=jD8dHQ12QpTfwM&vet=12ahUKEwjm396toO6FAxWxIEQIHYhFBacQM3oECBkQAA..i&w=2977&h=4208&hcb=2&ved=2ahUKEwjm396toO6FAxWxIEQIHYhFBacQM3oECBkQAA)
-  - [Night and Day](https://www.google.com/imgres?q=night%20and%20day%20lead%20sheet&imgurl=https%3A%2F%2Fminedit.com%2Fwp-content%2Fuploads%2F2019%2F07%2FScreen-Shot-2019-07-05-at-12.07.41-PM.png&imgrefurl=https%3A%2F%2Fminedit.com%2Fnight-and-day-lead-sheet%2F&docid=60PEnwQY6nTAsM&tbnid=8Wxpxi4ufWvK7M&vet=12ahUKEwjw8syXoPCFAxWVBDQIHSUUAAEQM3oECE8QAA..i&w=1112&h=1442&hcb=2&ved=2ahUKEwjw8syXoPCFAxWVBDQIHSUUAAEQM3oECE8QAA)a
+  - [A Child is Born](https://www.google.com/imgres?q=a%20child%20is%20born%20lead%20sheet&imgurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fb0%2F16%2F86%2Fb01686a3065be4fea751b1a9717b1f9f.png&imgrefurl=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F176695985367729832%2F&docid=80FQnuW-zyKIQM&tbnid=bhVlU5vL4dNwXM&vet=12ahUKEwiNgf7FoO6FAxXIJ0QIHUR9DmwQM3oFCIMBEAA..i&w=1641&h=2130&hcb=2&ved=2ahUKEwiNgf7FoO6FAxXIJ0QIHUR9DmwQM3oFCIMBEAA)
+  - [Night and Day](https://www.google.com/imgres?q=night%20and%20day%20lead%20sheet&imgurl=https%3A%2F%2Fminedit.com%2Fwp-content%2Fuploads%2F2019%2F07%2FScreen-Shot-2019-07-05-at-12.07.41-PM.png&imgrefurl=https%3A%2F%2Fminedit.com%2Fnight-and-day-lead-sheet%2F&docid=60PEnwQY6nTAsM&tbnid=8Wxpxi4ufWvK7M&vet=12ahUKEwjw8syXoPCFAxWVBDQIHSUUAAEQM3oECE8QAA..i&w=1112&h=1442&hcb=2&ved=2ahUKEwjw8syXoPCFAxWVBDQIHSUUAAEQM3oECE8QAA)
+  - [You Stepped Out of a Dream](https://www.google.com/imgres?q=you%20stepped%20out%20of%20a%20dream%20lead%20sheet&imgurl=https%3A%2F%2Fwww.sheetmusicplus.com%2Fdw%2Fimage%2Fv2%2FBJFX_PRD%2Fon%2Fdemandware.static%2F-%2FSites-smp-main%2Fdefault%2Fdw5166293a%2Fimages%2F5177%2F21855177_cover-large_file.png%3Fsw%3D450%26sh%3D600%26sm%3Dfit&imgrefurl=https%3A%2F%2Fwww.sheetmusicplus.com%2Fen%2Fproduct%2Fyou-stepped-out-of-a-dream-21855177.html&docid=jID2-bHpjhJEgM&tbnid=FmTUYM4CoziuPM&vet=12ahUKEwiNw6uGgvCFAxVDEDQIHeJSBrYQM3oECBUQAA..i&w=450&h=582&hcb=2&ved=2ahUKEwiNw6uGgvCFAxVDEDQIHeJSBrYQM3oECBUQAA)
 - Lessons:
   [Jens Larson on Ma7b5 as a sub for other stuff](https://jenslarsen.nl/maj7b5-chords-arpeggios/)
   [Jens Larson on options to play over Ma7b5](https://jenslarsen.nl/improvising-and-using-maj75-chords/)
   [Jens Larson on borrowing from minor](https://jenslarsen.nl/tag/neapolitan-chord/), covers bVI and bII
+- Discussions
+  - [a reddit thread](https://www.reddit.com/r/musictheory/comments/7fhxjv/in_what_context_can_i_use_a_maj711_chord/);
+    someone mentions another Wayne Shorter tune "Speak No Evil" as being in
+    minor and using the neapolitan.
+  - [a thread on jazzguitar.be](https://www.jazzguitar.be/forum/comping-chords-chord-progressions/21893-theory-behind-using-m7-chords-dominants.html)
+    which has several commenters including Jens Larsen.
+    - Larsen specifically mentions that IVm over a flat 6 is a common way these
+      appear, validating the idea that the IVm in "Night and Day" and "A Child
+      Is Born" can be interchangeable with bIIma7#11
+      ... remember "can be" since you could play a IV minor 6 instead which
+          will be pretty different and sound more like bVII7.
+    - Another reader points out a connection between bVIma and Coltrane:
+      it's pretty common to do I -> bIII7 -> bVIma -> V, which starts out
+      with a Coltrane movement and then resolves back into the starting key
+      right away. The reader then points out several more variations and
+      eventually lands on a bIIma7 -> I as one of the options that has
+      a "suspended dominant" feel.
+      - This same reader argues that in major keys, there's one more strong
+        ma7 option (besides I, IV, bVI, and bII), which is bIII.
+    - Later in the article Jens Larsen points out something else, which
+      is that plagal cadences are under-appreciated and we often over-focus
+      on 'dominant' sounds. His big example is bars 6-7 in a blues, but
+      you could also focus on songs using V7sus chords, or on the popularity
+      of IV -> I in pop music from the '60's on.
 
 ## Related topics
 
@@ -207,6 +242,12 @@ dominants in the G7 diminished cycle. What's interesting is that E *phrygian*, w
 is an altered suspended E dominant, is actually *diatonic* in C! In fact, the Mark
 Levine book uses G7/E as his *intro* to phrygians. He has it resolve to A, but you
 could make it go to C instead.
+
+A few resources for Phrygian chords:
+- The mark levine book has a little section on them
+- [A Jens Larsen episode on voicings + arpeggios](https://jenslarsen.nl/phrygian-chords/)
+- [A Jens Larsen episode on where to *use* them (as subs)](https://www.youtube.com/watch?v=qbPLmG89lX8)
+- [Some tehcnical notes on phrygian chords](https://www.thejazzpianosite.com/jazz-piano-lessons/jazz-chords/phrygian-chords/)
 
 ### The bVI minor chord
 
