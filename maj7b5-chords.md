@@ -46,6 +46,14 @@ This same idea can be extended in two ways:
       (and obviously Bb is in most of the scales you'd play against Abma7b5).
   - ... so it's basically an "altered suspended" sound that you can think of
     as having elements of both subdominant and altered dominant sounds.
+  - note that bVIma7 often will resolve to V, which is what you'd sort of
+    expect of a subdominant.
+    - It will kind of behave like a tritone substitution for IImi in that case,
+      and in fact it's outlined for one beat by a typical walking bassline
+      anyway!
+    - for an example of a tune that uses this *explicitly*, "Blue in Green"
+      does (Bbma7#11 -> A7alt) although the effect isn't as pronounced because
+      it's headed to D minor rather than D major.
 
 ## The VII ma7b5 chord
 
