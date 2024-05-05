@@ -140,6 +140,19 @@ listening for sure. Here are some starting points:
   it "resolves" the main melody to the minor root and goes to bIIma
   at the same time. The sound is *really* cool and maybe a good starting
   point.
+- "Speak No Evil" is another Wayne Shorter tune that leans into this
+  even more if anything, it spends extended time in a vamp between
+  a minor root and neapolitan major.
+  - It also vamps between a VII7b5 and a minor chord; while this is
+    technically not an example of maj7b5, it's worth noting that in
+    the case of the VII the chords are altually verys similar:
+    since it's an inversion, playing a dominant 7 is really just like
+    playing a natural 9 rather than a flat 9 on the underlying V
+    chord.
+  - And at one point it also pulls a change that runs across the
+    IIIm of a minor key... this is relevant since "Oh Gatinho"
+    has a similar change - Jono suggests the best way to think of
+    this is as a borrow from the relative major.
 - "Beatrice" uses it in both directions in minor *and* major and the
   sound is pretty clear cut as in Deluge because it just goes up and
   back down again
@@ -259,6 +272,7 @@ which will also spice up that bar nicely.
 
 - Standards:
   - [Deluge](https://www.virtualsheetmusic.com/score/HL-39957.html)
+  - [Speak No Evil](https://www.sheetmusicplus.com/en/product/speak-no-evil-19426681.html)
   - [Beatrice](https://www.google.com/imgres?q=beatriz%20lead%20sheet&imgurl=https%3A%2F%2Fmusescore.com%2Fstatic%2Fmusescore%2Fscoredata%2Fg%2F32f3b7f6194be8eed8904ae5c3146b76262f8614%2Fscore_0.svg%3Fno-cache%3D1648110670&imgrefurl=https%3A%2F%2Fmusescore.com%2Fuser%2F22351486%2Fscores%2F6362958&docid=r5oy3D1SeITZkM&tbnid=jD8dHQ12QpTfwM&vet=12ahUKEwjm396toO6FAxWxIEQIHYhFBacQM3oECBkQAA..i&w=2977&h=4208&hcb=2&ved=2ahUKEwjm396toO6FAxWxIEQIHYhFBacQM3oECBkQAA)
   - [A Child is Born](https://www.google.com/imgres?q=a%20child%20is%20born%20lead%20sheet&imgurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fb0%2F16%2F86%2Fb01686a3065be4fea751b1a9717b1f9f.png&imgrefurl=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F176695985367729832%2F&docid=80FQnuW-zyKIQM&tbnid=bhVlU5vL4dNwXM&vet=12ahUKEwiNgf7FoO6FAxXIJ0QIHUR9DmwQM3oFCIMBEAA..i&w=1641&h=2130&hcb=2&ved=2ahUKEwiNgf7FoO6FAxXIJ0QIHUR9DmwQM3oFCIMBEAA)
   - [Night and Day](https://www.google.com/imgres?q=night%20and%20day%20lead%20sheet&imgurl=https%3A%2F%2Fminedit.com%2Fwp-content%2Fuploads%2F2019%2F07%2FScreen-Shot-2019-07-05-at-12.07.41-PM.png&imgrefurl=https%3A%2F%2Fminedit.com%2Fnight-and-day-lead-sheet%2F&docid=60PEnwQY6nTAsM&tbnid=8Wxpxi4ufWvK7M&vet=12ahUKEwjw8syXoPCFAxWVBDQIHSUUAAEQM3oECE8QAA..i&w=1112&h=1442&hcb=2&ved=2ahUKEwjw8syXoPCFAxWVBDQIHSUUAAEQM3oECE8QAA)
@@ -269,8 +283,7 @@ which will also spice up that bar nicely.
   [Jens Larson on borrowing from minor](https://jenslarsen.nl/tag/neapolitan-chord/), covers bVI and bII
 - Discussions
   - [a reddit thread](https://www.reddit.com/r/musictheory/comments/7fhxjv/in_what_context_can_i_use_a_maj711_chord/);
-    someone mentions another Wayne Shorter tune "Speak No Evil" as being in
-    minor and using the neapolitan.
+    this is where "Speak No Evil" was pointed out to me.
   - [a thread on jazzguitar.be](https://www.jazzguitar.be/forum/comping-chords-chord-progressions/21893-theory-behind-using-m7-chords-dominants.html)
     which has several commenters including Jens Larsen.
     - Larsen specifically mentions that IVm over a flat 6 is a common way these
