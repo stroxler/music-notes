@@ -173,6 +173,7 @@ listening for sure. Here are some starting points:
   across the key change.
   - It also has one transition that *could* be read as bVIIma7 -> V7
     although the key isn't really implied that strongly.
+
 ### bonus: bIIma7#11 as a final chord
 
 Finally, it's also popular to *end* a tune (either in major or minor)
@@ -183,6 +184,76 @@ the sound is a little like ending on a sus chord except it also contains most
 of the "extra" notes from the altered dominant. But you don't have to think
 as hard about what to solo over it when you'r just using it to end :)
 
+## using ma7#11 chords on Rhythm Changes (and more generally in reharms)
+
+There are actually quite a lot of ways to pull some of these major 7
+chords into standard progressions (Rhythm Changes being a prototypical example).
+
+One really obvious option is to just insert a maj7#11 rooted a half step
+above any / all of the bridge chords. Note that one of the common "big"
+deviations on the bridge is to start of the IV chord anyway, so actually
+kicking off the bridge on a IVmaj7#11 isn't as crazy as it seems at first,
+although you could ease into it by hitting E7 first, then going up and
+coming back down. Note that this use is effectively like the bVIma7#11
+and you can think of it subbing for the minor a tritone away, since each of the
+dominants on a basic Rhythm bridge is acting like a V.
+
+Another really obvious option is that in the old-fashioned classic changes
+where bars 4-8 of A pass through a IV minor going back to a tonic I or III,
+you could instead use a major7 - either the bVI or the bII (the bII will be
+spicier!), e.g.
+```
+| Gm  C7 |  F  Dbmaj7 (or Abmaj7) | C   G7 | C  |
+```
+
+A less-obvious but actually really reasonable way to work this in
+is to focus on the *first* 2 bars and start with Coltrane changes and use the
+two minor subdominants to drop back to I:
+```
+| Cma  Eb7 | Abma   Dbma7#11 | C ...
+```
+This is one of two ways to work in just 2 bars of Coltrane changes
+without going too far from the original (the other option being to play
+B7 and land on Em at the start of bar 3).
+
+Another way to work it in that actually fits so well people wouldn't even
+notice would be to use it just at the end of bar 2, leading to Em:
+```
+| Cma  A7  | Dm   Fma7#11 | Em ...
+```
+The reason people might not notice is that Fma7b5 is actually just an
+inversion of G13 which is a normal chord to play here anyway. But
+*thinking* of it this way might take a solo in different directions.
+
+The examples above all used minor subdominant maj7#11 variants. But you
+can also use the subtonic maj7b5 easily by replacing diminished passing
+chords. For example, instead of playing this variant of the first 2 bars:
+```
+| Cma  C#o   | Dm  Ebo | Em  ....
+```
+where here C#o is, for example, basically an inversion of A7b9,
+you could use the same ascending bass notes but use subtonic maj7b5
+to get an altered rather than diminished dominant effect:
+```
+| Cma  C#mab5 | Dm  Ebma7b5 | Em ...
+```
+where now `C#maj7b5` is, for example, an inversion of A7#5#9 i.e.
+A7alt.
+
+Another place you could likely pull this off is leading into the VI
+in bar 5, especially if you're playing a variant where you land on Cma
+in bar 5:
+```
+Cma  Ema7b5 | F ....
+```
+which will give a C7alt sound; since that bar is usually a pretty
+mild bluesy kind of resolution this could spice it up. You could
+do the same thing using a neapolitan major instead, which is
+basically a tritone sub for C7sus:
+```
+Cma  Gbma#11 | F
+```
+which will also spice up that bar nicely.
 
 ## Resources
 
