@@ -1,4 +1,16 @@
-# Current priorities
+# My current priroities
+
+Someday My Prince Will Come
+There Is no Greater love
+Softly as in a Morning Sunrise
+All of Me
+Summertime
+I Love You
+I'll Remember April
+Just Friends
+Have You Met Miss Jones
+
+# Some tunes broken down by roughly how they work harmonically
 
 *pure circle of 5ths*
 Fly Me to the Moon + Autumn Leaves
