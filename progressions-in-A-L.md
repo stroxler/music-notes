@@ -334,8 +334,28 @@ Ldim Em A7 D
 Idim Am D7 G
 
 
+# Some applied progressions pulled from parts of tunes
 
-# Some tunes
+## There is no Greater Love, A section
+
+... starts out kind of like a backdoor, but then goes to VI7 and II7
+.... II7 -> IIm -> V7 -> I is very common in other tunes so this is good to practice
+
+C F7 J7#11 A7 D7 Dm G7 C
+F J7 L7#11 D7 G7 Gm C7 F
+J L7 I7#11 G7 C7 Cm F7 J
+L I7 K7#11 C7 F7 Fm J7 L
+I K7 H7#11 F7 J7 Jm L7 I
+K H7 B7#11 J7 L7 Lm I7 K
+H B7 E7#11 L7 I7 Im K7 H
+B E7 A7#11 I7 K7 Km H7 B
+E A7 D7#11 K7 H7 Hm B7 E
+A D7 G7#11 H7 B7 Bm E7 A
+D G7 C7#11 B7 E7 Em A7 D
+G C7 F7#11 E7 A7 Am D7 G
+
+
+# Some full tunes
 
 ## Wave
 
