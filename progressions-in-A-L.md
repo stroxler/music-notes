@@ -364,6 +364,11 @@ G C7 F7#11 E7 A7 Am D7 G
     mentally trade IIm for V7sus, in which case the pattern is more obviously
     an embellished chromatic line.
 
+... In 'Just Friends' this comes out of nowhere (off of tonic), but it's also
+    common to see this coming out of a modulation to IV (which also means it's a
+    fairly common end to a bridge). This is indeed exactly what happens in the 
+    second 4 bars of the 'What Is this Thing Called Love' bridge.
+
 Lm I7 Dm G7 C
 Im K7 Gm C7 F
 Km H7 Cm F7 J
@@ -394,6 +399,31 @@ Im K7 Gm C7 Hm B7 E
 Km H7 Cm F7 Bm E7 A
 Hm B7 Fm J7 Em A7 D
 Bm E7 Jm L7 Am D7 G
+
+## Extended backdoor dominant with clearer modulation to bIII
+
+... One way (not the only one) of viewing the backdoor dominant is that it's a
+    borrow from the relative major of the parallel minor, i.e. from bIII major.
+    It's pretty common to see that actually elaborated by adding the major.
+... For example, this happens in the second 4 bars of the bridge of 'On Green
+    Dolphin Street', and the end of the first A in 'Fine and Dandy'.
+... this is another pretty common way of modulating back to I from VI, because
+    you can go from VImaj -> VImi to kick it off
+
+Fm J7 Lma Dm G7 C
+Jm L7 Ima Gm C7 F
+Lm I7 Kma Cm F7 J
+Im K7 Hma Fm J7 L
+Km H7 Bma Jm L7 I
+Hm B7 Ema Lm I7 K
+Bm E7 Ama Im K7 H
+Em A7 Dma Km H7 B
+Am D7 Gma Hm B7 E
+Dm G7 Cma Bm E7 A
+Gm C7 Fma Em A7 D
+Cm F7 Jma Am D7 G
+
+
 
 
 # Some full tunes
