@@ -355,6 +355,30 @@ D G7 C7#11 B7 E7 Em A7 D
 G C7 F7#11 E7 A7 Am D7 G
 
 
+## Just Friends, tricky bit #1
+
+... this is one of the two most common sidestepping changes in GAS standards, it shows up
+    starting in bar 7 of Just Friends (although it doesn't resolve back to I right away in
+    Just Friends, it goes into VIIm7b5 there)
+... The cut from bVI7 to IIm is the most valuable thing to get super used to here, it's
+    kind of like doing a tritone sub but the domininant is also cutting to a minor
+... this is also a great place to practice thinking of the IIm and the V7 as sort of
+    interchangeable (or thinking of IIm as V7sus) because if you can make that mental
+    switch the tritone jump becomes just a half step.
+
+Lm I7 Dm G7 C
+Im K7 Gm C7 F
+Km H7 Cm F7 J
+Hm B7 Fm J7 L
+Bm E7 Jm L7 I
+Em A7 Lm I7 K
+Am D7 Im K7 H
+Dm G7 Km H7 B
+Gm C7 Hm B7 E
+Cm F7 Bm E7 A
+Fm J7 Em A7 D
+Jm L7 Am D7 G
+
 # Some full tunes
 
 ## Wave
