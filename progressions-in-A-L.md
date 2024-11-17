@@ -355,16 +355,14 @@ D G7 C7#11 B7 E7 Em A7 D
 G C7 F7#11 E7 A7 Am D7 G
 
 
-## Just Friends, tricky bit #1
+## Sidestepping II-V's shorter version
 
-... this is one of the two most common sidestepping changes in GAS standards, it shows up
-    starting in bar 7 of Just Friends (although it doesn't resolve back to I right away in
-    Just Friends, it goes into VIIm7b5 there)
-... The cut from bVI7 to IIm is the most valuable thing to get super used to here, it's
-    kind of like doing a tritone sub but the domininant is also cutting to a minor
-... this is also a great place to practice thinking of the IIm and the V7 as sort of
-    interchangeable (or thinking of IIm as V7sus) because if you can make that mental
-    switch the tritone jump becomes just a half step.
+... This one is from Just Friends, it's the shorter version of a common
+    sidestepping pattern that leads to tritone jumps that cut from dominant
+    to minor.
+... It's worth noting that in this pattern, it can be really helpful to
+    mentally trade IIm for V7sus, in which case the pattern is more obviously
+    an embellished chromatic line.
 
 Lm I7 Dm G7 C
 Im K7 Gm C7 F
@@ -378,6 +376,25 @@ Gm C7 Hm B7 E
 Cm F7 Bm E7 A
 Fm J7 Em A7 D
 Jm L7 Am D7 G
+
+## Sidestepping II-V's longer version
+
+... This extension of the previous line is pretty common, e.g. near the end
+    of the second half of of "A Weaver of Dreams".
+
+Em A7 Lm I7 Dm G7 C
+Am D7 Im K7 Gm C7 F
+Dm G7 Km H7 Cm F7 J
+Gm C7 Hm B7 Fm J7 L
+Cm F7 Bm E7 Jm L7 I
+Fm J7 Em A7 Lm I7 K
+Jm L7 Am D7 Im K7 H
+Lm I7 Dm G7 Km H7 B
+Im K7 Gm C7 Hm B7 E
+Km H7 Cm F7 Bm E7 A
+Hm B7 Fm J7 Em A7 D
+Bm E7 Jm L7 Am D7 G
+
 
 # Some full tunes
 
