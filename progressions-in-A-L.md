@@ -298,6 +298,42 @@ D Im K7 H Cm F7 J Em A7 D
 G Km H7 B Fm J7 L Am D7 G
 
 
+## Diminished passing progressions
+
+... Descending diminished into minor
+... this one is in "fine and dandy", it's also used starting in the second bar of "Wave" to modulate to IV
+
+Ldim Dm G7 C
+Idim Gm C7 F
+Kdim Cm F7 J
+Hdim Fm J7 L
+Bdim Jm L7 I
+Edim Lm I7 K
+Adim Im K7 H
+Ddim Km H7 B
+Gdim Hm B7 E
+Cdim Bm E7 A
+Fdim Em A7 D
+Jdim Am D7 G
+
+
+... ascending diminished into anything. This one functions like a tonic substitution,
+    so it's a less specific sound / doesn't need as much dedicated practice as ^^
+
+Kdim Dm G7 C
+Hdim Gm C7 F
+Bdim Cm F7 J
+Edim Fm J7 L
+Adim Jm L7 I
+Ddim Lm I7 K
+Gdim Im K7 H
+Cdim Km H7 B
+Fdim Hm B7 E
+Jdim Bm E7 A
+Ldim Em A7 D
+Idim Am D7 G
+
+
 
 # Some tunes
 
