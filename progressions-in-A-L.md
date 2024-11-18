@@ -248,6 +248,41 @@ Km H7 Bm E7 Am D7 G
     You", and it also it shows up toward the end of one of the A's in "There Will
     Never Be Another You"
 
+Em B7 C
+Am E7 F
+Dm A7 J
+Gm D7 L
+Cm G7 I
+Fm C7 K
+Jm F7 H
+Lm J7 B
+Im L7 E
+Km I7 A
+Hm K7 D
+Bm H7 G
+
+## More of a timing thing: targeting IIm
+
+...We get a ton of practice on VI II V turnarounds back to I, but there are
+   some other turnarounds that appear a lot. This one targets the IIm, variations
+   of it are found on tunes like Honeysuckle Rose, I Love You, and It's You or
+   No One.
+.. This is a turnaround, so play each symbol for just 2 beats.
+
+C F Em A7 Dm - G7 - C
+F J Am D7 Gm - C7 - F
+J L Dm G7 Cm - F7 - J
+L I Gm C7 Fm - J7 - L
+I K Cm F7 Jm - L7 - I
+K H Fm J7 Lm - I7 - K
+H B Jm L7 Im - K7 - H
+B E Lm I7 Km - H7 - B
+E A Im K7 Hm - B7 - E
+A D Km H7 Bm - E7 - A
+D G Hm B7 Em - A7 - D
+G C Bm E7 Am - D7 - G
+
+
 ## Coltrane cycles
 
 ### descending, V only (each V is the bIII of the previous I)
@@ -466,7 +501,7 @@ Bm E7 Em A7 Lm I7 G
 
 
 
-## Extended backdoor dominant with clearer modulation to bIII
+## Extended backdoor dominant with clear modulation to bIII
 
 ... One way (not the only one) of viewing the backdoor dominant is that it's a
     borrow from the relative major of the parallel minor, i.e. from bIII major.
