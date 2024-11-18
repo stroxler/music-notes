@@ -195,22 +195,8 @@ K7 A7 D
 H7 D7 G
 
 
-# Some longer cycles
+# Some more classic and related cadences
 
-## Fully back-cycled to sharp-4
-
-Hm B7 Em A7 Dm G7 C
-Bm E7 Am D7 Gm C7 F
-Em A7 Dm G7 Cm F7 J
-Am D7 Gm C7 Fm J7 L
-Dm G7 Cm F7 Jm L7 I
-Gm C7 Fm J7 Lm I7 K
-Cm F7 Jm L7 Im K7 H
-Fm J7 Lm I7 Km H7 B
-Jm L7 Im K7 Hm B7 E
-Lm I7 Km H7 Bm E7 A
-Im K7 Hm B7 Em A7 D
-Km H7 Bm E7 Am D7 G
 
 ## VI-II-V-I on tritone sub
 
@@ -226,6 +212,41 @@ G7 Cm F7 E
 C7 Fm J7 A
 F7 Jm L7 D
 J7 Lm I7 G
+
+## Fully back-cycled starting on sharp-4
+
+Hm B7 Em A7 Dm G7 C
+Bm E7 Am D7 Gm C7 F
+Em A7 Dm G7 Cm F7 J
+Am D7 Gm C7 Fm J7 L
+Dm G7 Cm F7 Jm L7 I
+Gm C7 Fm J7 Lm I7 K
+Cm F7 Jm L7 Im K7 H
+Fm J7 Lm I7 Km H7 B
+Jm L7 Im K7 Hm B7 E
+Lm I7 Km H7 Bm E7 A
+Im K7 Hm B7 Em A7 D
+Km H7 Bm E7 Am D7 G
+
+... this shows up in my rhythm changes book as an alternative for the first 4 bars;
+    it's also somewhat common to hear it, targeting a modulation to IV, starting in
+    bar 2 of a bebop blues
+
+## Related: The VII7 -> I resolution
+
+... note that if you view the IIIm as a sub for I in the preceding
+    progression, you can get a #IVm -> VII7 -> I
+... There are at least 3 ways to think about this functionally:
+    - The most obvious is chromatic side-stepping (up instead of the more common down),
+      especially if the VII7 is played as a mixolydian or lydian dominant
+    - Another, suggested above, is as a I-for-III sub, i.e. it's targeting the IIIm,
+      especially if the VII7 is played as an altered
+    - Another is to think of the VII7 as a dom13b9, in which case it's actually
+      just a tonic diminished rooted on the VII
+
+... Some standards where this appears: it's fairly prominent in "I Remember
+    You", and it also it shows up toward the end of one of the A's in "There Will
+    Never Be Another You"
 
 ## Coltrane cycles
 
@@ -300,21 +321,25 @@ G Km H7 B Fm J7 L Am D7 G
 
 ## Diminished passing progressions
 
-... Descending diminished into minor
+... Descending diminished into minor (typically a II chord)
 ... this one is in "fine and dandy", it's also used starting in the second bar of "Wave" to modulate to IV
 
-Ldim Dm G7 C
-Idim Gm C7 F
-Kdim Cm F7 J
-Hdim Fm J7 L
-Bdim Jm L7 I
-Edim Lm I7 K
-Adim Im K7 H
-Ddim Km H7 B
-Gdim Hm B7 E
-Cdim Bm E7 A
-Fdim Em A7 D
-Jdim Am D7 G
+Em Ldim Dm G7 C
+Am Idim Gm C7 F
+Dm Kdim Cm F7 J
+Gm Hdim Fm J7 L
+Cm Bdim Jm L7 I
+Fm Edim Lm I7 K
+Jm Adim Im K7 H
+Lm Ddim Km H7 B
+Im Gdim Hm B7 E
+Km Cdim Bm E7 A
+Hm Fdim Em A7 D
+Bm Jdim Am D7 G
+
+In terms of what to play on it - one way of thinking of this diminished passing is that it actually
+functions like a dom7b9 chord rooted on the *target*, so you can sort of view it as a dominant -> minor
+transition.
 
 
 ... ascending diminished into anything. This one functions like a tonic substitution,
@@ -399,6 +424,27 @@ Im K7 Gm C7 Hm B7 E
 Km H7 Cm F7 Bm E7 A
 Hm B7 Fm J7 Em A7 D
 Bm E7 Jm L7 Am D7 G
+
+## Extended sidestepping via the backdoor
+
+... You can keep back-cycling the sidestepping II-Vs; if you do you wind up
+    with something that could be alternatively characterized as lots of sidestepping,
+    or as a backdoor into IIIm and sidestepping back to I; either analysis is accurate
+... an example where this full cycle happens:
+
+Fm J7 Em A7 Lm I7 Dm G7 C
+Jm L7 Am D7 Im K7 Gm C7 F
+Lm I7 Dm G7 Km H7 Cm F7 J
+Im K7 Gm C7 Hm B7 Fm J7 L
+Km H7 Cm F7 Bm E7 Jm L7 I
+Hm B7 Fm J7 Em A7 Lm I7 K
+Bm E7 Jm L7 Am D7 Im K7 H
+Em A7 Lm I7 Dm G7 Km H7 B
+Am D7 Im K7 Gm C7 Hm B7 E
+Dm G7 Km H7 Cm F7 Bm E7 A
+Gm C7 Hm B7 Fm J7 Em A7 D
+Cm F7 Bm E7 Jm L7 Am D7 G
+
 
 ## Extended backdoor dominant with clearer modulation to bIII
 
