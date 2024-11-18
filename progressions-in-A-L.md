@@ -425,7 +425,7 @@ Km H7 Cm F7 Bm E7 A
 Hm B7 Fm J7 Em A7 D
 Bm E7 Jm L7 Am D7 G
 
-## Extended sidestepping via the backdoor
+## Extended sidestepping II-Vs via the backdoor
 
 ... You can keep back-cycling the sidestepping II-Vs; if you do you wind up
     with something that could be alternatively characterized as lots of sidestepping,
@@ -444,6 +444,26 @@ Am D7 Im K7 Gm C7 Hm B7 E
 Dm G7 Km H7 Cm F7 Bm E7 A
 Gm C7 Hm B7 Fm J7 Em A7 D
 Cm F7 Bm E7 Jm L7 Am D7 G
+
+## Reversed side-stepping II-V's: the Satin Doll sequence
+
+... You can mix-and-match various ways but I'll mark this one as on the most common
+    changes for Satin doll, starting at IIIm; when it hits VIm it flips relative to
+    the sequence above, which then causes it to end with bII7 instead of V7
+
+Em A7 Am D7 Im K7 C
+Am D7 Dm G7 Km H7 F
+Dm G7 Dm C7 Hm B7 J
+Gm C7 Cm F7 Bm E7 L
+Cm F7 Fm J7 Em A7 I
+Fm J7 Jm L7 Am E7 K
+Jm L7 Lm I7 Dm G7 H
+Lm I7 Im K7 Gm C7 B
+Im K7 Km H7 Cm F7 E
+Km H7 Hm B7 Fm J7 A
+Hm B7 Bm E7 Jm L7 D
+Bm E7 Em A7 Lm I7 G
+
 
 
 ## Extended backdoor dominant with clearer modulation to bIII
