@@ -358,6 +358,7 @@ G Km H7 B Fm J7 L Am D7 G
 
 ... Descending diminished into minor (typically a II chord)
 ... this one is in "fine and dandy", it's also used starting in the second bar of "Wave" to modulate to IV
+    and in the end of the A to "Honeysuckle Rose".
 
 Em Ldim Dm G7 C
 Am Idim Gm C7 F
