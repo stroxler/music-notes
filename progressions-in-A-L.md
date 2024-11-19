@@ -329,12 +329,12 @@ elaboration of chromatic movement plus a substitution.
 
 ## Diatonic dominant 7 conversions
 
-... The lead in for this is a bit specific, I pulled it from 'Weaver of Dreams' 1st A,
-    but starting with the A7 -> Am it's a pattern you see somewhat often
+...The key movement here is starting with VI7 -> VIm, but I'm showing one
+   way of getting into it via a backdoor and III, which I've borrowed from
+   the first A of 'Weaver of Dreams'
 
-Am B7#11 Em A7 Am D7 Dm G7 C
+F J7#11 Em A7 Am D7 Dm G7 C
 FILLME
-
 
 ## Chromatic dominant 7 conversions, ending on V
 
