@@ -47,9 +47,9 @@ I G
 
 # Classical 3-chord cadences
 
-The four diminished-cycle classical cadences
+## The four diminished-cycle classical cadences
 
-# II-V-I
+### II-V-I
 
 Dm G7 C
 Gm C7 F
@@ -64,7 +64,7 @@ Bm E7 A
 Em A7 D
 Am D7 G
 
-# Tritone
+### Tritone
 
 Im K7 C
 Km H7 F
@@ -79,7 +79,7 @@ Fm J7 A
 Jm L7 D
 Lm I7 G
 
-# Backdoor
+### Backdoor
 
 Fm J7 C
 Jm L7 F
@@ -94,7 +94,7 @@ Dm G7 A
 Gm C7 D
 Cm F7 G
 
-# sub-3-for-5
+### sub-3-for-5
 
 Bm E7 C
 Em A7 F
@@ -108,6 +108,35 @@ Lm I7 E
 Im K7 A
 Km H7 D
 Hm B7 G
+
+## Minor variations
+
+Make sure to play these with the final minor chord as each of:
+ - natural minor 7/9/11
+ - melodic (and dorian) minor 6 and minor major 7
+   - the relative major 7 #5 (which is the minor major 9) is a
+     good idea too, it does come up occasionally.
+
+### Vanilla II-V
+
+Dhd G7alt Cm
+FILLME
+
+### Sub IV for II
+
+(The IV here is dorian, so either m7 or m6 works; doing m6 is actually
+ just an inversion of the above though, the m7 is more distinctive)
+
+Fm G7alt Cm
+FILLME
+
+### bVI based II-V
+
+(Here the bVIIm6 - which should also be tried out at bVImima7 - is a sub
+ for V7alt, and opens up a pretty different bass movement).
+
+Ima Im6 Cm/G
+FILLME
 
 ## Classic 3-chord with subs
 
@@ -179,6 +208,18 @@ G7 Cm F7 E
 C7 Fm J7 A
 F7 Jm L7 D
 J7 Lm I7 G
+
+## III-VI-II-V but using a minor 2/5 to the II
+
+This is a pretty common tweak to see in great american songbook tunes; it's
+sort of a III-VI-II-V, but it implies a kind of temporary modulation because
+it implies a minor (in particular a harmonic minor) rooted on II for the first
+two chords. This is great to practice; it's also something you can always use
+in solo lines even if the chords aren't marked this way.
+
+
+Ehd A7alt Dm G7 C
+FILLME
 
 
 ## Extended backdoor dominant with clear modulation to bIII
