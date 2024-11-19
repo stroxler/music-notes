@@ -45,7 +45,6 @@ J A
 L D
 I G
 
-
 # Classical 3-chord cadences
 
 The four diminished-cycle classical cadences
@@ -109,38 +108,6 @@ Lm I7 E
 Im K7 A
 Km H7 D
 Hm B7 G
-
-## Pop 3-chord cacedences
-
-# V-IV-I
-
-G F C
-C J F
-F L J
-J I L
-L K I
-I H K
-K B H
-H E B
-B A E
-E D A
-A G D
-D C G
-
-# Plagal
-
-J F C
-L J F
-I L J
-K I L
-H K I
-B H K
-E B H
-A E B
-D A E
-G D A
-C G D
-F C G
 
 ## Classic 3-chord with subs
 
@@ -213,6 +180,30 @@ C7 Fm J7 A
 F7 Jm L7 D
 J7 Lm I7 G
 
+
+## Extended backdoor dominant with clear modulation to bIII
+
+... One way (not the only one) of viewing the backdoor dominant is that it's a
+    borrow from the relative major of the parallel minor, i.e. from bIII major.
+    It's pretty common to see that actually elaborated by adding the major.
+... For example, this happens in the second 4 bars of the bridge of 'On Green
+    Dolphin Street', and the end of the first A in 'Fine and Dandy'.
+... this is another pretty common way of modulating back to I from VI, because
+    you can go from VImaj -> VImi to kick it off
+
+Fm J7 Lma Dm G7 C
+Jm L7 Ima Gm C7 F
+Lm I7 Kma Cm F7 J
+Im K7 Hma Fm J7 L
+Km H7 Bma Jm L7 I
+Hm B7 Ema Lm I7 K
+Bm E7 Ama Im K7 H
+Em A7 Dma Km H7 B
+Am D7 Gma Hm B7 E
+Dm G7 Cma Bm E7 A
+Gm C7 Fma Em A7 D
+Cm F7 Jma Am D7 G
+
 ## Fully back-cycled starting on sharp-4
 
 Hm B7 Em A7 Dm G7 C
@@ -281,6 +272,119 @@ E A Im K7 Hm - B7 - E
 A D Km H7 Bm - E7 - A
 D G Hm B7 Em - A7 - D
 G C Bm E7 Am - D7 - G
+
+
+# Sidestepping II-V's
+
+The cadences above can all be thought of as being constructed from a straight
+cycle of fifths, with various substitutions.
+
+Another very common pattern in great american songbook standards is to side-step
+the II-V's, so that we'll actually move a tritone going from one dominant to the
+next minor chord.
+
+There are various ways to think of this, but one of them is just as a substituted
+elaboration of chromatic movement plus a substitution.
+
+## Sidestepping without sidestepping: chromatic movement and sus chords (ending on V7)
+
+Asus A7 Isus I7 Gsus G7 C
+FILLME
+
+## Sidestepping without sidestepping: tritone substituted vs ^
+
+This one is not something you'd find in a great american songbook tune as written,
+but you could sub it in: instead of suspending, use the major chord. The leading tones
+here are identical to the above.
+
+Lma L7 Dma D7 Kma K7 C
+FILLME
+
+
+## Sidestepping II-V's shorter version
+
+... This one is from Just Friends, it's the shorter version of a common
+    sidestepping pattern that leads to tritone jumps that cut from dominant
+    to minor.
+... It's worth noting that in this pattern, it can be really helpful to
+    mentally trade IIm for V7sus, in which case the pattern is more obviously
+    an embellished chromatic line.
+
+... In 'Just Friends' this comes out of nowhere (off of tonic), but it's also
+    common to see this coming out of a modulation to IV (which also means it's a
+    fairly common end to a bridge). This is indeed exactly what happens in the 
+    second 4 bars of the 'What Is this Thing Called Love' bridge.
+
+Lm I7 Dm G7 C
+Im K7 Gm C7 F
+Km H7 Cm F7 J
+Hm B7 Fm J7 L
+Bm E7 Jm L7 I
+Em A7 Lm I7 K
+Am D7 Im K7 H
+Dm G7 Km H7 B
+Gm C7 Hm B7 E
+Cm F7 Bm E7 A
+Fm J7 Em A7 D
+Jm L7 Am D7 G
+
+## Sidestepping II-V's longer version
+
+... This extension of the previous line is pretty common, e.g. near the end
+    of the second half of of "A Weaver of Dreams".
+
+Em A7 Lm I7 Dm G7 C
+Am D7 Im K7 Gm C7 F
+Dm G7 Km H7 Cm F7 J
+Gm C7 Hm B7 Fm J7 L
+Cm F7 Bm E7 Jm L7 I
+Fm J7 Em A7 Lm I7 K
+Jm L7 Am D7 Im K7 H
+Lm I7 Dm G7 Km H7 B
+Im K7 Gm C7 Hm B7 E
+Km H7 Cm F7 Bm E7 A
+Hm B7 Fm J7 Em A7 D
+Bm E7 Jm L7 Am D7 G
+
+## Extended sidestepping II-Vs via the backdoor
+
+... You can keep back-cycling the sidestepping II-Vs; if you do you wind up
+    with something that could be alternatively characterized as lots of sidestepping,
+    or as a backdoor into IIIm and sidestepping back to I; either analysis is accurate
+... an example where this full cycle happens:
+
+Fm J7 Em A7 Lm I7 Dm G7 C
+Jm L7 Am D7 Im K7 Gm C7 F
+Lm I7 Dm G7 Km H7 Cm F7 J
+Im K7 Gm C7 Hm B7 Fm J7 L
+Km H7 Cm F7 Bm E7 Jm L7 I
+Hm B7 Fm J7 Em A7 Lm I7 K
+Bm E7 Jm L7 Am D7 Im K7 H
+Em A7 Lm I7 Dm G7 Km H7 B
+Am D7 Im K7 Gm C7 Hm B7 E
+Dm G7 Km H7 Cm F7 Bm E7 A
+Gm C7 Hm B7 Fm J7 Em A7 D
+Cm F7 Bm E7 Jm L7 Am D7 G
+
+## Reversed side-stepping II-V's: the Satin Doll sequence
+
+... You can mix-and-match various ways but I'll mark this one as on the most common
+    changes for Satin doll, starting at IIIm; when it hits VIm it flips relative to
+    the sequence above, which then causes it to end with bII7 instead of V7
+
+Em A7 Am D7 Im K7 C
+Am D7 Dm G7 Km H7 F
+Dm G7 Dm C7 Hm B7 J
+Gm C7 Cm F7 Bm E7 L
+Cm F7 Fm J7 Em A7 I
+Fm J7 Jm L7 Am E7 K
+Jm L7 Lm I7 Dm G7 H
+Lm I7 Im K7 Gm C7 B
+Im K7 Km H7 Cm F7 E
+Km H7 Hm B7 Fm J7 A
+Hm B7 Bm E7 Jm L7 D
+Bm E7 Em A7 Lm I7 G
+
 
 
 ## Coltrane cycles
@@ -416,114 +520,38 @@ D G7 C7#11 B7 E7 Em A7 D
 G C7 F7#11 E7 A7 Am D7 G
 
 
-## Sidestepping II-V's shorter version
 
-... This one is from Just Friends, it's the shorter version of a common
-    sidestepping pattern that leads to tritone jumps that cut from dominant
-    to minor.
-... It's worth noting that in this pattern, it can be really helpful to
-    mentally trade IIm for V7sus, in which case the pattern is more obviously
-    an embellished chromatic line.
+## Pop 3-chord cacedences
 
-... In 'Just Friends' this comes out of nowhere (off of tonic), but it's also
-    common to see this coming out of a modulation to IV (which also means it's a
-    fairly common end to a bridge). This is indeed exactly what happens in the 
-    second 4 bars of the 'What Is this Thing Called Love' bridge.
+# V-IV-I
 
-Lm I7 Dm G7 C
-Im K7 Gm C7 F
-Km H7 Cm F7 J
-Hm B7 Fm J7 L
-Bm E7 Jm L7 I
-Em A7 Lm I7 K
-Am D7 Im K7 H
-Dm G7 Km H7 B
-Gm C7 Hm B7 E
-Cm F7 Bm E7 A
-Fm J7 Em A7 D
-Jm L7 Am D7 G
+G F C
+C J F
+F L J
+J I L
+L K I
+I H K
+K B H
+H E B
+B A E
+E D A
+A G D
+D C G
 
-## Sidestepping II-V's longer version
+# Plagal
 
-... This extension of the previous line is pretty common, e.g. near the end
-    of the second half of of "A Weaver of Dreams".
-
-Em A7 Lm I7 Dm G7 C
-Am D7 Im K7 Gm C7 F
-Dm G7 Km H7 Cm F7 J
-Gm C7 Hm B7 Fm J7 L
-Cm F7 Bm E7 Jm L7 I
-Fm J7 Em A7 Lm I7 K
-Jm L7 Am D7 Im K7 H
-Lm I7 Dm G7 Km H7 B
-Im K7 Gm C7 Hm B7 E
-Km H7 Cm F7 Bm E7 A
-Hm B7 Fm J7 Em A7 D
-Bm E7 Jm L7 Am D7 G
-
-## Extended sidestepping II-Vs via the backdoor
-
-... You can keep back-cycling the sidestepping II-Vs; if you do you wind up
-    with something that could be alternatively characterized as lots of sidestepping,
-    or as a backdoor into IIIm and sidestepping back to I; either analysis is accurate
-... an example where this full cycle happens:
-
-Fm J7 Em A7 Lm I7 Dm G7 C
-Jm L7 Am D7 Im K7 Gm C7 F
-Lm I7 Dm G7 Km H7 Cm F7 J
-Im K7 Gm C7 Hm B7 Fm J7 L
-Km H7 Cm F7 Bm E7 Jm L7 I
-Hm B7 Fm J7 Em A7 Lm I7 K
-Bm E7 Jm L7 Am D7 Im K7 H
-Em A7 Lm I7 Dm G7 Km H7 B
-Am D7 Im K7 Gm C7 Hm B7 E
-Dm G7 Km H7 Cm F7 Bm E7 A
-Gm C7 Hm B7 Fm J7 Em A7 D
-Cm F7 Bm E7 Jm L7 Am D7 G
-
-## Reversed side-stepping II-V's: the Satin Doll sequence
-
-... You can mix-and-match various ways but I'll mark this one as on the most common
-    changes for Satin doll, starting at IIIm; when it hits VIm it flips relative to
-    the sequence above, which then causes it to end with bII7 instead of V7
-
-Em A7 Am D7 Im K7 C
-Am D7 Dm G7 Km H7 F
-Dm G7 Dm C7 Hm B7 J
-Gm C7 Cm F7 Bm E7 L
-Cm F7 Fm J7 Em A7 I
-Fm J7 Jm L7 Am E7 K
-Jm L7 Lm I7 Dm G7 H
-Lm I7 Im K7 Gm C7 B
-Im K7 Km H7 Cm F7 E
-Km H7 Hm B7 Fm J7 A
-Hm B7 Bm E7 Jm L7 D
-Bm E7 Em A7 Lm I7 G
-
-
-
-## Extended backdoor dominant with clear modulation to bIII
-
-... One way (not the only one) of viewing the backdoor dominant is that it's a
-    borrow from the relative major of the parallel minor, i.e. from bIII major.
-    It's pretty common to see that actually elaborated by adding the major.
-... For example, this happens in the second 4 bars of the bridge of 'On Green
-    Dolphin Street', and the end of the first A in 'Fine and Dandy'.
-... this is another pretty common way of modulating back to I from VI, because
-    you can go from VImaj -> VImi to kick it off
-
-Fm J7 Lma Dm G7 C
-Jm L7 Ima Gm C7 F
-Lm I7 Kma Cm F7 J
-Im K7 Hma Fm J7 L
-Km H7 Bma Jm L7 I
-Hm B7 Ema Lm I7 K
-Bm E7 Ama Im K7 H
-Em A7 Dma Km H7 B
-Am D7 Gma Hm B7 E
-Dm G7 Cma Bm E7 A
-Gm C7 Fma Em A7 D
-Cm F7 Jma Am D7 G
+J F C
+L J F
+I L J
+K I L
+H K I
+B H K
+E B H
+A E B
+D A E
+G D A
+C G D
+F C G
 
 
 
