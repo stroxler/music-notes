@@ -217,6 +217,13 @@ it implies a minor (in particular a harmonic minor) rooted on II for the first
 two chords. This is great to practice; it's also something you can always use
 in solo lines even if the chords aren't marked this way.
 
+A few concrete examples:
+ - It's used several times in some arrangements of Bye Bye Blackbird, where
+   it gives a bluesy effect while staying mostly diatonic.
+ - It shows up in I'll Remember April
+ - 'I Love You' uses it, although with a variation using IIhd (which is the
+   most distinctive sound of that standard)
+
 
 Ehd A7alt Dm G7 C
 FILLME
