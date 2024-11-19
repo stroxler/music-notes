@@ -274,7 +274,7 @@ D G Hm B7 Em - A7 - D
 G C Bm E7 Am - D7 - G
 
 
-# Sidestepping II-V's
+# II-V's with dom7 conversions or sidestepping
 
 The cadences above can all be thought of as being constructed from a straight
 cycle of fifths, with various substitutions.
@@ -286,16 +286,27 @@ next minor chord.
 There are various ways to think of this, but one of them is just as a substituted
 elaboration of chromatic movement plus a substitution.
 
-## Sidestepping without sidestepping: chromatic movement and sus chords (ending on V7)
+## Diatonic dominant 7 conversions
+
+... The lead in for this is a bit specific, I pulled it from 'Weaver of Dreams' 1st A,
+    but starting with the A7 -> Am it's a pattern you see somewhat often
+
+Am B7#11 Em A7 Am D7 Dm G7 C
+FILLME
+
+
+## Chromatic dominant 7 conversions, ending on V
 
 Asus A7 Isus I7 Gsus G7 C
 FILLME
 
-## Sidestepping without sidestepping: tritone substituted vs ^
+## Chromatic dominant 7 conversions, ending on bII and using maj7
 
-This one is not something you'd find in a great american songbook tune as written,
-but you could sub it in: instead of suspending, use the major chord. The leading tones
-here are identical to the above.
+This one is not something you'd find in a vanilla arrangement but it's a nice pattern
+to practice: leave the leading tones from the above exactly the same and tritone sub
+the bases to get major / dominant instead of minor / dominant.
+
+If I remember correctly, Cedar Walton was fond of this kind of movement.
 
 Lma L7 Dma D7 Kma K7 C
 FILLME
