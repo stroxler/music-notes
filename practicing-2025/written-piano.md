@@ -28,46 +28,35 @@ anyway, but some don't - I think Fur Elise might be in one of them).
 
 # What I am doing in the short term
 
-Reveiw Faber 4 lesson book. Focus at this point is on
- - Grand Central, The Spy, and Great Barrier Reef (the roughest)
- - Chanson (haven't started yet)
- - French Minuet, Bouree, Gigue (challenging and iI like)
-Most notably missing from that list:
- - I'm ready to skip Wild Flowers and Ceremony for Peace on most reads
- - I'm still putting off the Bach prelude for the moment
+Reveiw Faber 4 lesson book.
+ - Focus mainly on Chanson, the only one I'm still really *learning*
+Skip:
+ - The Bach Prelude, which I'm still putting off for now
+ - Volga Boatment and Ceremony for Peace
 
-Start working through Faber 5. At the moment, the focus is on:
- - St Louis Blues: top priority is to move this to review stage
-   - Why? B/c I don't want to spend too much time practicing a form that
-     skips the interlude, but I do really want to lock in the physical aspects
-     of the arrangement which is pretty nice!
- - I'm ready to add Fanfare on America, which is pretty tricky
- - Jazz Reflection, Tumbleweed, Autumn Ba.
- - Smoky Mtn Prelude and Pomp and Circumstance are getting close to review stage
- - ... I'm ready to at least run through all the other tunes and figure out
-   what to add next after Fanfare on America
-A few that I'm currently mostly skipping:
- - Carillion is already at a review stage
- - I'm planning to permanently skip Rhythm Flight and Ballade in this book
-   (Ballade is in Thompson and I'd rather delay it, I don't like R.F.)
+Working on Faber 5:
+ - The classical stuff is on hold:
+   - I'm going to skip Ballade, and cover it in Thompson instead
+   - Everything else I've been delaying just for focus, I'll cover them
+ - Everything else is in progress:
+   - Fanfare on America is pretty tricky
+   - Tumbleweed blues the main priority is the ending
+   - Carrillion and Smoky Mtn are already mostly in review status
 
 
-Start reading the easy jazz and blues books!
-- Especially after vacation, this should actually be my main focus
-- I should be aggressively interspersing the straight-up reading practice with other approaches
-  to the same tunes:
-  - Transposing the arrangements by sight - start at least trying this pretty early!
-  - Spicing up the arrangements a bit rhythmically and harmonically
-  - Just comping the chords on piano and singing
-  - Playing the roots on u-bass, and then transposing
-  - Pausing to explore whether the tune is suitable for deep study e.g. on bass :)
+Once Faber is all in review, I will:
+ - Focus most of my energy on:
+   - easy jazz standards
+   - the Richards jazz method book
+ - Start slowly on Thompson
+ - Start slowly on the supplemental Faber books
+ - Start slowly on Bach Preludes
+ - Peruse all the classical repertoire books I have from Turney
+ - Consider getting the intermediat method book volume 2
 
 
-I already started Thompson 3, but I'm going to put that on hold for now in favor of Faber
-and easy jazz... I'm planning to take it on vacation, so save it for then!
-
-I'll start working all the other Faber books - starting with the most useful
-music - once I've done the lesson books. I will start with these:
+For the supplemental Faber books, at first I want to really focus on just
+the jazzy and bluesy stuff, don't try to tackle classical or pop:
 - Strawberry Malt F4PB p8
 - Three Blues Pieces F4PB p26
 - New York, New York F4PR p24
