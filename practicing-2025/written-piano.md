@@ -37,11 +37,10 @@ Skip:
 Working on Faber 5:
  - The classical stuff is on hold:
    - I'm going to skip Ballade, and cover it in Thompson instead
-   - Everything else I've been delaying just for focus, I'll cover them
+   - I'm close to ready to start the others, I delayed them so I could focus
  - Everything else is in progress:
-   - Fanfare on America is pretty tricky
-   - Tumbleweed blues the main priority is the ending
-   - Carrillion and Smoky Mtn are already mostly in review status
+   - The end of Tumbeweed needs work, most of it is okay-ish
+   - Fanfare on America, Sunrise, and Shenandoah all need work
 
 
 Once Faber is all in review, I will:
