@@ -1,35 +1,55 @@
 # My Plan
 
 My plan is to:
- - First study the Faber lesson books in parallel with easy jazz stuff
- - Then, study Thompson in parallel with both
-   - The additional Faber books, tackled slowly
-   - More easy jazz (the easy jazz is a lot of material, may take a while)
+ - First race through the Faber books
+ - Then, study Thompson at a more measured pace in parallel with:
+   - Reviewing the Faber lesson books e2e at least once per week
+   - Lots and lots of easy jazz, both the standards books and Richards
+   - Working through all the other Faber books at a very measured pace
 
-As I move through Thompson, I may need to look for more material. A couple ideas:
- - The Intermediate Pianist (Marshall and Hammond) Level 3 might be useful:
-   - it was recommended, and the sample included stuff I care about like latin rhythm
-   - it is part of a series that includes two advanced books, so there's room to grow
- - Someone online recommended Exploring Jazz Piano (Tim Richards)
-   - There are lots of videos online: https://www.youtube.com/@SchottM/search?query=exploring%20jazz%20piano
-   - It seems promising, reasonably aligned with Siskind's stuff. My hope is it's a bit more *reading*
-     which might help bridge the full-on jazz approach of Siskind with the easy jazz standards arrangements
 
-I'm pretty confident from some reviews that both of these are worth purchasing (unfortunately
-neither is available from the library).
+Once I get to Thompson, it might be worth thinking about whether to get any
+other intermediate level non-jazz books.
+
+I looked online and the only strong recommendation I saw was 'The Intermediate
+Pianost' by Marshall and Hammond. I think it's probably worth a shot for two
+reasons:
+ - Like Faber, I think it aims to develop more general skills vs Thompson's
+   strong focus on classical; the sample I read, for example, seemed to
+   include discussion of latin rhythms which seems awesome and useful!
+ - There's a 2-book advanced series, so if I like the book then there will
+   be quite a bit more material I could dig into after.
+
+The other thing to think about is non-method material; the Bach Preludes
+would be fantasitc to work through in parallel and Dad has a few other
+repertoire books I probably could skim (many of the tunes show up in Thompson
+anyway, but some don't - I think Fur Elise might be in one of them).
+
 
 # What I am doing in the short term
 
-Reveiw Faber 4 lesson book. I'm now ready to focus on just the 7 tunes I like most:
-- French Minuet, Grand Central Station, Bouree, and Chanson
-- Gigue, Great Barrier Reef, and the Bach prelude
+Reveiw Faber 4 lesson book. Focus at this point is on
+ - Grand Central, The Spy, and Great Barrier Reef (the roughest)
+ - Chanson (haven't started yet)
+ - French Minuet, Bouree, Gigue (challenging and iI like)
+Most notably missing from that list:
+ - I'm ready to skip Wild Flowers and Ceremony for Peace on most reads
+ - I'm still putting off the Bach prelude for the moment
 
-Start working through Faber 5:
-- I'm skipping Rhythm Flight and Ballade (the last two tunes; I'll cover Ballade in Thompson)
-- I should initially focus on two subsets of the tunes:
-  - My least favorites: Carrillion Fantasia, Two Guitars, and Smoky Mountain Prelude (p42-49)
-  - The most useful: Jazz Re. (p4), Tumbleweed (p12), Autumn Ba. (p24), St Louis Bl. (p30)
-- Once I have those subsets down, start trying to nail the entire book (through p49)
+Start working through Faber 5. At the moment, the focus is on:
+ - St Louis Blues: top priority is to move this to review stage
+   - Why? B/c I don't want to spend too much time practicing a form that
+     skips the interlude, but I do really want to lock in the physical aspects
+     of the arrangement which is pretty nice!
+ - I'm ready to add Fanfare on America, which is pretty tricky
+ - Jazz Reflection, Tumbleweed, Autumn Ba.
+ - Smoky Mtn Prelude and Pomp and Circumstance are getting close to review stage
+ - ... I'm ready to at least run through all the other tunes and figure out
+   what to add next after Fanfare on America
+A few that I'm currently mostly skipping:
+ - Carillion is already at a review stage
+ - I'm planning to permanently skip Rhythm Flight and Ballade in this book
+   (Ballade is in Thompson and I'd rather delay it, I don't like R.F.)
 
 
 Start reading the easy jazz and blues books!
