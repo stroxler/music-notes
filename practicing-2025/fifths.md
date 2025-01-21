@@ -1,3 +1,14 @@
+# Tenor guitar and banjo
+
+There's exaclty one tenor guitar book; it didn't look great although
+it's probably worth looking at anyway at some point.
+
+There are two tenor banjo methods that both looked decent; I got the
+one by Fred Sokolow, which was shorter and a little more intro-level.
+
+I would definitely check these out again; there's good info and chord
+charts for early jazz and old time music.
+
 # Mandolin
 
 Mel Bay's Anthology of Mandolin music seems like a solid start.
