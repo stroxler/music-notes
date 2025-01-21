@@ -1,66 +1,51 @@
 # My Plan
 
-My plan is to:
- - First race through the Faber books
- - Then, study Thompson at a more measured pace in parallel with:
-   - Reviewing the Faber lesson books e2e at least once per week
-   - Lots and lots of easy jazz, both the standards books and Richards
-   - Working through all the other Faber books at a very measured pace
+I've raced through the Faber lesson books and now am at least slightly
+familiar with every tune.
+
+Until vacation, I'm focused mainly on Faber lesson books and J&B
+
+My top practice priorities for right now are:
+ - Chanson
+ - Bach Prelude
+ - Shenandoah
+ - Whirlwind
+ - Fanfare on America
+ - All of Jazz&Blues
+   - Skip 'Cast Your Fate' and 'Equinox'
+   - Initial focus: A-Train, Autumn Leaves, first blues
+   - Second focus: Desafinado, A Taste of Honey, second blues
+   - Finally all the others (I really like the arrangements!)
 
 
-Once I get to Thompson, it might be worth thinking about whether to get any
-other intermediate level non-jazz books.
+My plan for Q1 written piano is the following:
+ - Start reviewing Faber 4L, 5L, J&B weekly
+   - At first, aim for several cycles per week until things are locked in
+   - Eventually though I want to do one per week and focus on other material
+ - Focus a lot of my time on jazz:
+   - the BigTime jazz/blues book - everything I don't dislike
+   - Start working through the *written* material in Tim Richards
+   - Aim to learn *all* the tunes the 'first 50' books
+ - Beging to *slowly* study additional material:
+   - High-value supplemental Faber material: do these first
+     - Strawberry Malt F4PB p8
+     - Three Blues Pieces F4PB p26
+     - New York, New York F4PR p24
+     - Bearcat Boogie - F5PB p24
+     - Over the Rainbow - F5PR p12
+     - Summertime - F5PR p16
+     - Take Five - F5PR p40
+   - Thompson book 3, straight through
+   - As I tackle Thompson, in parallel I can also slowly tackle:
+     - The rest of the supplemental Faber books
+     - The Bach preludes book
+     - the repertoire books from Turney
 
-I looked online and the only strong recommendation I saw was 'The Intermediate
-Pianost' by Marshall and Hammond. I think it's probably worth a shot for two
-reasons:
- - Like Faber, I think it aims to develop more general skills vs Thompson's
-   strong focus on classical; the sample I read, for example, seemed to
-   include discussion of latin rhythms which seems awesome and useful!
- - There's a 2-book advanced series, so if I like the book then there will
-   be quite a bit more material I could dig into after.
+Probably order 'The Intermediate Pianist' by Marshall and Hammond (volume3):
+ - It's very highly reviewed and has a 2-book 'Advanced' follow-up
+   - They get as far as (e.g.) a Bach invention and a Chopin nocture
+   - These are the only method books other than Thompson that go this far
+ - Why volume 3? Two reasons:
+   - My estimation is that Faber 4 and 5 are about the level of volume 2
+   - Volume 3 is the first volume that has material I really want to try
 
-The other thing to think about is non-method material; the Bach Preludes
-would be fantasitc to work through in parallel and Dad has a few other
-repertoire books I probably could skim (many of the tunes show up in Thompson
-anyway, but some don't - I think Fur Elise might be in one of them).
-
-
-# What I am doing in the short term
-
-Reveiw Faber 4 lesson book.
- - Focus mainly on Chanson, the only one I'm still really *learning*
-Skip:
- - The Bach Prelude, which I'm still putting off for now
- - Volga Boatment and Ceremony for Peace
-
-Working on Faber 5:
- - The classical stuff is on hold:
-   - I'm going to skip Ballade, and cover it in Thompson instead
-   - I'm close to ready to start the others, I delayed them so I could focus
- - Everything else is in progress:
-   - The end of Tumbeweed needs work, most of it is okay-ish
-   - Fanfare on America, Sunrise, and Shenandoah all need work
-
-
-Once Faber is all in review, I will:
- - Focus most of my energy on:
-   - easy jazz standards
-   - the Richards jazz method book
- - Start slowly on Thompson
- - Start slowly on the supplemental Faber books
- - Start slowly on Bach Preludes
- - Peruse all the classical repertoire books I have from Turney
- - Consider getting the intermediat method book volume 2
-
-
-For the supplemental Faber books, at first I want to really focus on just
-the jazzy and bluesy stuff, don't try to tackle classical or pop:
-- Strawberry Malt F4PB p8
-- Three Blues Pieces F4PB p26
-- New York, New York F4PR p24
-- Bearcat Boogie - F5PB p24
-- Over the Rainbow - F5PR p12
-- Summertime - F5PR p16
-- Take Five - F5PR p40
-- All of Faber BigTime piano
