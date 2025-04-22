@@ -1,0 +1,15 @@
+X: 1
+T: Mary Lou
+M: 6/8
+L: 1/16
+V: 1 clef=bass
+K: Eb
+|: C,2G,2C2 _D2_A,2_D,2 "8x" :|: C,2G,2C2 _D2_A,2_D,2 "7x" :| C,2G,2C2 _G,6 |
+|  F,2C2A,2 _B,6   | _E,2_B,2G,2 _A,6 | =D,6 =G6 |: C,2G,2C2 _D2_A,2_D,2 "4x" :|
+% 1st chorus
+| "1:13, 1st" C,3C,3 _D,3_D3 | C3G,3 _A,3_A,3 | G,3G,3 _A,3_A,3 | G,3G,3 _A,_D,2_D,3 |
+| "1:22" C,G,2G,2 _D_D2_D2_D | G,G,2CG _A_A2_A2_A | G3G2G _A_A2_A2_A |GC2G,2G, _G,3 |
+| "1:29" F,3_G,3 _B,3=D,3 | L,3G,3 _A,3_A,3 | =D3=D3 G3G2G |
+| "1:35" C,3C3 _D,3_D3 | C3C3 _D,3_D3 | C3C3 _D,3_D3 | C3C3 _D,3_D3 |
+% 2nd chorus
+| "1:43, 2nd" C3G,3 F,2_B,2_A,2 | G3G3 _A,3_A,3 |
