@@ -1,0 +1,14 @@
+X:1
+T: Epistrophy
+M:4/4
+L:1/8
+K:A
+% head
+| "C#7" z2^CD ^A!>!B3        | "D7" ^CD^A!>!B-B2z2       | "C#7" z2^CD ^A!>!E-E2         | "D7" ^CD^A!>!E-E2z2       |!
+| "Eb7" z2^DE =C'!>!^C'-^C'2 | "E7" ^DE=C'!>!^C'-^C'2z2  | "Eb7"  z2^DE =C'!>!^F-^F2     | "E7" ^DE=C'!>!^F-^F2z2    |!
+| "Eb7" z2^DE =C'!>!^C'-^C'2 | "E7" ^DE=C'!>!^C'-^C'2z2  | "Eb7"  z2^DE =C'!>!^F-^F2     | "E7" ^DE=C'!>!^F-^F2z2    |!
+| "C#7" z2^CD ^A!>!B3        | "D7" ^CD^A!>!B-B2z2       | "C#7" z2^CD ^A!>!E-E2         | "D7" ^CD^A!>!E-E2z2       |!
+| "F#m6" z4^C^D^F^G          | A2^GA^F2^D2               | z4C^D^FA                      | zA2^G^F2^D2               |!
+| "B7" z4^C^D^F^G            | B2ABA2^F2                 | "Db7" =F_A_C'_E' -_E'_C'3     | "D7" ^FA=C'E' -E'=C'3     |!
+| "Eb7" z2^DE =C'!>!^C'-^C'2 | "E7" ^DE=C'!>!^C'-^C'2z2  | "Eb7"  z2^DE =C'!>!^F-^F2     | "E7" ^DE=C'!>!^F-^F2z2    |!
+| "C#7" z2^CD ^A!>!B3        | "D7" ^CD^A!>!B-B2z2       | "C#7" z2^CD ^A!>!E-E2         | "D7" ^CD^A!>!E-E2z2       |!
