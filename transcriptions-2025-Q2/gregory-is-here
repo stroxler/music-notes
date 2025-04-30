@@ -4,20 +4,34 @@ M: 4/4
 L: 1/8
 V: 1 clef=bass octave=-1
 K: Bb
-|: "head, A" =B,3 ^F4 =B- | B3^F- ^F5 | =C3 =G4 =C'- | =C'3G- G4 | =B,3 ^F4 =B- | B3^F- ^F5 | =C3 =G4 =C'- | =C'3G- G2G_A |
-| A3 A- A4 | D3 D- D4 | G3 G- G3 C- | C D2 _E- _E =E z2 |
-| C3 G- G C' GG | =B,3 ^F- ^F =B ^FF | _B,3 D- DF_BF | _B,3 _B,- _B,4 :|
-| "head, B" _E3 _E'- _E'_E _B=A | _A3 _A- _A_A_ED | _D3 _A,- _A,=A,3 | _B,3 F- F_A_B_A | 
-| _E3 _E'- _E'_B2 _A- | _A3 _A- _A_A_A2 | z C2 C2 C2 C | F2 F2 z4 :|
-| "1st, 1:24" =B,2=B,2- B,^F,2=B, | =B,3 ^F,-  ^F, =B,3 | =C4 =G,3 C- | C3 G, G,2 C2 |
-| "1:29" =B,3 ^F, ^F,3 =B,- | =B,3 ^F, ^F, | C3 G, G,3 C- | C3 G, C2 C2  | "1:34" A3 E- EGAD | D3 C' D'C'A_A | G3 F- F E D2 | C3C A,2_A,2 |
-| "1:41" C3C- CCG2 | =B,3=B,- =B,^F=B,=B, | _B,3 D- DF_B2- | _B A2 G- GF D2 |
-| "1:46" =B,4 ^F,3 =B,- | =B,3 ^F, =B,2 =B,2 | C4 G,G,2C- | C3G, G,2 C2  | "1:52" =B,3^F, ^F,3 =B,- | =B,3 ^F, ^F,2 =B,2 | C3G, G,3 C- | C3 G, G,2 C2 |
+% A1
+| "head, A1" =B,3 ^F3 =B2- | B^F3- ^F5 | =C3 =G3 =C'2- | =C'G3- G4 | =B,3 ^F3 =B2- | B^F3- ^F5 | =C3 =G3 =C'2- | =C'G3- G3_A |
+| A3 A- A2A2 | D3 D- D2D2 | G3 G- G2GC- | C D2 _E- _E =E2 C- |
+| C3 G- G C' G2 | =B,3 ^F- ^F =B ^F2 | _B,3 D- DFGF | _B3 A- AGF2 |
+% A2
+|| "head, A2" =B,3 ^F3 =B2- | B^F3- ^F5 | =C3 =G3 =C'2- | =C'G3- G4 | =B,3 ^F3 =B2- | B^F3- ^F5 | =C3 =G3 =C'2- | =C'G3- G3_A |
+| A3 A- A2A2 | D3 D- D2D2 | G3 G- G2GC- | C D2 _E- _E =E2 C- |
+| C3 G- G C' G2 | =B,3 ^F- ^F =B ^F2 | _B,3 D- DF_BF | _B,3 _B,- _B,4 |
+% B
+|| "head, B" _E3 _E'- _E'_E _B=A | _A3 _A- _A_A_ED | _D3 _A,- _A,=cA,3 | _B,3 F- F_A_B_A | 
+| _E3 _E'- _E'_B2 _A- | _A3 _A- _A_A_A2 | z C2 C'2 G2 C | F2 F2 z4 |
+% A3
+|| "head, A3" =B,3 ^F3 =B2- | B^F3- ^F5 | =C3 =G3 =C'2- | =C'G3- G4 | =B,3 ^F3 =B2- | B^F3- ^F5 | =C3 =G3 =C'2- | =C'G3- G2G_A |
+| A3 A- A2A2 | D3 D- D2D2 | G3 G- G2GC- | C D2 _E- _E =E2 C- |
+| C3 G- G C' G2 | =B,3 ^F- ^F =B ^F2 | _B,3 F- F_B_B2- | _B F3- F_4 |
+% A1
+|| "1st, 1:24" =B,2=B,2- B,^F,3 | =B,=B,2^F,- ^F,=B,=B,=C- | =C4 =G,=G,2 C- | C3 G, G,2 C2 |
+| "1:29" =B,3 ^F, ^F,3 =B,- | =B,3 ^F, ^F, | C3 G, G,3 C- | C3 G, C2 C2  | "1:34" A3 E- EGA2 | D3 C' D'C'A_A | G3 F- F E D2 | C3C A,2_A,2 |
+| "1:41" C3C- CCG2 | =B,=B,2=B,- =B,^F=B,=B, | _B,3 D- DF_B2- | _B A2 G- GF D2 |
+% A2
+|| "1:46" =B,4 ^F,^F2 =B,- | =B,3 ^F, =B,2 =B,2 | C4 G,G,2C- | C3G, G,2 C2  | "1:52" =B,3^F, ^F,3 =B,- | =B,3 ^F, ^F,2 =B,2 | C3G, G,3 C- | C3 G, G,2 C2 |
 | "1:57" A,3 E, AA,2 D | D D'3 C'2 A2 | G3 A- A_B2=B | C'3^F G_BC'2 | 
 | "2:03" C3 C'- C' C3 | =B,3 =B- =B ^F =B2 | _B3 F- F_B D'2- | D' _B2 =E F2 D2  |
-| "2:09" _E3 _B, _E3 _B, | _A,2 _B =B- =BC'_A_E | _D3 _D _D2 _A,=A, | _B3 F- F_A_B_E'
+% B
+|| "2:09" _E3 _B, _E3 _B, | _A,2 _B =B- =BC'_A_E | _D3 _D _D2 _A,=A, | _B3 F- F_A_B_E'
 | "2:15" _E'3 _B- _B-_B _E2 | _A3 _A- _A _A3 | z C2 G2 C'2 G | F2 F2 z4 |
-| "2:21" =B,3 =B, =B,=B2=B,- | =B,3 =B, =B,=B,2 =B, | C3 C CC2C- | C3 C CC2 =B |
+% A3
+|| "2:21" =B,3 =B, =B,=B2=B,- | =B,3 =B, =B,=B,2 =B, | C3 C CC2C- | C3 C CC2 =B |
 | "2:26" =B,3 =B, =B,=B2=B,- | =B,3 =B, =B,=B,2 =B, | C3 C CC2C- | C3 C CC2 =B |
 | "2:26" =B,3 =B, =B,=B2=B,- | =B,3 =B, =B,2 =B,2 | C3 C C3C- |  C2 C2 G,CG,_A, |
 | "2:32" =A3 =E- =E_E2 D- | DA D' ^C'C' A_A | G GF- FF D_D | C E2 F- F^FG2 |
