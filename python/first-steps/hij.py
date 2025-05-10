@@ -2191,7 +2191,9 @@ class ABCHandler:
         self.currentCollectStr = ''
         self.skipAhead = 0
         # noinspection SpellCheckingInspection
-        accidentalsAndDecorations = '.~^=_HLMOPSTuv'
+        # MODIFIED FOR HIJ
+        # accidentalsAndDecorations = '.~^=_HLMOPSTuv'
+        accidentalsAndDecorations = '.~^=_MOPSTuv'
         accidentals = '^=_'
 
         activeChordSymbol = ''  # accumulate, then prepend
@@ -2457,7 +2459,9 @@ class ABCHandler:
                     # only allow one pitch, alpha, to be a "continue" condition
                     elif (not foundPitchAlpha and self.strSrc[j].isalpha()
                           # noinspection SpellCheckingInspection
-                          and self.strSrc[j] not in '~wuvhHLTSN'):
+                          # MODIFIED FOR HIJ
+                          # and self.strSrc[j] not in '~wuvhHLTSN'):
+                          and self.strSrc[j] not in '~wuvTSN'):
                         foundPitchAlpha = True
                         abcPitch = self.strSrc[j]
                         j += 1
@@ -2505,7 +2509,8 @@ class ABCHandler:
                            or self.currentCollectStr.endswith('v.'))):
                     pass
                 elif (self.currentCollectStr.startswith('x')
-                      or self.currentCollectStr.startswith('H')
+                      # DISABLED FOR HIJs
+                      # or self.currentCollectStr.startswith('H')
                       or self.currentCollectStr.startswith('Z')):
                     pass
                 # not sure what =20 refers to
@@ -2530,6 +2535,7 @@ class ABCHandler:
                             carriedAccidental = accidentalized[pitchClass]
                         elif propagation == 'octave' and abcPitch in accidentalized:
                             carriedAccidental = accidentalized[abcPitch]
+                    print("currentCollectStr is", self.currentCollectStr)
                     abcNote = ABCNote(self.currentCollectStr, carriedAccidental=carriedAccidental)
                     self.tokens.append(abcNote)
                 else:
