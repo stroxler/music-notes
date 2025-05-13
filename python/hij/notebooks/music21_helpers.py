@@ -2,6 +2,7 @@
 Some helpers for ergonomics when working with music21
 """
 import subprocess
+import os
 import copy
 from typing import Self
 
@@ -24,11 +25,17 @@ def initialize_music21():
     wrote it mainly to be suitable for a nix shell.
     """
     user_settings = environment.UserSettings()
-
-    # Find musescore provided via nix flakes
-    MUSESCORE_EXE = subprocess.check_output(["which", "mscore."]).strip().decode()
-    MUSESCORE_DIR = MUSESCORE_EXE.removesuffix('/bin/mscore.')
-    MUSESCORE_APP = MUSESCORE_DIR + "/Applications/mscore.app/"
+    # NOTE: this is a bit brittle, it assumes MuseScore 4. We could probably generalize.
+    musescore_exe = '/Applications/MuseScore 4.app/Contents/MacOS/mscore'
+    if os.path.isfile(musescore_exe):
+        # Assume musecore is coming from a vanilla macos APP
+        MUSESCORE_EXE = musescore_exe
+        MUSESCORE_APP = MUSESCORE_EXE.removesuffix('/Contents/MacOS')
+    else:
+        # Assume musescore is coming from nix flakes
+        MUSESCORE_EXE = subprocess.check_output(["which", "mscore."]).strip().decode()
+        MUSESCORE_DIR = MUSESCORE_EXE.removesuffix('/bin/mscore.')
+        MUSESCORE_APP = MUSESCORE_DIR + "/Applications/mscore.app/"
     user_settings["musicxmlPath"] = MUSESCORE_APP
     user_settings["musescoreDirectPNGPath"] = MUSESCORE_EXE
 
