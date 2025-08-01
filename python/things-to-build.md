@@ -42,6 +42,15 @@ for example:
   especially on bass I have to focus so hard to keep up that it's
   easy to lose track of which 'A' I am on
 
+Doing this in Python makes perfect sense, although I think
+it may turn out to be reasonable to try using Tidal Cycles instead
+and just write a little tutorial on how to do that.
+
+If that works, Tidal Cycles could also be used to start adding
+pitched cues as well, for example playing a root on 1 at which point
+you'd get the benefits of both a metronome and a gut check on things
+like intonation.
+
 ## Ear trainer
 
 A primary goal for a long time has been to start building
@@ -81,3 +90,8 @@ from there:
   - Short snippets of song melodies are also great
   - Licks generated mechanically (e.g. broken arpeggios, pentatonic
     pattern runs, etc) could also be useful
+
+More than the metronome, I'm pretty convinced that it's a good idea
+to do this in Python, where I think the tools that come with music21 -
+including the ability to parse and process an external pool of music
+notation - will be incredibly valuable.
