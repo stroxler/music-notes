@@ -95,3 +95,15 @@ More than the metronome, I'm pretty convinced that it's a good idea
 to do this in Python, where I think the tools that come with music21 -
 including the ability to parse and process an external pool of music
 notation - will be incredibly valuable.
+
+## Custom music markup language
+
+I already started toying with this idea in `hij`, but basically
+I'd like to come up with a notation - ideally a minor modification
+of some existing notation - that lets me use the note names
+H, I, J, K, and L for Gb, Ab, Bb, Db, and Eb.
+
+That would be much more concise for music that involves a lot of
+accidentals, and even for diatonic music it would significantly
+simplify representation because the notation itself would not be
+key-signature dependent.
