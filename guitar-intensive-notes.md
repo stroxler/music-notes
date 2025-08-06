@@ -7,12 +7,24 @@ Four
 Dolphin Dance
 All the Things You Are
 Four on Six
+  ... listen to some recordings. It's common to play with the form a bit on
+      this one - the vamp often hits the first two bars of the last 4 of the
+      head, and it's common to insert two extra bars of Gm at the end of the
+      intro + head
 Unit 7
 Tenor Madness
 Now's the Time
 How Insensitive
 Billie's Bounce
 Polka Dots and Moonbeams
+Janine (yes, the same tune that the Swing Dealers did, by Duke Pearson)
+Speak Low
+Yardbird Suite
+Samba de Orfeu
+Insensatez
+Segment
+Little Suede Shoes
+Ornithology
 
 
 # 2025-08-04
@@ -233,14 +245,148 @@ your basic "simple" building block is, doesn't have to be a pentatonic).
 The bebopisms are great, but you can't really build a whole solo out
 of them, it's mentally exhausting and wouldn't sound that good anyway.
 
-# Mimi Quotes
+## Mimi Quotes
 
 "Guides are only Guides" / "A guide is merely a guide"
 
-# Our homework
+## Our homework
 
 Blue Bossa - focus on guide tone lines, with a secondary focus
 on on bass lines and extensions.
 
 Try to explore the idea of substituting dominants, adding secondary
 dominants, and suspending chords as well if we can.
+
+# 2025-08-2025
+
+## Fareed's master class
+
+Diminished chords: they don't really exist - they are functioning
+as dominant chords. Your task is to figure out what dominant.
+- An ascending passing diminished is typically functioning like the
+  dominant a third below.
+- A descending passing diminished is leading the same *direction* as
+  a secondary dominant, but the notes are actually like the parallel
+  dominant of the target (which is almost always a minor chord). You often
+  could sub it with the secondary dominant, although it depends on the
+  melody.
+
+Half diminished chords: they do exist, but it's sometimes more productive to
+think of them as the minor 6 off of 3.
+- This also implies that for half diminished, 1 and 5 will work about as well
+  as 3 and 7 for outlining the chord.
+- But if there's a bass you ideally wouldn't double, so actually either 3 and 7
+  with the flat 5 is probably a better idea in an ensemble context.
+
+When practicing guide tone playing, a couple more things to try:
+- Sing the roots as you play - this is really important to actually
+  contextualize the comping, you wouldn't play like this w/o a bass!
+- Sing the melody as you play, that will also usually help plus it's
+  very important to be 
+- Another useful exercise is to play a 5 in the bass, which is a better
+  choice than 1 if you're playing with a bass player so you don't
+  double the root, and maybe sing 1.
+  - Ned would disagree about doubling, since his stance is that
+    you get a nice 5 from overtones. So you can file away both ideas.
+
+Another thing to practice: three-note skip voicings with guide tones and
+an extension played with a gap string (so play only the upper note of a 4-note
+voicing with extensions). Reasons:
+- This gives you more choices for extension color tones - esp in cases like a
+  minor where you might not really want a 13 but a 9 is good
+- the spacing of the voicing will have an airier quality, so it can be really
+  nice if you want a more whimsical sound
+- it also is a great tool to have down for chord melody
+
+Next Fareed went through embelleshing Blue Bossa using dominant substitutions
+and voice leading. Then he demonstrated how when playing lines you can use the
+same idea to create a lot of jazzy sounds - he demonstrated basically playing
+a different chord every 2 beats, where if you're hanging out on a chord for
+a while you just jump to its secondary dominant and back again, and then you
+play a secondary dominant as a pickup to each next chord. Eventually you
+want to do this by ear and potentially hear the subdominant notes as colors,
+but as an exercise this works well. You can apply the same idea using
+other sounds too like the neapolitan or a secondary subdominant (which will
+kind of suspend then resolve) or the parallel dominant instead of the secondary
+dominant.
+
+When you have a lot of time, you can throw in not only a secondary dominant
+but also it's suspension; on Blue Bossa Fareed likes the second measure of
+Cm heading into Lm to demo this - play Fm->J7 as a kind of pickup to the Lm.
+
+Something Fareed likes to do on the second bar of Kma in Blue Bossa is go
+to H (could be H7 but he usually does major, either works here). This can
+be thought of two ways:
+- It's a tritone lead-in to the Dm7b5, which is actually fairly common
+  (and is the tritone sub of the parallel dominant lead in, which is also
+  common - note that this is similar in function to a descending
+  passing chromatic as described above!
+- It's also a suspension of the Kma, so it makes good sense in terms of
+  where you're coming *from* (if you used an Edim or D7, it would feel
+  like more of a non-sequitur).
+- You can also play a measure with two beats of Hma and two of D7, which
+  can even more smoothly mark the shift back to Cm
+
+On the turnaround, Fareed likes to throw in an an A7, which is a subdominant
+for the Dhd but also turns the turnaround into a typical a (dorian) VI-ii-V-i.
+
+Adding all these substitutions with guide tones is a big part of how you can
+fill in a solo guitar setup 
+
+Fareed likes to practice these ideas in weird keys and awkward spots on the
+guitar, especially low positions where you'll be forced to pick voicings
+carefully.
+
+### A couple notes on right hand technique
+
+Benson-style or normal style pick grip are both common and work well
+### Substitutions
+
+The most common substitutions other than for dominants are minor
+thirds
+
+### Some additional thoughts
+
+Don't play what you don't hear. When you approach jazz, imagine you had
+been playing blues for years first - that's what most of the OGs did.
+
+When you comp, be able to hold the melody in your head (not a huge issue
+for me ususally, but the same principle applies to bass lines which is
+much harder for me).
+... Mimi notes that that's true for soling too, hold the melody in mind.
+
+The rhythm is the most important thing:
+- You can't really practice it directly in the practice room:
+  - You can do exercises (think Romain Pillon and Eric Peralta's exercises)
+  - You can transcribe rhythms and get them into your vocabulary
+  - Maybe most importantly you can play along with recordings to work on *time*
+- But to really do it, you have to play with other people
+  - You also have to understand your role, your part. "All modern American
+    music is based on African stylings, and African music is part-based"
+
+## Mimi's masterclass
+
+To avoid injury, Mimi's recommendations are:
+- Get checkpointed on technique from time to time
+  - She noted my posture was bad at one point, although that was an odd situation
+    since I was trying not to hit David. Still, be mindful of this.
+  - Her point is also validated by my thumb issues a few months back - Richard saw
+    right away what I was doing that was weird
+- Do warm ups, which for her means:
+  - Mobilizations of the hand and shoulder
+  - Stretches of the hand and shoulder
+  - Make sure your hands are actually warm enough, not cold
+
+Mimi suggests practicing pauses. This is similar to a big thing Charlie focuses on
+in solos, but Mimi says it's valuable even in solo guitar where we tend to fill in
+a lot, it can build tension (plus, it gives you a breather and a great opportunity
+to take a solo in a different direction). It also helps you work on your time, which
+needs to be held through pauses!
+
+To get bebop language, Mimi recommends mainly two things:
+- Study bebop heads, especially Parker heads, and incorporate that material
+- Transcribe - ideally full solos, but snippets are really the building blocks
+  of language so you don't have to do full solos
+  - The main benefit of full solos is that then you can play along and work on your
+    time feel as well as see an example of the "arc" of a solo.
+
