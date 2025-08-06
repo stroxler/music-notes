@@ -24,42 +24,12 @@ but the Faber book does have a few nice arrangments I should learn:
 - Perdido is decent
 - Desafinado(!!)
 
-## The First 50 Jazz Standards
-
-This one has pretty high-quality arrangements, I think the overall playing
-level might be slightly higher than the jazz classics book.
-
-So it's a real goal not just to work on my reading and learn the tunes, but
-also study how they are actually putting together pretty nice-sounding
-beginner-level arrangement.
-
-- The Girl From Ipanema p46 ... this one I don't exactly like but I need to learn!
-
-- Alone Together p2
-- All of me p5
-- All the things you are p8 (has the verse)
-- Autumn in New York p12
-- Body and Soul p15
-- But Not for Me p20
-- Don't Get Around p26 (this arrangement is pretty fun!)
-- Easy Living p29
-- Fly Me to the Moon p32 (as a waltz)
-- A Foggy Day p35
-- How High the Moon p50
-- I'll Remember Aprik p57
-- If I should Lose You p60
-- In a Sentimental Mood p62
-- It could Happen to You p65
-
-
-
-
 ## The First 50 Jazz Classics
 
-This book is more eclectic, it has some great tunes including instrumental
-standards. But it also has more arrangements I don't care for much, I'm listing
-off only the tunes that I both think I should learn *and* I liked the
-arrangement okay.
+This book is more eclectic than the Standards one, it has some great tunes
+including instrumental standards. But it also has more arrangements I don't
+care for much, I'm listing off only the tunes that I both think I should learn
+*and* I liked the arrangement okay.
 
 The main goal for this book is just to improve my reading and learn the tunes,
 I don't think the arrangements are quite as good as the other book so they
@@ -93,6 +63,77 @@ Great american songbook singable tunes
 - Lullaby of Birdland p101
 - The Very Thought of You p145
 - Yesterdays p158
+
+## The First 50 Jazz Standards
+
+This one has pretty high-quality arrangements, I think the overall playing
+level might be slightly higher than the jazz classics book.
+
+So it's a real goal not just to work on my reading and learn the tunes, but
+also study how they are actually putting together pretty nice-sounding
+beginner-level arrangement.
+
+- The Girl From Ipanema p46 ... this one I don't exactly like but I need to learn!
+
+- Alone Together p2
+- All of me p5
+- All the things you are p8 (has the verse)
+- Autumn in New York p12
+- Body and Soul p15
+- But Not for Me p20
+- Don't Get Around p26 (this arrangement is pretty fun!)
+- Easy Living p29
+- Fly Me to the Moon p32 (as a waltz)
+- A Foggy Day p35
+- How High the Moon p50
+- I'll Remember Aprik p57
+- If I should Lose You p60
+- In a Sentimental Mood p62
+- It could Happen to You p65
+- Just Friends p68 (it has a verse)
+- My One and Only Love p77
+- Moonlight in Vermont p82
+- My Funny Valentine p84
+- My Romance p86
+- The Nearness of You p89
+- Out of Nowhere p96
+- Satin Doll p99
+- Softly p106
+- Speak Low p114
+- Star Eyes p119
+- Stardust p122
+- Stella p127 (the changes are a little different actually, some m3 subs)
+- Tangerine p132 (good to learn this in F)
+- There Is no Greater Love p135
+- Tenderly p138
+- When I fall in love p143
+- The Way You Look p146
+- You Brought a new kind of Love to Me p150 (has a verse!)
+- You Stepped out of a Dream p154
+
+
+A few high-priority tunes I'll skip because they are in the Faber books
+or in Tim Richards:
+- Lullaby of Birdland
+- Misty
+- Georgia
+- Summertime
+- Green Dolphin St
+
+A few high-priority tunes I'm skipping that I really need to learn, but
+want to learn as actual jazz tunes soon:
+- Night and Day ... the book doesn't have the verse anyway, so it's a dud
+- 'Round Midnight ... this one has a lot of variations, need to learn those
+- There will never be ... didn't like the arrangement, know it okay already
+
+
+I'll skip a few for now that I don't think are called much in SF, should
+revisit eventually:
+- Laura
+- Lover Man
+- When Sunny gets Blue
+
+
 
 
 
