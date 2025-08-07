@@ -25,7 +25,8 @@ Insensatez
 Segment
 Little Suede Shoes
 Ornithology
-
+Mambo Influenciado
+Chitlins Con Carne
 
 # 2025-08-04
 
@@ -389,4 +390,119 @@ To get bebop language, Mimi recommends mainly two things:
   of language so you don't have to do full solos
   - The main benefit of full solos is that then you can play along and work on your
     time feel as well as see an example of the "arc" of a solo.
+
+# 2025-08-06
+
+## Fareed's Masterclass
+
+Fareed views hand position as the most important thing for guitar:
+- The biggest issue he sees is bending the wrist, your goal is a striaght
+  wrist at least in neutral position (chords may change this). The fingers
+  should arc to the fingerboard; the palm should be tight to the neck
+  at the pinky, this is important, it's what gives you a good arc.
+  - I'm guessing this principle is a big part of what I need on bass too
+  - He notes that any discomfort on the *back* of your hand is likely
+    also related to wrist position
+- Exercise: hammer 1-3-2-4 then pull off 4-2-3-1
+  - the hammer is very similar to a tapping exercise
+  - the pull-offs really test your arc, b/c if you aren't arched enough
+    you can't do it, you have to have the tip planted
+- He suggests putting the thumb wherever it naturally falls in a relaxed
+  hand position - for me, this is opposite the first finger
+- It may be useful to play either more classical or John Stowell position
+  if you really want to be able to 
+
+This exercise is very valuable: it forces a good hand position which is
+absolutely critical for me, and it eventually develops independence as well.
+
+Something he emphasizes with this exercise, but that applies to practice
+in general, is that your mind-body connection learns fast if you practice
+with patience. Taking a break after some work is very valuable - take 15,
+20 minutes off and come back. Sleep on it and come back.
+
+Another 
+
+Fareed notes everything you do has three parts: a beginning (prepare),
+a middle (play, act), end (release). He says the key to playing with
+good technique, playing fast, and playing with endurance is to understand
+this, and that it's particularly common to miss the release.
+- this applies to playing chord passages, relax between chords
+- it's likely that this is part of what I need to focus on for bass,
+  especially playing at uncomfortable tempos
+
+Bossa rhythms:
+- The basic building block is (in 16th notes) 2-3 | 2-2-3 | 2-2, which
+  is a 4-bar phrase but is felt as 3 "chunks"
+- Practice holding this against 1 so you are able to feel both this
+  pulse and the actual measures going by.
+- The baseline of a true bossa is in 4 with no accent, it's the Brazillian
+  equivalent of a walking bass where you don't want to accent and it typically
+  doesn't actually alternate 1 and 5, it usually plays 1 or 5 on repeat
+  - The alternating feel often used in "jazz bossa" (which is still quarter
+    notes, not half notes, in the actual latin style) is actually a samba
+    pattern, and usually accents 2 and 4 pretty heavily.
+  - Note that both these styles tend to be notated in cut time, which is where
+    the idea that these are half notes comes from, but it's more authentic
+    to think of these as quarter notes.
+  - It's not unusual in a bossa tune to add a *brief* alternating bass, borrowing
+    the samba feel (especially common at the turnaround where lots of tunes
+    like wave will altertnate chords). It's also possible to actually walk the
+    bass, although that's more demanding.
+
+The basic bossa pattern for playing is exactly that pattern above:
+F   F     F   F   F   F   F   |
+T       T       T     T       |
+
+It's quite common to just use the initial bit on repeat:
+F   F     F     F   F     F   |
+T       T       T       T     |
+
+To make it more interesting, you can play each of the long chunks
+on a higher string set to get some movement, which winds up sounding
+very partido alto ish.
+
+## Mimi's Masterclass
+
+Just a thought: Mimi recommends trombone transcription; the range is
+roughly guitar-compatible and it's difficult to play really fast
+material which often makes it more accessible than other horns.
+
+How to play altered dominants well:
+- Typically, you want to use chord-based ideas rather than the
+  scale. The altered scale of course has a whole chord scale
+  worth of options, but the most common choices would be:
+  - I minor 6/9, which captures the sharp 5 of G especially well
+  - K dominant (really lydian) 9, which will really drive home both the sharp
+    and flat 9  of G; this of course can also be thought of as a tritone
+    substitution, I think the Im6 is probably more strongly "altered" sounding
+- The main alternative to this is to use the altered pentatonic, which in this
+  case is Jminor / K major. That will emphasize the altered tones but leave out
+- There are of course other kinds of "altered dominants", the diminished (13b9)
+  and whole-tone-based sounds. These will tend to lend themselves more to
+  pattern-based playing rather than arpeggios, but obviously you can mix and
+  match
+
+Keep working on the arpeggios, in context, especially the altered arpeggios
+(and particularly in context of a ii-V-I or a vi-ii-V-i where you play inside
+on the ii and I and altered on vi and V) since they can feel like
+non-sequitures if you haven't engrained the ideas yet.
+
+You normally wouldn't use any of the above approaches unless harmony is moving.
+If you're hanging out a long time on a G7, you probably want to play either
+mixolydian or lydian dominant ideas.
+- For mixolydian there are a few approaches but the most oft-recommended is
+  triad pairs
+- Mimi likes lydian dominant more, which has a very gently altered sound.
+  Interestingly, she suggests this on Take the A train - practice that,
+  and the difference between the lydian dominant vs whole tone sound (either
+  works well). She advises whole tone in small doses only.
+
+To start putting arpeggios to use in context, use the same idea Fareed had for
+pentatonics: play very rhythmically, using motifs. Still try to target 3's
+if you can. If you mix in a few one-octave arpeggios and broken arpeggios
+(including ones built off of 3 and altered ones) you'll have some bebop
+language.
+
+She recommends Take the A Train as a good tune to work on lydian major as
+well.
 
