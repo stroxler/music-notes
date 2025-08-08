@@ -27,6 +27,7 @@ Little Suede Shoes
 Ornithology
 Mambo Influenciado
 Chitlins Con Carne
+Meditation
 
 # 2025-08-04
 
@@ -505,4 +506,203 @@ language.
 
 She recommends Take the A Train as a good tune to work on lydian major as
 well.
+
+# 2025-08-07
+
+## Fareed's Masterclass
+
+Jim Hall said he knew about 11 or 12 tunes well - he could follow most tunes
+in an ensemble, but only had 11 or 12 he would really do in a trio or solo
+setting.
+
+Fareed feels similar, both in jazz and classical - he's got 4-5 hours of
+classical he knows, but only maybe an hour or so he could do without prep
+time at a performance level.
+
+His 11 or 12 songs are songs he really loves, and he's worked out the
+melody and harmony in detail, he has a map of how he'll approach them. You
+can hear this in other players too, they improvise, but they know roughly
+what works.
+
+He also thinks reading is a valuable skill, but a lot of music isn't meant
+to be read on guitar - too much of it requires working out.
+
+"Scales are not used for the most part in jazz - arpeggios, blues and pentatonics,
+and riffs are the heart of it"
+
+Fareed's custom guitars have a flat back which avoids feedback, no f-hole which
+avoids booming, and a heavy top that gives sustain. You can probably get one
+for around $15K and likely a long wait.
+
+### Playing a part with piano
+
+The most basic "part" for jazz guitar is Freddie Green style. When you 
+work on this, things to consider:
+- The time, you want to be at the top of the beat. This is the most essential
+  thing. Ideally, practice singing behind the beat while playing ahead, that's
+  tricky to do.
+  - Aside, if the soloist is playing ahead, it starts to sound corny. If it's
+    super behind it sounds good, starts to sound a bit like Lightning Hopkins;
+    you can start falling so far behind you get multiple beats behind.
+    - Joe Williams did this a lot!
+    - Listen also to Billie Holiday's time.
+  - A lot of young players use a metronome heavily because that's taught
+    heavily. This isn't bad, but to develop a fatter time feel you'll have to
+    do a different thing, listen to different players and bands to understand
+    where the parts sit in the beat. You can't get this just from a metronome.
+- The gap between strokes, any patterns (Rodney Jones made a big deal of this)
+
+When you do more comping patterns, some stuff to consider:
+- Guide tones only won't clash with the piano, so consider that
+- Rhythmically, the two obvious options are
+  - Play something riff based, with predictable rhythm. This can work really
+    well, but it depends on how things line up with the piano
+  - Play minimal rhythm, and go for textures; you could do this by
+    playing a typical strum on just 1, or more adventruously playing quarter
+    notes. But you could also do it by arpeggiating or doing a super slow
+    strum.
+
+Miles once told Coltrane: take the horn out of your mouth - when you're not
+sure what to play, don't play. Fareed likes to say BB King was a master of
+this; he didn't know that much guitar or have chops, but he only played
+when and what he was sure of, which was great music.
+
+### Meta-note from a bit of a train wreck
+
+I'm still strugging at the moment to keep my place in the tuning; in
+particular, after watching Fareed's neck I had a very hard time.
+
+That is what it is, the solution is a combination of practicing each
+tuning and trying to steadily improve my ability to play by feel:
+ - Hear where I am clearly, even under stress
+ - Map the fingerboard in relative rather than absolute terms
+I'm already making limited progress at this, so that's fine.
+
+In particular I should focus on practicing shape-oriented stuff:
+ - pentatonics (and to a lesser extent scales)
+ - arpeggios and Ned's triad patterns
+ - licks and snippets of melodies, mapped against the shapes
+
+Since I have to work on these things for vocabulary anyway, this should
+be great. But most of all, make sure to work on your rhythmic feeling.
+
+The bigger challenge I have though is once I get off and disoriented, which can
+be my finger position or starting to lose the form, I really struggle:
+ - First, I'm not great at picking when to lay out, or at finding my place
+   again by ear. These two skills, which go together, are the most important
+ - Second, I need to improve my ability to calm down afterward. I was keyed
+   up for two solid hours after this, which is not a path to success.
+
+
+## Mimi's masterclass
+
+Probably the single arpeggio most worth working on is the minor 6. Learn to use
+it instinctively and instantly, and internalize the sound, against each of:
+- minor 6  (root)
+- half diminished  (third)
+- dominant 9  (fifth)
+- altered dominant  (flat 9)
+- major sharp 11 (13) .. actually this one is especially instructive in some
+  ways because flipping betwen the minor 6 and minor 7 will give you vanilla vs
+  lydian colors.
+
+You can fit the 9 and 11 into almost all of these contexts as well, but start
+with the minor 6 shape as your focus (except maybe when actually playing against
+a minor 6, then emphasize the 9!!)
+
+This focus actually is at the heart of a lot of Pat Martino's work - he practices
+a lot of minor patterns (that's what his hole book is) and applies them to
+various chords. His note choice is more scalar than arpeggios, but the correspondence
+between the minor and the chord is the same.
+
+The minor 6 is probably the single most important case for me becuase I don't
+really have it in my hands and it's applicable in all the colorful chords, but
+the same basic principle applies to all the arpeggios (and pentatonics) that
+you really want to understand how to use them in multiple contexts. The
+handout from Mimi's book really dives into this.
+- Examples: on a G7, you can use Fma7 for an inside sus sound, or Ima7 for an
+  outside (but still suspended) one. For good measure, you could roll from Ima7
+  to Imi6 to drop the suspension.
+
+Recommendations oriented around drums:
+- "syncopations for the modern drummer"
+- in general you could play the rhythms from drum books (or from transcribing
+  bits of drum grooves / solos) just tapping with your hands
+
+---
+
+Stage freight:
+- First off, remember the stakes are not that high. That's a useful thing to
+  keep in mind when things are rough, which they will be.
+- Second, deep breathing and body awareness helps
+
+
+## Lesson with Fareed
+
+### Tunings
+
+He started by noting that I play like I don't know my arpeggios, which is
+half true; we discussed tuning. He advises I pick a tuning, he thinks 4ths
+has disadvantages (true) but that it may work well if I'm mainly listening
+to non-guitar players (which I mainly am).
+
+To me this confirms the plan I already had, which is to focus mainly on
+my bari in B-4ths; I think I may keep using the Taylor in D-4ths as a
+practice tool to help force me to think in grips and relative position
+more, but I won't play it in contexts that demand a lot of me anymore.
+I *might* still use it for ensemble and NBJ since it's so easy to haul
+around, but neither of those are exceptionally demanding contexts.
+
+### Grips as a unit of study
+
+The biggest takeaway I got from the 1:1 lesson is to really focus on grips:
+learn the fingerboard in one-octave (maybe two octaves eventually, a "central"
+one and a couple extensions around it so that I'm not boxed in).
+
+Each octave will correspond to a one-octave arpeggio of (some inversion of)
+any given chord. Study these, and learn tunes in terms of them. And instead
+of playing positionally, think about every time a chord changes, shifting
+to one of the good "grips" for that chord (or two - it makes sense for example
+to learn two overlapping grips as a unit too for common chord changes).
+
+This is a very similar idea to how Mimi actually approaches using arpeggios;
+she's really into playing the big two-octave arpeggios, but she actually
+plays licks that are rarely much more than an octave and a half. A particularly
+fruitful chord to focus on grips for is minor 6 as per the earlier masterclass.
+
+But the same idea applies to other chords (Fareed had me focusing on ma7) as
+well as other concepts like quadratonics, pentatonics, or triad pairs. The
+most important thing is actually connecting real vocabulary (song snippets,
+learned licks, and most of all transcriptions) to the grips.
+
+It's also very similar to how Ned approaches things, he talks a lot about
+orienting around one specific grip, but the idea is the same.
+
+You want to learn these grips in the context of actual tunes, and ideally
+also study transpositions of the tune, using mostly the same grips.
+
+Note that the idea of shifting grips is particularly fruitful on cycle-of-fifths
+based patterns, since you'll tend to get a lot of repeated motion; this will
+naturally lead you to repetitive, motific vocabulary which is a good thing,
+the steriotypical fast-turnaround lick usually *is* repeated.
+- If you *also* learn to flip the grips for a tritone substitution, this will
+  actually cover quite a lot of tunes (think Satin Doll), and by adding
+  a shift on top of that you can probably cover a majority of all modulations
+  in great american songbook tunes.
+- And once you have these grips, one way to approach coltrane changes (not
+  the only or best way, your licks will be truncated) will be to just shift
+  the grips a bit differently, versus playing positionally which makes it harder.
+
+It will also natrually lend itself to various attempts to play a little
+more outsied, since you can do things like shift the grip a minor 3rd.
+
+Last but not least, Fareed seems to think focusing on these grips, and connecting
+my fingers to my ears, might help my ear quite a bit versus where it is now, which
+makes a lot of sense to me.
+
+FWIW I've heard at least one piano teacher advocate the same rough approach.
+
+### TO BE CONTINUED
+
+I have some more notes in an email draft, need to move them all
 
