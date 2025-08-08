@@ -639,6 +639,27 @@ Stage freight:
 
 ## Lesson with Fareed
 
+### Hand position
+
+Possibly the single most important thing in the lesson, given my current
+struggles: Fareed noticed my fingers weren't as arched as they could be.
+
+I need to keep working and working on maintining a stright wrist and
+tight arch. Keep doing his pull-off exercise, that is a big help; it
+needs to be at least a warm-up for me permanently.
+
+Keep practicing long hours after a break: if long hours of practice
+(single note; chords are a more subtle issue) are bothering me, I
+need to start checking my position and doing his exercise more often.
+
+---
+
+I strongly suspect that my bass issues are, at the root, similar. Something
+in my hand position and arch is probably not quite right. This needs to
+be my single top priority on bass as well this fall, because my primary
+goal for fall is to figure out whether bass is feasible as a primary
+instrument.
+
 ### Tunings
 
 He started by noting that I play like I don't know my arpeggios, which is
@@ -678,8 +699,8 @@ learned licks, and most of all transcriptions) to the grips.
 It's also very similar to how Ned approaches things, he talks a lot about
 orienting around one specific grip, but the idea is the same.
 
-You want to learn these grips in the context of actual tunes, and ideally
-also study transpositions of the tune, using mostly the same grips.
+You want to learn these grips in the context of actual tunes, and *ideally
+also study transpositions of the tune*, using mostly the same grips.
 
 Note that the idea of shifting grips is particularly fruitful on cycle-of-fifths
 based patterns, since you'll tend to get a lot of repeated motion; this will
@@ -702,7 +723,48 @@ makes a lot of sense to me.
 
 FWIW I've heard at least one piano teacher advocate the same rough approach.
 
-### TO BE CONTINUED
+### Grips: hopefully unifying, training my ear, and reducing thinking
 
-I have some more notes in an email draft, need to move them all
+Fareed noted I'm pretty in my head when I play.
 
+Hopefully this grip-oriented approach - which will change eveyrthing about how
+I approach single-note soloing, and I *hope* will even help me bridge the gaps
+between comping, single-note soloing, and solo guitar (including but not limited
+to chord-melody) - can help.
+
+It has to be done with great rhythm. If I get it properly engrained this should
+be possible; one of my main impediments is having to think so much about notes
+that I don't groove as much as I'd like.
+
+**Transcriptions**
+
+He also thinks I'm at a point where I can gain a lot from transcription; he advises
+transcribing licks and phrases rather than solos for now, and bringing all this
+back to the grips. This will improve my ear directly, and also my ear-finger
+connection. And importantly, it will do it in the context of actual music, and
+good rhythmic choices.
+
+### More subdominants
+
+Fareed made a big deal about starting to play lines that indicate where the
+changes are *going*, not just where we are now. This is important for lots
+of reasons:
+- First off, it's just a big part of jazz vocabulary in general
+- Second, he noted that it really helps the rhythm section hear where you are
+- Third, it gives your lines shape and direction, which will indirectly
+  almost certainly improve your time feel and phrasing quite a bit.
+
+Another benefit from my personal perspective is it breaks up static chords,
+which might help me stay more "limber" for fast changes elsewhere in the
+tune, as well as helping me keep the form better (occasionally the chords that
+last a couple measures are tricky for me to count; throwing in some kind of
+a tension/resolution makes it easier to count in small chunks).
+
+The main way to do this is to play the secondary dominant ahead of a chord
+change. And if you're hanging around on one chord for a bit, you can just
+throw in a secondary dominant there too.
+
+He didn't say it but other appraoches are also possible - you could play
+a big chromatic run and/or enclosure on a scale tone (especially 3)
+or side step (which has other interpretations too, e.g. side-stepping
+up on a major 7 could also be thought of as playing the neapolitan).
