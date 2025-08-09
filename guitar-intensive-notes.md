@@ -768,3 +768,167 @@ He didn't say it but other appraoches are also possible - you could play
 a big chromatic run and/or enclosure on a scale tone (especially 3)
 or side step (which has other interpretations too, e.g. side-stepping
 up on a major 7 could also be thought of as playing the neapolitan).
+
+# 2025-08-08
+
+First thing: I played some bass and reestablished an instinct I already
+had which is that I can use dramatically less force than I currently
+do. I suspect that
+- this is the primary driver of my hand issues
+- a major secondary factor is tensing up when I play fast
+- it may or may not be exacerbated by hand position (I think my position is at
+  least ok-ish, Richard seems happy)
+
+There's an exercise I already have to help with this, which is to practice
+playing with super light pressure:
+- try to play so light thta it mutes the strings
+- try to play just enough to get a note, but make it buzz
+- do this *every day*:
+  - this is how you'll stay calibrated, because the right amount of pressure 
+    is just a tiny bit more than where it buzzes
+  - you'll probably also note that the extent to which you play on the fingertips
+    affects the amount of force needed. More tip = more bone = less force
+
+## The last masterclasses
+
+### Single-note soloing
+
+Fareed reiterated some points about single-note solo vocab:
+- Traditional jazz vocabulary is mostly the blues scale plus chromaticism This
+  (and the rhythmic and phrasing vocabularly that goes with it, which is the
+  vast majority of the work) is essentially all you need to play anything in
+  one tonal center.
+  - In terms of how to use it on tunes:
+    - For a blues, you play mainly minor blues scale and mix in major for
+      some brighter colors
+    - For rhythm changes you play mostly major blues / pentatonic and mix in
+      minor for some bluesier sounds
+    - For a minor tune like Softly you might need to use some harmonic
+      minor vocab, but you can think of that as just some (specific) chromatic
+      neighbor tones
+    - GAS standards will be some combination of the above, and you may need to
+      modulate depending on the extent to which the chords imply mode changes
+      (and also depending on tempo - at a faster tempo, you can ignore more).
+  - In terms of what kind of chromaticism to use:
+    - At the simplest level, just use neighbors, chromatic runs connecting
+      pentonic notes, and enclosures
+    - At a more advanced level and guided by your ear / by transcription, you
+      might choose some specific notes to mix in (e.g. harmonic minor
+      as discussed above, but other vaguely modal colors can be implied).
+      - Eventually I think this sort of thing probably winds up kind of
+        beigng essentially the same idea as Chris Fitzgerald's "organic scales"
+  - The other thing to always remember is that in jazz, the line between
+    major and minor is *always* blurry:
+    - you can usually play minor 3 against major or dominant (this is the
+      bluesy sound; if you really hold it, it's the sharp 9 sound, which
+      he said you really can think of as a flat 3 and sharp three coexisting
+    - you can also very often play a sharp 3 on a minor, that just turns
+      it into another secondary dominant
+    - a consequence: a lot of the "blues scale" vocab described above will
+      actually freely intermingle the major and minor blues, or move
+      between them frequently for color.
+- Bebop and more complex swing vocabulary combines ^^ with more use of
+  arpeggios.
+  - By this I think he means something more specific, really:
+    - simple arpeggios are largely already in the approach above, and are
+      pretty vanilla vocabulary, even Louis Armstrong used them
+    - I think the bebop-y sound is mainly coming from use of "tension"
+      arpeggios, emphasizing either secondary dominants or some other
+      sound that plays a similar role against whatever the next chord
+      is (which incluses the current chord when the chords aren't moving;
+      one of the big things in bebop is to imply chord motion even over
+      static harmony) such as a lower / upper chromatic neighbor chord.
+    - This was a point he really drove home not today, but in an earlier
+      class session and also in my lesson
+      - also, my conclusion is that I should focus on the use of minor
+        6 / half-diminished shapes to achieve this as my initial priority
+  - He also emphasizes that this is not what bebop is all about, bebop
+    mixes *some* of this arpeggio vocab with a *lot* of the pentatonic
+    and blues + chromatic
+    - He also noted it does vary by player; for example he says Bill
+      Evans played mostly arpeggios, not so much blues. But he's convinced
+      you need to *start* from the blues side.
+- Modal jazz is another thing, and is specifically an attempt to *avoid*
+  this sound using a while set of approaches including:
+  - lots of pattern-based vocabulary, and also triad pairs
+  - playing off the 5 or 9 for different color (his "jazz rock" class)
+  - plyaing off a half step or a minor third for "outside" sounds
+
+Another note he made is that both the chromaticism in pentatonic playing
+and the bebop-y arpeggios are actually very "inside" sounds: the notes
+you play might be crunchy but they actually are pushing and pulling the
+harmony into place, outlining it even *more* clearly than diatonic playing
+does.
+
+The modal sound is actually the more outside sound, even when you aren't
+doing something like side-stepping (and when you are it can get very modal
+indeed).
+
+Just a side note - chromaticism *can* be very outside if you use atonal
+pattern-based vocabulary, but that's not what we're talking about here!
+
+### Comping
+
+The most important thing is guide tones, and building "out"
+
+A lot of the rest of comping is well illustrated by the "walking guitar"
+style, which uses:
+ - the basic "Freddie Green substituions rules:
+   - substitution of dominant for minor
+   - substitution of a suspension for dominant
+   - leading into any chord (including a static one) with its secondary dominant
+ - plus also tritone substution and the use of both 1 and 5 in the bass
+to create constant motion ... (I would add that in addition to ^^, you also
+can use chromatic neighbors from below, which behave similarly to a secondary
+dominant but are totally different notes).
+
+Mimi later made the point that this is the real freddie green sound. The more
+static chomping people associate with him is really kind of a special texture,
+the sound is really walking guitar where every beat is often a little different.
+
+The classic more charleston-like comping sound is basically the same idea, but
+with a more open rhythmic feel:
+- Fareed claims that the flat-out majority of what the greats did was just apply
+  these ideas, combined with great rhythmic vocabulary, to guide-tone-only lines.
+- You can add extensions for color and to make specific chords pop and/or as
+  part of "building" your comping behind a soloist, but he specifically emphasizes
+  that most of the classic players didn't do this *most* of the time, only some
+  of the time (which actually makes it more effective when you pull it out!)
+- If you do add extensions, you ideally want to think melodically about them, the
+  extensions are effectively creating a small chord melody in your comping line.
+
+Later, Mimi noted that if you're playing with a piano, one effective thing can be
+to actually add in the "chomp" style comping, often up higher and softer than you would
+play it if you were using it as a "primary" accompanist... I'll add that doing that
+selectively could actually help you mark the form.
+...The two other options, other than laying out, are:
+  - find some kind of riff that can lay on top of the main groove
+  - play mostly textures "on 1", possibly with more arpeggiated / slow-strumed style
+    to really add color.
+
+
+### Some more miscellaneous musical things
+
+Mimi's number one advice for solo guitar: focus on the time. You have to keep
+great time, or it all falls apart.
+
+Mimi actually plays with her thumb freely floating below the neck surprisingly
+often; she only does it on higher frets, but she does it before she runs out
+of neck.
+
+The lazy bird and four on six progressions might be particularly useful to
+work on a bit; Mimi actually likes to use the lazy bird progression as a
+substitution sometimes (it's basically a specific application of Coltrane
+changes)
+
+### Career
+
+In jazz Mimi would say success is 50% skills, 50% social media.
+
+In pop the social media is even more important, perception is key for an audience.
+
+Being easy to work with and nice to be around of course makes a big difference.
+Reputation is key with other players
+
+If you wanted to break into music and you are able to mingle, you should find a
+booking agent before a manager.
