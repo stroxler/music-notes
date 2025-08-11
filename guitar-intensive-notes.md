@@ -918,8 +918,7 @@ of neck.
 
 The lazy bird and four on six progressions might be particularly useful to
 work on a bit; Mimi actually likes to use the lazy bird progression as a
-substitution sometimes (it's basically a specific application of Coltrane
-changes)
+substitution sometimes.
 
 ### Career
 
