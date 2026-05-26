@@ -10,6 +10,9 @@ pain point for me using abc notation.
 As of writing this README, all I have is the project setup, I
 haven't done any actual work yet.
 
+A draft spec for the new chord-chart language lives at
+`docs/chord-chart-format.md`.
+
 ## Nix + uv Setup
 
 This is a new project layout for me: I'm using nix to bootstrap
@@ -22,5 +25,4 @@ Python libraries will be handled by `uv`.
 I'm unsure how well this approach would work for native Python
 development, but in the music world usually Python-space tools just
 shell out to system tools, and nix+uv works great for this.
-
 
