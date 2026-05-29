@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Callable
+
 import pytest
 import chord_charts
 from hypothesis import given
@@ -7,7 +9,18 @@ from hypothesis import strategies as st
 
 from chord_charts.model import Bar, CarryItem, ChordItem, ChordSymbol
 from chord_charts.notes import pitch_class_for_lexeme
-from chord_charts.parser import parse_canonical_bar_cell, parse_chord_token
+from chord_charts.parser import (
+    FormHeader,
+    ParsedFormBlock,
+    ParsedSectionBlock,
+    SectionHeader,
+    parse_canonical_bar_cell,
+    parse_canonical_section_row,
+    parse_chord_token,
+    parse_form_header,
+    parse_section_header,
+    parse_source_blocks,
+)
 from . import strategies
 
 _SUFFIX_ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#+()-"
@@ -90,6 +103,11 @@ def _render_canonical_bar_cell(bar: Bar) -> str:
     return "".join(cell)
 
 
+def _render_canonical_section_row(bars: tuple[Bar, ...], *, leading_indent: str = "") -> str:
+    cells = "".join(f"|{_render_canonical_bar_cell(bar)}" for bar in bars)
+    return f"{leading_indent}{cells}|"
+
+
 @st.composite
 def _canonical_bars(draw: st.DrawFn, *, min_beats: int = 1, max_beats: int = 8) -> Bar:
     beats = draw(st.integers(min_value=min_beats, max_value=max_beats))
@@ -152,6 +170,162 @@ def _chord_token_cases(
     return root_lexeme, suffix, bass_lexeme
 
 
+@st.composite
+def _canonical_section_row_cases(
+    draw: st.DrawFn,
+) -> tuple[int, tuple[Bar, ...], str]:
+    beats = draw(st.integers(min_value=1, max_value=8))
+    bars = tuple(
+        draw(
+            st.lists(
+                _canonical_bars(min_beats=beats, max_beats=beats),
+                min_size=1,
+                max_size=4,
+            )
+        )
+    )
+    leading_indent = draw(st.sampled_from(("", " ", "    ", "\t")))
+    return beats, bars, leading_indent
+
+
+@pytest.mark.parametrize(
+    ("text", "expected"),
+    (
+        ("[A]:", SectionHeader(name="A")),
+        ("[A:1]:", SectionHeader(name="A", ending="1")),
+        ("[bridge-out]:", SectionHeader(name="bridge-out")),
+    ),
+)
+def test_parse_section_header_examples(text: str, expected: SectionHeader) -> None:
+    assert parse_section_header(text) == expected
+
+
+@pytest.mark.parametrize(
+    ("text", "expected"),
+    (
+        ("form:", FormHeader()),
+        ("form[lyrics]:", FormHeader(name="lyrics")),
+        ("form[set-1]:", FormHeader(name="set-1")),
+    ),
+)
+def test_parse_form_header_examples(text: str, expected: FormHeader) -> None:
+    assert parse_form_header(text) == expected
+
+
+@pytest.mark.parametrize(
+    ("parser", "text"),
+    (
+        (parse_section_header, "[A]"),
+        (parse_section_header, "[A :1]:"),
+        (parse_section_header, "[A:]:"),
+        (parse_form_header, "form"),
+        (parse_form_header, "form[]:"),
+        (parse_form_header, "form[lyrics]"),
+    ),
+)
+def test_block_header_parsers_reject_invalid_input(
+    parser: Callable[[str], object],
+    text: str,
+) -> None:
+    with pytest.raises(ValueError):
+        parser(text)
+
+
+def test_parse_source_blocks_splits_sections_and_forms() -> None:
+    text = "\n".join(
+        (
+            "[A]:",
+            "    |C   |F   |",
+            "",
+            "[A:1]:",
+            "    |G7  |C   |",
+            "form:",
+            "[A:1]",
+            "form[lyrics]:",
+            "[A:1]",
+            "",
+            "just friends",
+        )
+    )
+
+    assert parse_source_blocks(text, beats=4) == (
+        ParsedSectionBlock(
+            header=SectionHeader(name="A"),
+            rows=((Bar(beats=4, items=(_chord_item("C", 1, 4),)), Bar(beats=4, items=(_chord_item("F", 1, 4),))),),
+        ),
+        ParsedSectionBlock(
+            header=SectionHeader(name="A", ending="1"),
+            rows=(
+                (
+                    Bar(beats=4, items=(_chord_item("G", 1, 4, suffix="7"),)),
+                    Bar(beats=4, items=(_chord_item("C", 1, 4),)),
+                ),
+            ),
+        ),
+        ParsedFormBlock(
+            header=FormHeader(),
+            body_lines=("[A:1]",),
+        ),
+        ParsedFormBlock(
+            header=FormHeader(name="lyrics"),
+            body_lines=("[A:1]", "", "just friends"),
+        ),
+    )
+
+
+def test_parse_source_blocks_rejects_content_before_first_block() -> None:
+    with pytest.raises(ValueError, match="before first section or form header"):
+        parse_source_blocks("title: Just Friends\n[A]:\n| C   |", beats=4)
+
+
+def test_parse_source_blocks_rejects_form_before_any_section_block() -> None:
+    with pytest.raises(ValueError, match="form blocks must follow at least one section block"):
+        parse_source_blocks("form:\n[A:1]", beats=4)
+
+
+def test_parse_source_blocks_rejects_section_after_form_block() -> None:
+    text = "\n".join(
+        (
+            "[A]:",
+            "|C   |",
+            "form:",
+            "[A]",
+            "[B]:",
+            "|F   |",
+        )
+    )
+
+    with pytest.raises(ValueError, match="section blocks must not appear after form blocks"):
+        parse_source_blocks(text, beats=4)
+
+
+def test_parse_source_blocks_rejects_empty_section_block() -> None:
+    with pytest.raises(ValueError, match="section block 'A' must contain at least one row"):
+        parse_source_blocks("[A]:\n\nform:\n[A]", beats=4)
+
+
+def test_parse_canonical_section_row_trims_leading_indentation() -> None:
+    row = parse_canonical_section_row("    |C   |G7  |", beats=4)
+
+    assert row == (
+        Bar(beats=4, items=(_chord_item("C", 1, 4),)),
+        Bar(beats=4, items=(_chord_item("G", 1, 4, suffix="7"),)),
+    )
+
+
+@pytest.mark.parametrize(
+    ("text", "message"),
+    (
+        ("C   ", "must contain at least one '\\|'"),
+        ("|C   |    |", "cells must not be blank"),
+        ("|C   |G7  ", "start and end with '\\|'"),
+    ),
+)
+def test_parse_canonical_section_row_rejects_invalid_input(text: str, message: str) -> None:
+    with pytest.raises(ValueError, match=message):
+        parse_canonical_section_row(text, beats=4)
+
+
 @pytest.mark.parametrize(
     ("text", "root_lexeme", "suffix", "bass_lexeme"),
     (
@@ -180,6 +354,10 @@ def test_parse_chord_token_examples(
 def test_parser_functions_are_exposed_from_package_root() -> None:
     assert chord_charts.parse_chord_token is parse_chord_token
     assert chord_charts.parse_canonical_bar_cell is parse_canonical_bar_cell
+    assert chord_charts.parse_section_header is parse_section_header
+    assert chord_charts.parse_form_header is parse_form_header
+    assert chord_charts.parse_source_blocks is parse_source_blocks
+    assert chord_charts.parse_canonical_section_row is parse_canonical_section_row
 
 
 @pytest.mark.parametrize(
@@ -313,3 +491,13 @@ def test_parse_canonical_bar_cell_round_trips_generated_canonical_parser_bars(
     text = _render_canonical_bar_cell(bar)
 
     assert parse_canonical_bar_cell(text, beats=bar.beats) == bar
+
+
+@given(case=_canonical_section_row_cases())
+def test_parse_canonical_section_row_round_trips_generated_canonical_rows(
+    case: tuple[int, tuple[Bar, ...], str]
+) -> None:
+    beats, bars, leading_indent = case
+    text = _render_canonical_section_row(bars, leading_indent=leading_indent)
+
+    assert parse_canonical_section_row(text, beats=beats) == bars

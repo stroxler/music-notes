@@ -1,14 +1,118 @@
 from __future__ import annotations
 
 import re
+from dataclasses import dataclass
+from typing import final
 
 from chord_charts.model import Bar, CarryItem, ChordItem, ChordSymbol
 from chord_charts.notes import ACCEPTED_INPUT_LEXEMES, pitch_class_for_lexeme
 from chord_charts.validation import assert_valid_bar
 
-__all__ = ["parse_chord_token", "parse_canonical_bar_cell"]
+__all__ = [
+    "FormHeader",
+    "ParsedBlock",
+    "ParsedFormBlock",
+    "ParsedSectionBlock",
+    "SectionHeader",
+    "parse_canonical_bar_cell",
+    "parse_canonical_section_row",
+    "parse_chord_token",
+    "parse_form_header",
+    "parse_source_blocks",
+    "parse_section_header",
+]
 
+_IDENTIFIER_PATTERN = r"[A-Za-z0-9_-]+"
 _NOTE_LEXEMES_BY_LENGTH = tuple(sorted(ACCEPTED_INPUT_LEXEMES, key=len, reverse=True))
+_SECTION_HEADER_RE = re.compile(
+    rf"^\[(?P<name>{_IDENTIFIER_PATTERN})(?::(?P<ending>{_IDENTIFIER_PATTERN}))?\]:$"
+)
+_FORM_HEADER_RE = re.compile(rf"^form(?:\[(?P<name>{_IDENTIFIER_PATTERN})\])?:$")
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class SectionHeader:
+    name: str
+    ending: str | None = None
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class FormHeader:
+    name: str | None = None
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class ParsedSectionBlock:
+    header: SectionHeader
+    rows: tuple[tuple[Bar, ...], ...]
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class ParsedFormBlock:
+    header: FormHeader
+    body_lines: tuple[str, ...]
+
+
+ParsedBlock = ParsedSectionBlock | ParsedFormBlock
+
+
+def parse_section_header(text: str) -> SectionHeader:
+    match = _SECTION_HEADER_RE.fullmatch(text)
+    if match is None:
+        raise ValueError(f"invalid section header: {text!r}")
+
+    return SectionHeader(name=match.group("name"), ending=match.group("ending"))
+
+
+def parse_form_header(text: str) -> FormHeader:
+    match = _FORM_HEADER_RE.fullmatch(text)
+    if match is None:
+        raise ValueError(f"invalid form header: {text!r}")
+
+    return FormHeader(name=match.group("name"))
+
+
+def parse_source_blocks(text: str, *, beats: int) -> tuple[ParsedBlock, ...]:
+    blocks: list[ParsedBlock] = []
+    current_header: SectionHeader | FormHeader | None = None
+    current_body_lines: list[str] = []
+    state = "start"
+
+    for line in text.splitlines():
+        header = _parse_block_header(line)
+        if header is not None:
+            if isinstance(header, SectionHeader):
+                if state == "forms":
+                    raise ValueError("section blocks must not appear after form blocks")
+                state = "sections"
+            else:
+                if state == "start":
+                    raise ValueError("form blocks must follow at least one section block")
+                state = "forms"
+
+            if current_header is not None:
+                blocks.append(
+                    _build_block(current_header, body_lines=tuple(current_body_lines), beats=beats)
+                )
+            current_header = header
+            current_body_lines = []
+            continue
+
+        if current_header is None:
+            if line.strip():
+                raise ValueError("content before first section or form header")
+            continue
+
+        current_body_lines.append(line)
+
+    if current_header is not None:
+        blocks.append(_build_block(current_header, body_lines=tuple(current_body_lines), beats=beats))
+
+    return tuple(blocks)
 
 
 def parse_chord_token(text: str) -> ChordSymbol:
@@ -104,9 +208,54 @@ def parse_canonical_bar_cell(text: str, *, beats: int) -> Bar:
     return bar
 
 
+def parse_canonical_section_row(text: str, *, beats: int) -> tuple[Bar, ...]:
+    stripped_text = text.strip()
+    if not stripped_text:
+        raise ValueError("section row must not be blank")
+    if "|" not in stripped_text:
+        raise ValueError("section row must contain at least one '|'")
+
+    cells = stripped_text.split("|")
+    if cells[0] != "" or cells[-1] != "":
+        raise ValueError("section row must start and end with '|'")
+
+    bar_cells = cells[1:-1]
+    if any(not cell.strip() for cell in bar_cells):
+        raise ValueError("section row cells must not be blank")
+
+    return tuple(parse_canonical_bar_cell(cell, beats=beats) for cell in bar_cells)
+
+
 def _parse_note_lexeme(text: str, *, context: str) -> tuple[str, int]:
     for lexeme in _NOTE_LEXEMES_BY_LENGTH:
         if text.startswith(lexeme):
             return lexeme, pitch_class_for_lexeme(lexeme)
 
     raise ValueError(f"{context} must start with a supported note lexeme: {text!r}")
+
+
+def _build_block(
+    header: SectionHeader | FormHeader, *, body_lines: tuple[str, ...], beats: int
+) -> ParsedBlock:
+    if isinstance(header, FormHeader):
+        return ParsedFormBlock(header=header, body_lines=body_lines)
+
+    rows = tuple(
+        parse_canonical_section_row(line, beats=beats) for line in body_lines if line.strip()
+    )
+    if not rows:
+        raise ValueError(f"section block {header.name!r} must contain at least one row")
+
+    return ParsedSectionBlock(header=header, rows=rows)
+
+
+def _parse_block_header(line: str) -> SectionHeader | FormHeader | None:
+    match = _SECTION_HEADER_RE.fullmatch(line)
+    if match is not None:
+        return SectionHeader(name=match.group("name"), ending=match.group("ending"))
+
+    match = _FORM_HEADER_RE.fullmatch(line)
+    if match is not None:
+        return FormHeader(name=match.group("name"))
+
+    return None
