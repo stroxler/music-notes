@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blues with Melody</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 16px;
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        h1 { font-size: 1.4rem; margin-bottom: 20px; color: #fff; }
+        .loading {
+            background: #252540; border-radius: 6px; padding: 14px;
+            margin-bottom: 20px; text-align: center; color: #aaa; font-size: 0.85rem;
+        }
+        .loading.done { display: none; }
+        .loading.error { color: #e88; }
+        .app.hidden { opacity: 0.3; pointer-events: none; }
+
+        .controls {
+            display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+            align-items: flex-end;
+        }
+        .control-group label {
+            display: block; font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 0.05em; color: #888; margin-bottom: 5px;
+        }
+        select, input[type=range] {
+            background: #252540; color: #ccc; border: 1px solid #444;
+            border-radius: 4px; font-size: 0.85rem;
+        }
+        select { padding: 5px 8px; }
+        input[type=range] { width: 120px; vertical-align: middle; }
+        .tempo-val {
+            display: inline-block; width: 3em; text-align: right;
+            font-size: 0.85rem; color: #ccc;
+        }
+        .play-btn {
+            padding: 8px 24px; border: 1px solid #444; background: #2a4a2a;
+            color: #ccc; border-radius: 4px; cursor: pointer; font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .play-btn:hover { background: #3a5a3a; border-color: #666; }
+        .play-btn.playing { background: #4a2a2a; border-color: #844; }
+        .play-btn.playing:hover { background: #5a3a3a; }
+
+        .chart {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 4px; margin-bottom: 20px;
+        }
+        .chart-bar {
+            padding: 14px 4px; background: #252540; border: 2px solid #333;
+            border-radius: 6px; text-align: center; font-size: 1rem; font-weight: 600;
+            transition: border-color 0.12s, background 0.12s;
+        }
+        .chart-bar.active {
+            border-color: #7a7abb; background: #3a3a6a; color: #fff;
+        }
+        .chart-bar .bar-num {
+            display: block; font-size: 0.65rem; color: #555;
+            font-weight: 400; margin-bottom: 2px;
+        }
+
+        .info {
+            background: #252540; border-radius: 6px; padding: 12px;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.82rem; color: #888; min-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blues with Melody</h1>
+    <div class="loading" id="loading">Loading piano and bass samples...</div>
+
+    <div class="app hidden" id="app">
+        <div class="controls">
+            <div class="control-group">
+                <label>Key</label>
+                <select id="key-select"></select>
+            </div>
+            <div class="control-group">
+                <label>Melody</label>
+                <select id="melody-inst">
+                    <option value="tenor_sax">Tenor Sax</option>
+                    <option value="alto_sax">Alto Sax</option>
+                    <option value="trumpet">Trumpet</option>
+                    <option value="overdriven_guitar">Guitar (OD)</option>
+                    <option value="electric_guitar_clean">Guitar (Clean)</option>
+                    <option value="vibraphone">Vibes</option>
+                    <option value="flute">Flute</option>
+                    <option value="clarinet">Clarinet</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label>Tempo</label>
+                <input type="range" id="tempo" min="80" max="220" value="140">
+                <span class="tempo-val" id="tempo-val">140</span>
+            </div>
+            <button class="play-btn" id="play-btn">Play</button>
+        </div>
+
+        <div class="chart" id="chart"></div>
+
+        <div class="info" id="info">12-bar blues — walking bass, Charleston piano, tenor sax melody</div>
+    </div>
+
+    <script type="module">
+import { Soundfont } from "https://esm.sh/smplr";
+
+
+// ── Music Theory ──────────────────────────────────
+
+const ROOTS = ['C','Db','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+const ROOT_PC = {C:0,Db:1,D:2,Eb:3,E:4,F:5,'F#':6,Gb:6,G:7,Ab:8,A:9,Bb:10,B:11};
+
+const QUALITIES = {
+    maj7: { third: 4, seventh: 11 },
+    '7':  { third: 4, seventh: 10 },
+    m7:   { third: 3, seventh: 10 },
+};
+
+function midiToDisplay(midi) {
+    const n = ['C','Db','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+    return n[((midi % 12) + 12) % 12] + (Math.floor(midi / 12) - 1);
+}
+
+function shellVoicing(rootPc, quality, type) {
+    const q = QUALITIES[quality] || QUALITIES['7'];
+    const thirdPc = (rootPc + q.third) % 12;
+    const seventhPc = (rootPc + q.seventh) % 12;
+    const base = 48;
+    if (type === 'A') {
+        const lo = base + thirdPc;
+        return [lo, lo + ((seventhPc - thirdPc + 12) % 12)];
+    } else {
+        const lo = base + seventhPc;
+        return [lo, lo + ((thirdPc - seventhPc + 12) % 12)];
+    }
+}
+
+
+// ── Blues Form ────────────────────────────────────
+
+function bluesForm(keyPc) {
+    const I = keyPc, IV = (keyPc + 5) % 12, V = (keyPc + 7) % 12;
+    return [
+        {r:I,q:'7'}, {r:IV,q:'7'}, {r:I,q:'7'},  {r:I,q:'7'},
+        {r:IV,q:'7'},{r:IV,q:'7'}, {r:I,q:'7'},  {r:I,q:'7'},
+        {r:V,q:'7'}, {r:IV,q:'7'}, {r:I,q:'7'},  {r:V,q:'7'},
+    ];
+}
+
+function chordLabel(rootPc, quality) {
+    return ROOTS[rootPc] + (quality === '7' ? '7' : quality);
+}
+
+
+// ── Voice-Led Piano Shells ────────────────────────
+
+function voiceLeadedShells(form) {
+    const result = [];
+    let prev = null;
+    for (const ch of form) {
+        const a = shellVoicing(ch.r, ch.q, 'A');
+        const b = shellVoicing(ch.r, ch.q, 'B');
+        if (!prev) { result.push(a); prev = a; continue; }
+        const dA = Math.abs(a[0] - prev[0]) + Math.abs(a[1] - prev[1]);
+        const dB = Math.abs(b[0] - prev[0]) + Math.abs(b[1] - prev[1]);
+        const pick = dA <= dB ? a : b;
+        result.push(pick);
+        prev = pick;
+    }
+    return result;
+}
+
+
+// ── Walking Bass Generation ───────────────────────
+
+function generateBassLine(form, choruses) {
+    const bars = [];
+    const total = form.length * choruses;
+
+    for (let i = 0; i < total; i++) {
+        const ch = form[i % form.length];
+        const next = form[(i + 1) % form.length];
+        const q = QUALITIES[ch.q] || QUALITIES['7'];
+        const root = 36 + ch.r;
+
+        const r = Math.random();
+        let b2, b3;
+        if (r < 0.4)      { b2 = root + q.third; b3 = root + 7; }
+        else if (r < 0.7) { b2 = root + 7; b3 = root + q.third; }
+        else              { b2 = root + 2; b3 = root + q.third; }
+
+        let b4;
+        const nextRoot = 36 + next.r;
+        if (ch.r === next.r) {
+            b4 = Math.random() < 0.5 ? root - 2 : root + 1;
+        } else {
+            b4 = nextRoot - 1;
+            if (b4 > b3 + 5) b4 -= 12;
+            if (b4 < root - 5) b4 += 12;
+        }
+        if (b4 < 33) b4 += 12;
+        if (b4 > 55) b4 -= 12;
+
+        bars.push([root, b2, b3, b4]);
+    }
+    return bars;
+}
+
+
+// ── Instrument Loading ────────────────────────────
+
+const ctx = new AudioContext();
+const piano = new Soundfont(ctx, { instrument: "acoustic_grand_piano" });
+const bassInst = new Soundfont(ctx, { instrument: "acoustic_bass" });
+
+const melodyInstruments = {};
+async function getMelodyInst(name) {
+    if (!melodyInstruments[name]) {
+        melodyInstruments[name] = new Soundfont(ctx, { instrument: name });
+        await melodyInstruments[name].loaded;
+    }
+    return melodyInstruments[name];
+}
+
+const loadingEl = document.getElementById('loading');
+const appEl = document.getElementById('app');
+
+try {
+    await Promise.all([piano.loaded, bassInst.loaded]);
+    loadingEl.classList.add('done');
+    appEl.classList.remove('hidden');
+} catch (e) {
+    loadingEl.textContent = 'Failed to load: ' + e.message;
+    loadingEl.classList.add('error');
+    throw e;
+}
+
+
+// ── Melody Patterns ──────────────────────────────
+// Each event: bar (0-11), e (eighth-note position 0-7), deg (blues scale
+// index), dur (duration in eighth notes). Odd e values are swung upbeats.
+
+const BLUES_SCALE = [0, 3, 5, 6, 7, 10, 12, 15, 17];
+// Index:            0  1  2  3  4   5   6   7   8
+// Name:             R  b3 4  b5 5   b7  R'  b3' 4'
+
+const MELODY_A = [
+    // Bars 0-1: Simple ascending riff
+    {bar:0, e:1, deg:1, dur:1},   // b3
+    {bar:0, e:2, deg:2, dur:1},   // 4
+    {bar:0, e:3, deg:4, dur:5},   // 5, hold
+
+    // Bars 2-3: Same riff with a tag
+    {bar:2, e:1, deg:1, dur:1},
+    {bar:2, e:2, deg:2, dur:1},
+    {bar:2, e:3, deg:4, dur:3},   // 5, shorter
+    {bar:2, e:6, deg:2, dur:2},   // 4, little answer
+
+    // Bars 4-5: Shifted up for IV chord
+    {bar:4, e:1, deg:2, dur:1},   // 4
+    {bar:4, e:2, deg:4, dur:1},   // 5
+    {bar:4, e:3, deg:5, dur:5},   // b7, hold
+
+    // Bars 6-7: Back to I
+    {bar:6, e:1, deg:1, dur:1},
+    {bar:6, e:2, deg:2, dur:1},
+    {bar:6, e:3, deg:4, dur:5},
+
+    // Bars 8-9: V-IV, more rhythmic
+    {bar:8, e:0, deg:5, dur:2},   // b7 on downbeat
+    {bar:8, e:3, deg:4, dur:1},   // 5
+    {bar:8, e:4, deg:2, dur:2},   // 4
+    {bar:9, e:0, deg:1, dur:4},   // b3, hold
+    {bar:9, e:4, deg:0, dur:4},   // root, hold
+
+    // Bars 10-11: Turnaround pickup
+    {bar:10, e:6, deg:1, dur:1},  // b3
+    {bar:10, e:7, deg:2, dur:1},  // 4
+    {bar:11, e:0, deg:3, dur:1},  // b5!
+    {bar:11, e:1, deg:4, dur:3},  // 5, hold
+];
+
+const MELODY_B = [
+    // Bars 0-1: Descending from high root
+    {bar:0, e:0, deg:6, dur:1},   // R'
+    {bar:0, e:1, deg:5, dur:1},   // b7
+    {bar:0, e:2, deg:4, dur:1},   // 5
+    {bar:0, e:3, deg:2, dur:1},   // 4
+    {bar:0, e:4, deg:1, dur:4},   // b3, hold
+
+    // Bars 2-3: Ascending response
+    {bar:2, e:1, deg:0, dur:1},   // R
+    {bar:2, e:2, deg:1, dur:1},   // b3
+    {bar:2, e:3, deg:2, dur:1},   // 4
+    {bar:2, e:4, deg:4, dur:2},   // 5
+    {bar:2, e:6, deg:5, dur:2},   // b7
+
+    // Bars 4-5: Over IV, bluesy
+    {bar:4, e:0, deg:6, dur:2},   // R'
+    {bar:4, e:3, deg:5, dur:1},   // b7
+    {bar:4, e:4, deg:4, dur:1},   // 5
+    {bar:4, e:5, deg:2, dur:1},   // 4
+    {bar:4, e:6, deg:1, dur:2},   // b3
+
+    // Bars 6-7: Longer phrases
+    {bar:6, e:0, deg:4, dur:1},   // 5
+    {bar:6, e:1, deg:5, dur:1},   // b7
+    {bar:6, e:2, deg:6, dur:4},   // R', hold
+    {bar:6, e:7, deg:5, dur:1},   // b7 pickup
+    {bar:7, e:0, deg:4, dur:2},   // 5
+    {bar:7, e:2, deg:1, dur:6},   // b3, long hold
+
+    // Bars 8-9: Repeated notes for intensity
+    {bar:8, e:1, deg:4, dur:1},   // 5
+    {bar:8, e:2, deg:4, dur:1},   // 5 again
+    {bar:8, e:4, deg:5, dur:2},   // b7
+    {bar:8, e:7, deg:4, dur:1},   // 5 pickup
+    {bar:9, e:0, deg:2, dur:2},   // 4
+    {bar:9, e:2, deg:1, dur:2},   // b3
+    {bar:9, e:4, deg:0, dur:4},   // R, hold
+
+    // Bars 10-11: Turnaround run
+    {bar:10, e:4, deg:0, dur:1},  // R
+    {bar:10, e:5, deg:1, dur:1},  // b3
+    {bar:10, e:6, deg:2, dur:1},  // 4
+    {bar:10, e:7, deg:4, dur:1},  // 5
+    {bar:11, e:0, deg:5, dur:1},  // b7
+    {bar:11, e:1, deg:4, dur:1},  // 5
+    {bar:11, e:2, deg:2, dur:1},  // 4
+    {bar:11, e:3, deg:1, dur:5},  // b3, hold to end
+];
+
+const MELODIES = [MELODY_A, MELODY_B];
+
+function melodyRootMidi(keyPc) {
+    let root = 60 + keyPc;
+    if (root > 65) root -= 12;
+    return root;
+}
+
+function scheduleMelody(melody, rootMidi, chorusStart, beatDur, melInst) {
+    for (const ev of melody) {
+        const barStart = chorusStart + ev.bar * 4 * beatDur;
+        const beat = Math.floor(ev.e / 2);
+        const isUpbeat = ev.e % 2 === 1;
+        const time = barStart + beat * beatDur + (isUpbeat ? beatDur * 2 / 3 : 0);
+        const midi = rootMidi + BLUES_SCALE[ev.deg];
+        const duration = ev.dur * 0.5 * beatDur * 0.9;
+        const vel = isUpbeat ? 78 : 85;
+        scheduleNote(melInst, midi, time, duration, vel);
+    }
+}
+
+
+// ── Playback State ────────────────────────────────
+
+let isPlaying = false;
+let activeStops = [];
+let highlightTimers = [];
+let endTimer = null;
+
+function scheduleNote(inst, note, time, dur, vel) {
+    const stop = inst.start({ note, velocity: vel, time, duration: dur });
+    if (typeof stop === 'function') activeStops.push(stop);
+}
+
+function stopAll() {
+    activeStops.forEach(fn => { try { fn(); } catch (_) {} });
+    activeStops = [];
+    highlightTimers.forEach(clearTimeout);
+    highlightTimers = [];
+    if (endTimer) { clearTimeout(endTimer); endTimer = null; }
+    document.querySelectorAll('.chart-bar').forEach(el => el.classList.remove('active'));
+}
+
+
+// ── Main Playback ─────────────────────────────────
+
+const CHORUSES = 3;
+
+async function startPlaying() {
+    if (ctx.state === 'suspended') await ctx.resume();
+    stopAll();
+
+    const keyPc = ROOT_PC[document.getElementById('key-select').value];
+    const tempo = parseInt(document.getElementById('tempo').value);
+    const melInstName = document.getElementById('melody-inst').value;
+    const beatDur = 60 / tempo;
+    const barDur = 4 * beatDur;
+    const swingAnd2 = beatDur * 5 / 3;
+
+    const form = bluesForm(keyPc);
+    const shells = voiceLeadedShells(form);
+    const bassLine = generateBassLine(form, CHORUSES);
+
+    // Load melody instrument (cached after first load)
+    document.getElementById('info').textContent = 'Loading ' + melInstName + '...';
+    const melInst = await getMelodyInst(melInstName);
+
+    buildChart(form);
+    const now = ctx.currentTime + 0.15;
+    const melRoot = melodyRootMidi(keyPc);
+
+    for (let i = 0; i < bassLine.length; i++) {
+        const barStart = now + i * barDur;
+        const bar = bassLine[i];
+        const barIdx = i % form.length;
+        const guideTones = shells[barIdx];
+
+        // Walking bass: 4 quarter notes
+        for (let b = 0; b < 4; b++) {
+            const vel = b % 2 === 0 ? 95 : 80;
+            scheduleNote(bassInst, bar[b], barStart + b * beatDur, beatDur * 0.55, vel);
+        }
+
+        // Piano Charleston: beat 1 + "and" of 2, guide tones only
+        for (const note of guideTones) {
+            scheduleNote(piano, note, barStart, swingAnd2 * 0.85, 62);
+            scheduleNote(piano, note, barStart + swingAnd2, beatDur * 0.3, 48);
+        }
+
+        // UI highlighting
+        const delay = (barStart - ctx.currentTime) * 1000;
+        highlightTimers.push(setTimeout(() => highlightBar(barIdx), Math.max(0, delay)));
+    }
+
+    // Melody: alternate patterns across choruses
+    for (let c = 0; c < CHORUSES; c++) {
+        const chorusStart = now + c * form.length * barDur;
+        const melody = MELODIES[c % MELODIES.length];
+        scheduleMelody(melody, melRoot, chorusStart, beatDur, melInst);
+    }
+
+    isPlaying = true;
+    updatePlayBtn();
+
+    const totalDur = bassLine.length * barDur;
+    endTimer = setTimeout(() => {
+        isPlaying = false;
+        updatePlayBtn();
+        document.querySelectorAll('.chart-bar').forEach(el => el.classList.remove('active'));
+    }, totalDur * 1000);
+
+    const labels = form.map(c => chordLabel(c.r, c.q));
+    document.getElementById('info').textContent =
+        `${CHORUSES} choruses at ${tempo} bpm — ${labels[0]} blues (tenor sax + rhythm section)`;
+}
+
+function togglePlay() {
+    if (isPlaying) {
+        isPlaying = false;
+        stopAll();
+        updatePlayBtn();
+    } else {
+        startPlaying();
+    }
+}
+
+
+// ── UI ────────────────────────────────────────────
+
+function buildKeySelect() {
+    const sel = document.getElementById('key-select');
+    for (const root of ROOTS) {
+        const opt = document.createElement('option');
+        opt.value = root; opt.textContent = root;
+        if (root === 'Bb') opt.selected = true;
+        sel.appendChild(opt);
+    }
+}
+
+function buildChart(form) {
+    const chart = document.getElementById('chart');
+    chart.innerHTML = '';
+    form.forEach((ch, i) => {
+        const div = document.createElement('div');
+        div.className = 'chart-bar';
+        div.innerHTML = `<span class="bar-num">${i + 1}</span>${chordLabel(ch.r, ch.q)}`;
+        chart.appendChild(div);
+    });
+}
+
+function highlightBar(idx) {
+    document.querySelectorAll('.chart-bar').forEach((el, i) => {
+        el.classList.toggle('active', i === idx);
+    });
+}
+
+function updatePlayBtn() {
+    const btn = document.getElementById('play-btn');
+    btn.textContent = isPlaying ? 'Stop' : 'Play';
+    btn.classList.toggle('playing', isPlaying);
+}
+
+// ── Init ──────────────────────────────────────────
+
+buildKeySelect();
+buildChart(bluesForm(ROOT_PC['Bb']));
+
+document.getElementById('tempo').addEventListener('input', e => {
+    document.getElementById('tempo-val').textContent = e.target.value;
+});
+
+document.getElementById('key-select').addEventListener('change', () => {
+    if (!isPlaying) {
+        const keyPc = ROOT_PC[document.getElementById('key-select').value];
+        buildChart(bluesForm(keyPc));
+    }
+});
+
+document.getElementById('play-btn').addEventListener('click', togglePlay);
+    </script>
+</body>
+</html>
