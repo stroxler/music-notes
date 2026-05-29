@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walking Blues</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 16px;
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        h1 { font-size: 1.4rem; margin-bottom: 20px; color: #fff; }
+        .loading {
+            background: #252540; border-radius: 6px; padding: 14px;
+            margin-bottom: 20px; text-align: center; color: #aaa; font-size: 0.85rem;
+        }
+        .loading.done { display: none; }
+        .loading.error { color: #e88; }
+        .app.hidden { opacity: 0.3; pointer-events: none; }
+
+        .controls {
+            display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+            align-items: flex-end;
+        }
+        .control-group label {
+            display: block; font-size: 0.72rem; text-transform: uppercase;
+            letter-spacing: 0.05em; color: #888; margin-bottom: 5px;
+        }
+        select, input[type=range] {
+            background: #252540; color: #ccc; border: 1px solid #444;
+            border-radius: 4px; font-size: 0.85rem;
+        }
+        select { padding: 5px 8px; }
+        input[type=range] { width: 120px; vertical-align: middle; }
+        .tempo-val {
+            display: inline-block; width: 3em; text-align: right;
+            font-size: 0.85rem; color: #ccc;
+        }
+        .play-btn {
+            padding: 8px 24px; border: 1px solid #444; background: #2a4a2a;
+            color: #ccc; border-radius: 4px; cursor: pointer; font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .play-btn:hover { background: #3a5a3a; border-color: #666; }
+        .play-btn.playing { background: #4a2a2a; border-color: #844; }
+        .play-btn.playing:hover { background: #5a3a3a; }
+
+        .chart {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 4px; margin-bottom: 20px;
+        }
+        .chart-bar {
+            padding: 14px 4px; background: #252540; border: 2px solid #333;
+            border-radius: 6px; text-align: center; font-size: 1rem; font-weight: 600;
+            transition: border-color 0.12s, background 0.12s;
+        }
+        .chart-bar.active {
+            border-color: #7a7abb; background: #3a3a6a; color: #fff;
+        }
+        .chart-bar .bar-num {
+            display: block; font-size: 0.65rem; color: #555;
+            font-weight: 400; margin-bottom: 2px;
+        }
+
+        .info {
+            background: #252540; border-radius: 6px; padding: 12px;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.82rem; color: #888; min-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Walking Blues</h1>
+    <div class="loading" id="loading">Loading piano and bass samples...</div>
+
+    <div class="app hidden" id="app">
+        <div class="controls">
+            <div class="control-group">
+                <label>Key</label>
+                <select id="key-select"></select>
+            </div>
+            <div class="control-group">
+                <label>Tempo</label>
+                <input type="range" id="tempo" min="80" max="220" value="140">
+                <span class="tempo-val" id="tempo-val">140</span>
+            </div>
+            <button class="play-btn" id="play-btn">Play</button>
+        </div>
+
+        <div class="chart" id="chart"></div>
+
+        <div class="info" id="info">12-bar blues with walking bass + Charleston piano comp</div>
+    </div>
+
+    <script type="module">
+import { Soundfont } from "https://esm.sh/smplr";
+
+
+// ── Music Theory ──────────────────────────────────
+
+const ROOTS = ['C','Db','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+const ROOT_PC = {C:0,Db:1,D:2,Eb:3,E:4,F:5,'F#':6,Gb:6,G:7,Ab:8,A:9,Bb:10,B:11};
+
+const QUALITIES = {
+    maj7: { third: 4, seventh: 11 },
+    '7':  { third: 4, seventh: 10 },
+    m7:   { third: 3, seventh: 10 },
+};
+
+function midiToDisplay(midi) {
+    const n = ['C','Db','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+    return n[((midi % 12) + 12) % 12] + (Math.floor(midi / 12) - 1);
+}
+
+function shellVoicing(rootPc, quality, type) {
+    const q = QUALITIES[quality] || QUALITIES['7'];
+    const thirdPc = (rootPc + q.third) % 12;
+    const seventhPc = (rootPc + q.seventh) % 12;
+    const base = 48;
+    if (type === 'A') {
+        const lo = base + thirdPc;
+        return [lo, lo + ((seventhPc - thirdPc + 12) % 12)];
+    } else {
+        const lo = base + seventhPc;
+        return [lo, lo + ((thirdPc - seventhPc + 12) % 12)];
+    }
+}
+
+
+// ── Blues Form ────────────────────────────────────
+
+function bluesForm(keyPc) {
+    const I = keyPc, IV = (keyPc + 5) % 12, V = (keyPc + 7) % 12;
+    return [
+        {r:I,q:'7'}, {r:IV,q:'7'}, {r:I,q:'7'},  {r:I,q:'7'},
+        {r:IV,q:'7'},{r:IV,q:'7'}, {r:I,q:'7'},  {r:I,q:'7'},
+        {r:V,q:'7'}, {r:IV,q:'7'}, {r:I,q:'7'},  {r:V,q:'7'},
+    ];
+}
+
+function chordLabel(rootPc, quality) {
+    return ROOTS[rootPc] + (quality === '7' ? '7' : quality);
+}
+
+
+// ── Voice-Led Piano Shells ────────────────────────
+
+function voiceLeadedShells(form) {
+    const result = [];
+    let prev = null;
+    for (const ch of form) {
+        const a = shellVoicing(ch.r, ch.q, 'A');
+        const b = shellVoicing(ch.r, ch.q, 'B');
+        if (!prev) { result.push(a); prev = a; continue; }
+        const dA = Math.abs(a[0] - prev[0]) + Math.abs(a[1] - prev[1]);
+        const dB = Math.abs(b[0] - prev[0]) + Math.abs(b[1] - prev[1]);
+        const pick = dA <= dB ? a : b;
+        result.push(pick);
+        prev = pick;
+    }
+    return result;
+}
+
+
+// ── Walking Bass Generation ───────────────────────
+
+function generateBassLine(form, choruses) {
+    const bars = [];
+    const total = form.length * choruses;
+
+    for (let i = 0; i < total; i++) {
+        const ch = form[i % form.length];
+        const next = form[(i + 1) % form.length];
+        const q = QUALITIES[ch.q] || QUALITIES['7'];
+        const root = 36 + ch.r;
+
+        const r = Math.random();
+        let b2, b3;
+        if (r < 0.4)      { b2 = root + q.third; b3 = root + 7; }
+        else if (r < 0.7) { b2 = root + 7; b3 = root + q.third; }
+        else              { b2 = root + 2; b3 = root + q.third; }
+
+        let b4;
+        const nextRoot = 36 + next.r;
+        if (ch.r === next.r) {
+            b4 = Math.random() < 0.5 ? root - 2 : root + 1;
+        } else {
+            b4 = nextRoot - 1;
+            if (b4 > b3 + 5) b4 -= 12;
+            if (b4 < root - 5) b4 += 12;
+        }
+        if (b4 < 33) b4 += 12;
+        if (b4 > 55) b4 -= 12;
+
+        bars.push([root, b2, b3, b4]);
+    }
+    return bars;
+}
+
+
+// ── Instrument Loading ────────────────────────────
+
+const ctx = new AudioContext();
+const piano = new Soundfont(ctx, { instrument: "acoustic_grand_piano" });
+const bassInst = new Soundfont(ctx, { instrument: "acoustic_bass" });
+
+const loadingEl = document.getElementById('loading');
+const appEl = document.getElementById('app');
+
+try {
+    await Promise.all([piano.loaded, bassInst.loaded]);
+    loadingEl.classList.add('done');
+    appEl.classList.remove('hidden');
+} catch (e) {
+    loadingEl.textContent = 'Failed to load: ' + e.message;
+    loadingEl.classList.add('error');
+    throw e;
+}
+
+
+// ── Playback State ────────────────────────────────
+
+let isPlaying = false;
+let activeStops = [];
+let highlightTimers = [];
+let endTimer = null;
+
+function scheduleNote(inst, note, time, dur, vel) {
+    const stop = inst.start({ note, velocity: vel, time, duration: dur });
+    if (typeof stop === 'function') activeStops.push(stop);
+}
+
+function stopAll() {
+    activeStops.forEach(fn => { try { fn(); } catch (_) {} });
+    activeStops = [];
+    highlightTimers.forEach(clearTimeout);
+    highlightTimers = [];
+    if (endTimer) { clearTimeout(endTimer); endTimer = null; }
+    document.querySelectorAll('.chart-bar').forEach(el => el.classList.remove('active'));
+}
+
+
+// ── Main Playback ─────────────────────────────────
+
+const CHORUSES = 3;
+
+async function startPlaying() {
+    if (ctx.state === 'suspended') await ctx.resume();
+    stopAll();
+
+    const keyPc = ROOT_PC[document.getElementById('key-select').value];
+    const tempo = parseInt(document.getElementById('tempo').value);
+    const beatDur = 60 / tempo;
+    const barDur = 4 * beatDur;
+    const swingAnd2 = beatDur * 5 / 3;
+
+    const form = bluesForm(keyPc);
+    const shells = voiceLeadedShells(form);
+    const bassLine = generateBassLine(form, CHORUSES);
+
+    buildChart(form);
+    const now = ctx.currentTime + 0.15;
+
+    for (let i = 0; i < bassLine.length; i++) {
+        const barStart = now + i * barDur;
+        const bar = bassLine[i];
+        const barIdx = i % form.length;
+        const guideTones = shells[barIdx];
+
+        // Walking bass: 4 quarter notes
+        for (let b = 0; b < 4; b++) {
+            const vel = b % 2 === 0 ? 95 : 80;
+            scheduleNote(bassInst, bar[b], barStart + b * beatDur, beatDur * 0.55, vel);
+        }
+
+        // Piano Charleston: beat 1 + "and" of 2, guide tones only
+        for (const note of guideTones) {
+            scheduleNote(piano, note, barStart, swingAnd2 * 0.85, 62);
+            scheduleNote(piano, note, barStart + swingAnd2, beatDur * 0.3, 48);
+        }
+
+        // UI highlighting
+        const delay = (barStart - ctx.currentTime) * 1000;
+        highlightTimers.push(setTimeout(() => highlightBar(barIdx), Math.max(0, delay)));
+    }
+
+    isPlaying = true;
+    updatePlayBtn();
+
+    const totalDur = bassLine.length * barDur;
+    endTimer = setTimeout(() => {
+        isPlaying = false;
+        updatePlayBtn();
+        document.querySelectorAll('.chart-bar').forEach(el => el.classList.remove('active'));
+    }, totalDur * 1000);
+
+    const labels = form.map(c => chordLabel(c.r, c.q));
+    document.getElementById('info').textContent =
+        `${CHORUSES} choruses at ${tempo} bpm — ${labels[0]} blues`;
+}
+
+function togglePlay() {
+    if (isPlaying) {
+        isPlaying = false;
+        stopAll();
+        updatePlayBtn();
+    } else {
+        startPlaying();
+    }
+}
+
+
+// ── UI ────────────────────────────────────────────
+
+function buildKeySelect() {
+    const sel = document.getElementById('key-select');
+    for (const root of ROOTS) {
+        const opt = document.createElement('option');
+        opt.value = root; opt.textContent = root;
+        if (root === 'Bb') opt.selected = true;
+        sel.appendChild(opt);
+    }
+}
+
+function buildChart(form) {
+    const chart = document.getElementById('chart');
+    chart.innerHTML = '';
+    form.forEach((ch, i) => {
+        const div = document.createElement('div');
+        div.className = 'chart-bar';
+        div.innerHTML = `<span class="bar-num">${i + 1}</span>${chordLabel(ch.r, ch.q)}`;
+        chart.appendChild(div);
+    });
+}
+
+function highlightBar(idx) {
+    document.querySelectorAll('.chart-bar').forEach((el, i) => {
+        el.classList.toggle('active', i === idx);
+    });
+}
+
+function updatePlayBtn() {
+    const btn = document.getElementById('play-btn');
+    btn.textContent = isPlaying ? 'Stop' : 'Play';
+    btn.classList.toggle('playing', isPlaying);
+}
+
+// ── Init ──────────────────────────────────────────
+
+buildKeySelect();
+buildChart(bluesForm(ROOT_PC['Bb']));
+
+document.getElementById('tempo').addEventListener('input', e => {
+    document.getElementById('tempo-val').textContent = e.target.value;
+});
+
+document.getElementById('key-select').addEventListener('change', () => {
+    if (!isPlaying) {
+        const keyPc = ROOT_PC[document.getElementById('key-select').value];
+        buildChart(bluesForm(keyPc));
+    }
+});
+
+document.getElementById('play-btn').addEventListener('click', togglePlay);
+    </script>
+</body>
+</html>
