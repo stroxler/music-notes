@@ -1,3 +1,54 @@
+
+
+There will Never Be Another You
+All of Me
+Blue Skies
+Summertime
+Softly as in a Morning Sunrise
+Have You Met Miss Jones
+Lullaby of Birdland
+A Day in the Life of a Fool
+All the Things you Are
+Take the A Train
+Alone Together
+What Is this Thing
+How High the Moon
+Autumn Leaves
+
+Blue Bossa
+Oleo
+Footprints
+Someday my Prince Will Come
+
+Little Sunflower
+Road Song
+Triste
+Corcodova
+
+I Love You
+Thre Is no Greater Love
+Perdido
+Just Friends
+It's you or No One
+Beautiful Love
+You Stepped Out of a Dream
+
+Weaver of Dreams
+Fine and Dandy
+
+Night and Day
+My Romance
+I could Write a Book
+
+Alice in Wonderland
+
+
+
+
+
+# ************* OLD ****************
+
+
 # My current priroities
 
 Someday My Prince Will Come
