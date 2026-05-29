@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shell Voicing Explorer (SoundFont)</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 16px;
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        h1 { font-size: 1.4rem; margin-bottom: 20px; color: #fff; }
+        .loading {
+            background: #252540; border-radius: 6px; padding: 14px;
+            margin-bottom: 20px; text-align: center; color: #aaa;
+            font-size: 0.85rem;
+        }
+        .loading.done { display: none; }
+        .loading.error { color: #e88; }
+        .app.hidden { opacity: 0.3; pointer-events: none; }
+        .controls {
+            display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;
+        }
+        .control-group label {
+            display: block; font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 0.05em; color: #888; margin-bottom: 6px;
+        }
+        .toggle-group { display: flex; gap: 3px; }
+        .toggle-btn {
+            padding: 5px 10px; border: 1px solid #444; background: transparent;
+            color: #999; border-radius: 4px; cursor: pointer; font-size: 0.82rem;
+        }
+        .toggle-btn:hover { border-color: #666; color: #ccc; }
+        .toggle-btn.active {
+            background: #4a4a8a; border-color: #6a6aaa; color: #fff;
+        }
+        .chord-grid {
+            display: grid;
+            grid-template-columns: 40px repeat(5, 1fr);
+            gap: 3px; margin-bottom: 20px;
+        }
+        .grid-header {
+            font-size: 0.7rem; color: #888; padding: 6px 2px; text-align: center;
+        }
+        .root-label {
+            font-weight: 600; display: flex; align-items: center;
+            justify-content: center; font-size: 0.85rem;
+        }
+        .chord-btn {
+            padding: 8px 2px; border: 1px solid #333; background: #252540;
+            color: #aaa; border-radius: 4px; cursor: pointer; font-size: 0.78rem;
+            transition: background 0.1s, border-color 0.1s;
+        }
+        .chord-btn:hover { background: #353560; border-color: #555; color: #ddd; }
+        .chord-btn.playing {
+            background: #5a5aaa; border-color: #7a7abb; color: #fff;
+        }
+        .info {
+            background: #252540; border-radius: 6px; padding: 14px;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px;
+            min-height: 60px;
+        }
+        .info .name { color: #fff; font-size: 1rem; margin-bottom: 4px; }
+        .info .notes { color: #aaa; }
+        .ii-v-i {
+            display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+        }
+        .ii-v-i label { font-size: 0.85rem; color: #aaa; }
+        select {
+            padding: 5px 8px; background: #252540; color: #ccc;
+            border: 1px solid #444; border-radius: 4px; font-size: 0.85rem;
+        }
+        .btn {
+            padding: 6px 14px; border: 1px solid #444; background: #2a2a4a;
+            color: #ccc; border-radius: 4px; cursor: pointer; font-size: 0.85rem;
+        }
+        .btn:hover { background: #3a3a5a; border-color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Shell Voicing Explorer <span style="font-size:0.8rem;color:#888">(SoundFont)</span></h1>
+
+    <div class="loading" id="loading">Loading piano and bass samples...</div>
+
+    <div class="app hidden" id="app">
+        <div class="controls">
+            <div class="control-group">
+                <label>Voicing</label>
+                <div class="toggle-group" id="voicing-toggle">
+                    <button class="toggle-btn active" data-v="A">Root-3-7</button>
+                    <button class="toggle-btn" data-v="B">Root-7-3</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>Bass Sound</label>
+                <div class="toggle-group" id="bass-toggle">
+                    <button class="toggle-btn active" data-v="piano">Piano</button>
+                    <button class="toggle-btn" data-v="bass">Upright Bass</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="chord-grid" id="grid"></div>
+
+        <div class="info" id="info">
+            <div class="name">Click a chord to play</div>
+            <div class="notes">&nbsp;</div>
+        </div>
+
+        <div class="ii-v-i">
+            <label>ii-V-I in</label>
+            <select id="iiVI-key"></select>
+            <button class="btn" id="play-iiVI">Play ii-V-I</button>
+            <button class="btn" id="play-iiVI-both">Play both voicings</button>
+        </div>
+    </div>
+
+    <script type="module">
+import { Soundfont } from "https://esm.sh/smplr";
+
+
+// ── Music Theory ──────────────────────────────────
+
+const ROOTS = ['C','Db','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+const ROOT_PC = {C:0,Db:1,D:2,Eb:3,E:4,F:5,'F#':6,Gb:6,G:7,Ab:8,A:9,Bb:10,B:11};
+
+const QUALITIES = {
+    maj7:  { third: 4, seventh: 11 },
+    '7':   { third: 4, seventh: 10 },
+    m7:    { third: 3, seventh: 10 },
+    m7b5:  { third: 3, seventh: 10 },
+    dim7:  { third: 3, seventh: 9  },
+};
+const Q_NAMES = ['maj7', '7', 'm7', 'm7b5', 'dim7'];
+const Q_DISPLAY = { maj7:'maj7', '7':'7', m7:'m7', m7b5:'m7♭5', dim7:'dim7' };
+
+function midiToDisplay(midi) {
+    const n = ['C','Db','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+    return n[midi % 12] + (Math.floor(midi / 12) - 1);
+}
+
+function shellVoicing(rootPc, quality, type) {
+    const q = QUALITIES[quality];
+    const bass = rootPc + 36;
+    const thirdPc = (rootPc + q.third) % 12;
+    const seventhPc = (rootPc + q.seventh) % 12;
+    const base = 48;
+
+    if (type === 'A') {
+        const lo = base + thirdPc;
+        const hi = lo + ((seventhPc - thirdPc + 12) % 12);
+        return [bass, lo, hi];
+    } else {
+        const lo = base + seventhPc;
+        const hi = lo + ((thirdPc - seventhPc + 12) % 12);
+        return [bass, lo, hi];
+    }
+}
+
+
+// ── Instrument Loading ────────────────────────────
+
+const ctx = new AudioContext();
+const piano = new Soundfont(ctx, { instrument: "acoustic_grand_piano" });
+const bass = new Soundfont(ctx, { instrument: "acoustic_bass" });
+
+const loadingEl = document.getElementById('loading');
+const appEl = document.getElementById('app');
+
+try {
+    await Promise.all([piano.loaded, bass.loaded]);
+    loadingEl.classList.add('done');
+    appEl.classList.remove('hidden');
+} catch (e) {
+    loadingEl.textContent = 'Failed to load samples: ' + e.message;
+    loadingEl.classList.add('error');
+    throw e;
+}
+
+
+// ── State ─────────────────────────────────────────
+
+let voicingType = 'A';
+let useBass = false;
+let activeStops = [];
+let playingBtn = null;
+
+
+// ── Playback Helpers ──────────────────────────────
+
+async function resumeCtx() {
+    if (ctx.state === 'suspended') await ctx.resume();
+}
+
+function stopAll() {
+    activeStops.forEach(fn => { try { fn(); } catch(_) {} });
+    activeStops = [];
+}
+
+function playNote(instrument, midi, time, duration, velocity) {
+    const stop = instrument.start({
+        note: midi,
+        velocity: velocity ?? 80,
+        time,
+        duration,
+    });
+    activeStops.push(stop);
+}
+
+function playVoicing(notes, time, duration) {
+    const bassInst = useBass ? bass : piano;
+    playNote(bassInst, notes[0], time, duration, 95);
+    playNote(piano, notes[1], time, duration, 75);
+    playNote(piano, notes[2], time, duration, 75);
+}
+
+
+// ── UI ────────────────────────────────────────────
+
+function buildGrid() {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '<div class="grid-header"></div>'
+        + Q_NAMES.map(q => `<div class="grid-header">${Q_DISPLAY[q]}</div>`).join('');
+
+    for (const root of ROOTS) {
+        grid.innerHTML += `<div class="root-label">${root}</div>`;
+        for (const q of Q_NAMES) {
+            grid.innerHTML += `<button class="chord-btn" data-root="${root}" data-q="${q}">${root}${Q_DISPLAY[q]}</button>`;
+        }
+    }
+}
+
+function buildKeySelect() {
+    const sel = document.getElementById('iiVI-key');
+    for (const root of ROOTS) {
+        const opt = document.createElement('option');
+        opt.value = root; opt.textContent = root;
+        sel.appendChild(opt);
+    }
+}
+
+function setupToggles(groupId, onChange) {
+    const group = document.getElementById(groupId);
+    group.addEventListener('click', e => {
+        const btn = e.target.closest('.toggle-btn');
+        if (!btn) return;
+        group.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        onChange(btn.dataset.v);
+    });
+}
+
+function showInfo(chordLabel, notes, type) {
+    const info = document.getElementById('info');
+    const noteNames = notes.map(midiToDisplay);
+    const typeLabel = type === 'A' ? 'Root-3-7' : 'Root-7-3';
+    const bassLabel = useBass ? ' (bass)' : '';
+    info.innerHTML =
+        `<div class="name">${chordLabel} (${typeLabel})</div>` +
+        `<div class="notes">Bass: ${noteNames[0]}${bassLabel}  |  Guide tones: ${noteNames[1]}, ${noteNames[2]}</div>`;
+}
+
+function flashBtn(btn) {
+    if (playingBtn) playingBtn.classList.remove('playing');
+    if (btn) btn.classList.add('playing');
+    playingBtn = btn;
+}
+
+
+// ── Chord Playback ────────────────────────────────
+
+async function handleChordClick(e) {
+    const btn = e.target.closest('.chord-btn');
+    if (!btn) return;
+    await resumeCtx();
+
+    const { root, q } = btn.dataset;
+    stopAll();
+    const notes = shellVoicing(ROOT_PC[root], q, voicingType);
+    playVoicing(notes, ctx.currentTime, 1.8);
+    showInfo(`${root}${Q_DISPLAY[q]}`, notes, voicingType);
+    flashBtn(btn);
+}
+
+async function playIIVI(keyRoot, startType) {
+    await resumeCtx();
+    stopAll();
+    flashBtn(null);
+
+    const iiRoot = ROOTS[(ROOT_PC[keyRoot] + 2) % 12];
+    const vRoot  = ROOTS[(ROOT_PC[keyRoot] + 7) % 12];
+    const otherType = startType === 'A' ? 'B' : 'A';
+
+    const now = ctx.currentTime;
+    const beat = 0.9;
+
+    const iiNotes = shellVoicing(ROOT_PC[iiRoot], 'm7', startType);
+    const vNotes  = shellVoicing(ROOT_PC[vRoot],  '7',  otherType);
+    const iNotes  = shellVoicing(ROOT_PC[keyRoot], 'maj7', startType);
+
+    playVoicing(iiNotes, now,            beat * 0.95);
+    playVoicing(vNotes,  now + beat,     beat * 0.95);
+    playVoicing(iNotes,  now + beat * 2, beat * 1.8);
+
+    const iiLabel = `${iiRoot}m7`;
+    const vLabel  = `${vRoot}7`;
+    const iLabel  = `${keyRoot}maj7`;
+
+    const info = document.getElementById('info');
+    info.innerHTML =
+        `<div class="name">ii-V-I in ${keyRoot}</div>` +
+        `<div class="notes">${iiLabel}(${startType})  →  ${vLabel}(${otherType})  →  ${iLabel}(${startType})</div>` +
+        `<div class="notes" style="margin-top:4px;font-size:0.78rem;color:#777">` +
+        `${iiNotes.map(midiToDisplay).join(', ')}  →  ` +
+        `${vNotes.map(midiToDisplay).join(', ')}  →  ` +
+        `${iNotes.map(midiToDisplay).join(', ')}</div>`;
+}
+
+async function playIIVIBoth(keyRoot) {
+    await resumeCtx();
+    stopAll();
+    flashBtn(null);
+
+    const iiRoot = ROOTS[(ROOT_PC[keyRoot] + 2) % 12];
+    const vRoot  = ROOTS[(ROOT_PC[keyRoot] + 7) % 12];
+
+    const now = ctx.currentTime;
+    const beat = 0.9;
+    const gap = beat * 3.5;
+
+    for (let pass = 0; pass < 2; pass++) {
+        const startType = pass === 0 ? 'A' : 'B';
+        const otherType = startType === 'A' ? 'B' : 'A';
+        const t = now + pass * gap;
+
+        const iiN = shellVoicing(ROOT_PC[iiRoot], 'm7', startType);
+        const vN  = shellVoicing(ROOT_PC[vRoot],  '7',  otherType);
+        const iN  = shellVoicing(ROOT_PC[keyRoot], 'maj7', startType);
+
+        playVoicing(iiN, t,          beat * 0.95);
+        playVoicing(vN,  t + beat,   beat * 0.95);
+        playVoicing(iN,  t + beat*2, beat * 1.8);
+    }
+
+    const info = document.getElementById('info');
+    info.innerHTML =
+        `<div class="name">ii-V-I in ${keyRoot} — both voicings</div>` +
+        `<div class="notes">First: A(root-3-7) start  |  Then: B(root-7-3) start</div>`;
+}
+
+
+// ── Init ──────────────────────────────────────────
+
+buildGrid();
+buildKeySelect();
+
+setupToggles('voicing-toggle', v => { voicingType = v; });
+setupToggles('bass-toggle', v => { useBass = v === 'bass'; });
+
+document.getElementById('grid').addEventListener('click', handleChordClick);
+document.getElementById('play-iiVI').addEventListener('click', () => {
+    playIIVI(document.getElementById('iiVI-key').value, voicingType);
+});
+document.getElementById('play-iiVI-both').addEventListener('click', () => {
+    playIIVIBoth(document.getElementById('iiVI-key').value);
+});
+    </script>
+</body>
+</html>

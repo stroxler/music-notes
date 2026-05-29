@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shell Voicing Explorer</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 16px;
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        h1 { font-size: 1.4rem; margin-bottom: 20px; color: #fff; }
+        .controls {
+            display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;
+        }
+        .control-group label {
+            display: block; font-size: 0.75rem; text-transform: uppercase;
+            letter-spacing: 0.05em; color: #888; margin-bottom: 6px;
+        }
+        .toggle-group { display: flex; gap: 3px; }
+        .toggle-btn {
+            padding: 5px 10px; border: 1px solid #444; background: transparent;
+            color: #999; border-radius: 4px; cursor: pointer; font-size: 0.82rem;
+        }
+        .toggle-btn:hover { border-color: #666; color: #ccc; }
+        .toggle-btn.active {
+            background: #4a4a8a; border-color: #6a6aaa; color: #fff;
+        }
+        .chord-grid {
+            display: grid;
+            grid-template-columns: 40px repeat(5, 1fr);
+            gap: 3px; margin-bottom: 20px;
+        }
+        .grid-header {
+            font-size: 0.7rem; color: #888; padding: 6px 2px; text-align: center;
+        }
+        .root-label {
+            font-weight: 600; display: flex; align-items: center;
+            justify-content: center; font-size: 0.85rem;
+        }
+        .chord-btn {
+            padding: 8px 2px; border: 1px solid #333; background: #252540;
+            color: #aaa; border-radius: 4px; cursor: pointer; font-size: 0.78rem;
+            transition: background 0.1s, border-color 0.1s;
+        }
+        .chord-btn:hover { background: #353560; border-color: #555; color: #ddd; }
+        .chord-btn.playing {
+            background: #5a5aaa; border-color: #7a7abb; color: #fff;
+        }
+        .info {
+            background: #252540; border-radius: 6px; padding: 14px;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px;
+            min-height: 60px;
+        }
+        .info .name { color: #fff; font-size: 1rem; margin-bottom: 4px; }
+        .info .notes { color: #aaa; }
+        .ii-v-i {
+            display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+        }
+        .ii-v-i label { font-size: 0.85rem; color: #aaa; }
+        select {
+            padding: 5px 8px; background: #252540; color: #ccc;
+            border: 1px solid #444; border-radius: 4px; font-size: 0.85rem;
+        }
+        .btn {
+            padding: 6px 14px; border: 1px solid #444; background: #2a2a4a;
+            color: #ccc; border-radius: 4px; cursor: pointer; font-size: 0.85rem;
+        }
+        .btn:hover { background: #3a3a5a; border-color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Shell Voicing Explorer</h1>
+
+    <div class="controls">
+        <div class="control-group">
+            <label>Voicing</label>
+            <div class="toggle-group" id="voicing-toggle">
+                <button class="toggle-btn active" data-v="A">Root-3-7</button>
+                <button class="toggle-btn" data-v="B">Root-7-3</button>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>Sound</label>
+            <div class="toggle-group" id="sound-toggle">
+                <button class="toggle-btn active" data-v="warm">Warm</button>
+                <button class="toggle-btn" data-v="bright">Bright</button>
+                <button class="toggle-btn" data-v="ep">EP</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="chord-grid" id="grid"></div>
+
+    <div class="info" id="info">
+        <div class="name">Click a chord to play</div>
+        <div class="notes">&nbsp;</div>
+    </div>
+
+    <div class="ii-v-i">
+        <label>ii-V-I in</label>
+        <select id="iiVI-key"></select>
+        <button class="btn" id="play-iiVI">Play ii-V-I</button>
+        <button class="btn" id="play-iiVI-both">Play both voicings</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tone/build/Tone.js"></script>
+    <script>
+// ── Music Theory ──────────────────────────────────
+
+const ROOTS = ['C','Db','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+const ROOT_PC = {C:0,Db:1,D:2,Eb:3,E:4,F:5,'F#':6,Gb:6,G:7,Ab:8,A:9,Bb:10,B:11};
+
+const QUALITIES = {
+    maj7:  { third: 4, seventh: 11 },
+    '7':   { third: 4, seventh: 10 },
+    m7:    { third: 3, seventh: 10 },
+    m7b5:  { third: 3, seventh: 10 },
+    dim7:  { third: 3, seventh: 9  },
+};
+const Q_NAMES = ['maj7', '7', 'm7', 'm7b5', 'dim7'];
+const Q_DISPLAY = { maj7:'maj7', '7':'7', m7:'m7', m7b5:'m7♭5', dim7:'dim7' };
+
+const DEGREE_NAMES = ['R', '♭2', '2', '♭3', '3', '4', '♭5', '5', '♭6', '6', '♭7', '7'];
+
+function midiToTone(midi) {
+    const n = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B'];
+    return n[midi % 12] + (Math.floor(midi / 12) - 1);
+}
+
+function midiToDisplay(midi) {
+    const n = ['C','Db','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+    return n[midi % 12] + (Math.floor(midi / 12) - 1);
+}
+
+function shellVoicing(rootPc, quality, type) {
+    const q = QUALITIES[quality];
+    const bass = rootPc + 36;
+    const thirdPc = (rootPc + q.third) % 12;
+    const seventhPc = (rootPc + q.seventh) % 12;
+    const base = 48;
+
+    if (type === 'A') {
+        const lo = base + thirdPc;
+        const hi = lo + ((seventhPc - thirdPc + 12) % 12);
+        return [bass, lo, hi];
+    } else {
+        const lo = base + seventhPc;
+        const hi = lo + ((thirdPc - seventhPc + 12) % 12);
+        return [bass, lo, hi];
+    }
+}
+
+
+// ── Synth Management ──────────────────────────────
+
+let synth = null;
+
+function makeSynth(type) {
+    if (synth) { synth.releaseAll(); synth.dispose(); }
+    switch (type) {
+        case 'warm':
+            synth = new Tone.PolySynth(Tone.Synth, {
+                oscillator: { type: 'triangle' },
+                envelope: { attack: 0.05, decay: 0.4, sustain: 0.35, release: 1.8 },
+                volume: -6,
+            }).toDestination();
+            break;
+        case 'bright':
+            synth = new Tone.PolySynth(Tone.Synth, {
+                oscillator: { type: 'sawtooth' },
+                envelope: { attack: 0.01, decay: 0.3, sustain: 0.2, release: 1.2 },
+                volume: -14,
+            }).toDestination();
+            break;
+        case 'ep':
+            synth = new Tone.PolySynth(Tone.FMSynth, {
+                harmonicity: 3.01,
+                modulationIndex: 14,
+                oscillator: { type: 'triangle' },
+                envelope: { attack: 0.002, decay: 1.2, sustain: 0, release: 1.8 },
+                modulation: { type: 'square' },
+                modulationEnvelope: { attack: 0.002, decay: 0.2, sustain: 0, release: 0.4 },
+                volume: -8,
+            }).toDestination();
+            break;
+    }
+}
+
+
+// ── State ─────────────────────────────────────────
+
+let voicingType = 'A';
+let soundType = 'warm';
+let playingBtn = null;
+
+makeSynth(soundType);
+
+
+// ── UI ────────────────────────────────────────────
+
+function buildGrid() {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '<div class="grid-header"></div>'
+        + Q_NAMES.map(q => `<div class="grid-header">${Q_DISPLAY[q]}</div>`).join('');
+
+    for (const root of ROOTS) {
+        grid.innerHTML += `<div class="root-label">${root}</div>`;
+        for (const q of Q_NAMES) {
+            grid.innerHTML += `<button class="chord-btn" data-root="${root}" data-q="${q}">${root}${Q_DISPLAY[q]}</button>`;
+        }
+    }
+}
+
+function buildKeySelect() {
+    const sel = document.getElementById('iiVI-key');
+    for (const root of ROOTS) {
+        const opt = document.createElement('option');
+        opt.value = root; opt.textContent = root;
+        sel.appendChild(opt);
+    }
+}
+
+function setupToggles(groupId, onChange) {
+    const group = document.getElementById(groupId);
+    group.addEventListener('click', e => {
+        const btn = e.target.closest('.toggle-btn');
+        if (!btn) return;
+        group.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        onChange(btn.dataset.v);
+    });
+}
+
+function showInfo(chordLabel, notes, type) {
+    const info = document.getElementById('info');
+    const noteNames = notes.map(midiToDisplay);
+    const typeLabel = type === 'A' ? 'Root-3-7' : 'Root-7-3';
+    info.innerHTML =
+        `<div class="name">${chordLabel} (${typeLabel})</div>` +
+        `<div class="notes">Bass: ${noteNames[0]}  |  Guide tones: ${noteNames[1]}, ${noteNames[2]}</div>`;
+}
+
+function flashBtn(btn) {
+    if (playingBtn) playingBtn.classList.remove('playing');
+    if (btn) btn.classList.add('playing');
+    playingBtn = btn;
+}
+
+
+// ── Playback ──────────────────────────────────────
+
+async function playChord(rootName, quality, type, time, duration) {
+    await Tone.start();
+    const notes = shellVoicing(ROOT_PC[rootName], quality, type);
+    const toneNotes = notes.map(midiToTone);
+    const t = time ?? Tone.now();
+    synth.triggerAttackRelease(toneNotes, duration ?? 1.5, t);
+    return notes;
+}
+
+function handleChordClick(e) {
+    const btn = e.target.closest('.chord-btn');
+    if (!btn) return;
+    const { root, q } = btn.dataset;
+    synth.releaseAll();
+    playChord(root, q, voicingType).then(notes => {
+        showInfo(`${root}${Q_DISPLAY[q]}`, notes, voicingType);
+    });
+    flashBtn(btn);
+}
+
+async function playIIVI(keyRoot, startType) {
+    await Tone.start();
+    synth.releaseAll();
+    flashBtn(null);
+
+    const iiRoot = ROOTS[(ROOT_PC[keyRoot] + 2) % 12];
+    const vRoot  = ROOTS[(ROOT_PC[keyRoot] + 7) % 12];
+    const otherType = startType === 'A' ? 'B' : 'A';
+
+    const now = Tone.now();
+    const beat = 0.9;
+
+    const iiNotes = shellVoicing(ROOT_PC[iiRoot], 'm7', startType);
+    const vNotes  = shellVoicing(ROOT_PC[vRoot],  '7',  otherType);
+    const iNotes  = shellVoicing(ROOT_PC[keyRoot], 'maj7', startType);
+
+    synth.triggerAttackRelease(iiNotes.map(midiToTone), beat * 0.95, now);
+    synth.triggerAttackRelease(vNotes.map(midiToTone),  beat * 0.95, now + beat);
+    synth.triggerAttackRelease(iNotes.map(midiToTone),  beat * 1.8,  now + beat * 2);
+
+    const iiLabel = `${iiRoot}m7`;
+    const vLabel  = `${vRoot}7`;
+    const iLabel  = `${keyRoot}maj7`;
+    const tA = startType, tB = otherType;
+
+    const info = document.getElementById('info');
+    info.innerHTML =
+        `<div class="name">ii-V-I in ${keyRoot}</div>` +
+        `<div class="notes">${iiLabel}(${tA})  →  ${vLabel}(${tB})  →  ${iLabel}(${tA})</div>` +
+        `<div class="notes" style="margin-top:4px;font-size:0.78rem;color:#777">` +
+        `${iiNotes.map(midiToDisplay).join(', ')}  →  ` +
+        `${vNotes.map(midiToDisplay).join(', ')}  →  ` +
+        `${iNotes.map(midiToDisplay).join(', ')}</div>`;
+}
+
+async function playIIVIBoth(keyRoot) {
+    await Tone.start();
+    synth.releaseAll();
+    flashBtn(null);
+
+    const iiRoot = ROOTS[(ROOT_PC[keyRoot] + 2) % 12];
+    const vRoot  = ROOTS[(ROOT_PC[keyRoot] + 7) % 12];
+
+    const now = Tone.now();
+    const beat = 0.9;
+    const gap = beat * 3.5;
+
+    for (let pass = 0; pass < 2; pass++) {
+        const startType = pass === 0 ? 'A' : 'B';
+        const otherType = startType === 'A' ? 'B' : 'A';
+        const t = now + pass * gap;
+
+        const iiN = shellVoicing(ROOT_PC[iiRoot], 'm7', startType);
+        const vN  = shellVoicing(ROOT_PC[vRoot],  '7',  otherType);
+        const iN  = shellVoicing(ROOT_PC[keyRoot], 'maj7', startType);
+
+        synth.triggerAttackRelease(iiN.map(midiToTone), beat * 0.95, t);
+        synth.triggerAttackRelease(vN.map(midiToTone),  beat * 0.95, t + beat);
+        synth.triggerAttackRelease(iN.map(midiToTone),  beat * 1.8,  t + beat * 2);
+    }
+
+    const info = document.getElementById('info');
+    info.innerHTML =
+        `<div class="name">ii-V-I in ${keyRoot} — both voicings</div>` +
+        `<div class="notes">First: A(root-3-7) start  |  Then: B(root-7-3) start</div>`;
+}
+
+
+// ── Init ──────────────────────────────────────────
+
+buildGrid();
+buildKeySelect();
+
+setupToggles('voicing-toggle', v => { voicingType = v; });
+setupToggles('sound-toggle', v => { soundType = v; makeSynth(v); });
+
+document.getElementById('grid').addEventListener('click', handleChordClick);
+document.getElementById('play-iiVI').addEventListener('click', () => {
+    playIIVI(document.getElementById('iiVI-key').value, voicingType);
+});
+document.getElementById('play-iiVI-both').addEventListener('click', () => {
+    playIIVIBoth(document.getElementById('iiVI-key').value);
+});
+    </script>
+</body>
+</html>
