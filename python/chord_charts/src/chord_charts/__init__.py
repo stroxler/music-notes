@@ -36,6 +36,7 @@ from chord_charts.parser import (
     parse_section_header,
     parse_source_blocks,
 )
+from chord_charts.transforms import respell_chord_symbol, respell_document
 from chord_charts.validation import (
     BarValidationCode,
     BarValidationIssue,
@@ -87,6 +88,8 @@ __all__ = [
     "parse_form_body_lines",
     "parse_form_header",
     "render_pitch_class",
+    "respell_chord_symbol",
+    "respell_document",
     "respell_note_lexeme",
     "parse_canonical_bar_cell",
     "parse_chord_token",
