@@ -1,4 +1,5 @@
-from chord_charts.model import Bar, BarItem, CarryItem, ChordItem, ChordSymbol, Meter, TextRange
+from chord_charts.linearize import linearize_canonical_form
+from chord_charts.model import Bar, BarItem, CarryItem, ChordItem, ChordSymbol, LinearBar, Meter, TextRange
 from chord_charts.model import (
     Document,
     Form,
@@ -42,7 +43,6 @@ from chord_charts.validation import (
     DocumentValidationIssue,
     assert_valid_bar,
     assert_valid_document,
-    canonical_form_reference_sequence,
     validate_document,
     validate_bar,
 )
@@ -64,6 +64,7 @@ __all__ = [
     "FormItem",
     "FormSectionRef",
     "FormText",
+    "LinearBar",
     "Meter",
     "MetadataField",
     "NOTE_SPELLING_POLICIES",
@@ -79,8 +80,8 @@ __all__ = [
     "TextRange",
     "assert_valid_bar",
     "assert_valid_document",
-    "canonical_form_reference_sequence",
     "is_pitch_class",
+    "linearize_canonical_form",
     "parse_canonical_section_row",
     "pitch_class_for_lexeme",
     "parse_form_body_lines",

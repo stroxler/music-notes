@@ -3,6 +3,12 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal, final
 
+from chord_charts.linearize import (
+    _canonical_form,
+    _form_reference_sequence,
+    _render_ref,
+    linearize_canonical_form,
+)
 from chord_charts.model import (
     Bar,
     BarItem,
@@ -29,6 +35,7 @@ DocumentValidationCode = Literal[
     "unexpected_ending",
     "unknown_ending",
     "form_sequence_mismatch",
+    "unresolved_initial_carry",
 ]
 
 
@@ -146,37 +153,36 @@ def validate_bar(bar: Bar) -> tuple[BarValidationIssue, ...]:
     return tuple(issues)
 
 
-def canonical_form_reference_sequence(document: Document) -> tuple[FormSectionRef, ...]:
-    canonical_form = _canonical_form(document)
-    if canonical_form is None:
-        return ()
-    return _form_reference_sequence(canonical_form)
-
-
 def validate_document(document: Document) -> tuple[DocumentValidationIssue, ...]:
     sections_by_name = {section.name: section for section in document.sections}
     canonical_form = _canonical_form(document)
-    validated_forms = [
-        (form, _form_reference_issues(form=form, sections_by_name=sections_by_name))
-        for form in document.forms
-    ]
-    issues = [issue for _, form_issues in validated_forms for issue in form_issues]
+    issues: list[DocumentValidationIssue] = []
+    valid_sequences: list[tuple[Form, tuple[FormSectionRef, ...]]] = []
+    canonical_sequence: tuple[FormSectionRef, ...] | None = None
 
-    if canonical_form is None:
-        return tuple(issues)
-
-    canonical_issues = next(
-        form_issues for form, form_issues in validated_forms if form is canonical_form
-    )
-    if canonical_issues:
-        return tuple(issues)
-
-    canonical_sequence = _form_reference_sequence(canonical_form)
-    for form, reference_issues in validated_forms:
-        if reference_issues:
+    for form in document.forms:
+        form_issues = _form_reference_issues(form=form, sections_by_name=sections_by_name)
+        issues.extend(form_issues)
+        if form_issues:
             continue
 
         reference_sequence = _form_reference_sequence(form)
+        valid_sequences.append((form, reference_sequence))
+        if form is canonical_form:
+            canonical_sequence = reference_sequence
+
+    if canonical_sequence is None:
+        return tuple(issues)
+
+    if _starts_with_unresolved_initial_carry(document):
+        issues.append(
+            _document_issue(
+                code="unresolved_initial_carry",
+                message="canonical form begins with a carry before any harmony has been established",
+            )
+        )
+
+    for form, reference_sequence in valid_sequences:
         if reference_sequence != canonical_sequence:
             issues.append(
                 _document_issue(
@@ -255,18 +261,16 @@ def _timeline_issues(
     return ()
 
 
-def _canonical_form(document: Document) -> Form | None:
-    for form in document.forms:
-        if form.name is None:
-            return form
+def _starts_with_unresolved_initial_carry(document: Document) -> bool:
+    linear_bars = linearize_canonical_form(document)
+    if not linear_bars:
+        return False
 
-    if document.forms:
-        return document.forms[0]
-    return None
+    first_bar = linear_bars[0].bar
+    if not first_bar.items:
+        return False
 
-
-def _form_reference_sequence(form: Form) -> tuple[FormSectionRef, ...]:
-    return tuple(item for item in form.items if isinstance(item, FormSectionRef))
+    return isinstance(first_bar.items[0], CarryItem)
 
 
 def _form_reference_issues(
@@ -345,9 +349,3 @@ def _render_reference_sequence(reference_sequence: tuple[FormSectionRef, ...]) -
     if not reference_sequence:
         return "<empty>"
     return " ".join(_render_ref(ref) for ref in reference_sequence)
-
-
-def _render_ref(ref: FormSectionRef) -> str:
-    if ref.ending is None:
-        return f"[{ref.name}]"
-    return f"[{ref.name}:{ref.ending}]"

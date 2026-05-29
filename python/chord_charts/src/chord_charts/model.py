@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 from dataclasses import dataclass, field
-from typing import final
+from typing import Literal, final
 
 from chord_charts.notes import is_pitch_class, pitch_class_for_lexeme
 
@@ -149,6 +149,27 @@ class FormText:
 class FormSectionRef:
     name: str
     ending: str | None = None
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class LinearBar:
+    play: FormSectionRef
+    source_section: str
+    source_part: Literal["body", "ending"]
+    source_bar_index: int
+    bar: Bar
+    source_ending: str | None = None
+
+    def __post_init__(self) -> None:
+        if self.source_part not in ("body", "ending"):
+            raise ValueError("source_part must be either 'body' or 'ending'")
+        if self.source_bar_index < 0:
+            raise ValueError("source_bar_index must be non-negative")
+        if self.source_part == "body" and self.source_ending is not None:
+            raise ValueError("source_ending must be None for body bars")
+        if self.source_part == "ending" and self.source_ending is None:
+            raise ValueError("source_ending must be set for ending bars")
 
 
 FormItem = FormText | FormSectionRef

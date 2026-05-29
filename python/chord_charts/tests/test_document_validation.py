@@ -9,13 +9,8 @@ from chord_charts import (
     Document,
     DocumentValidationCode,
     DocumentValidationIssue,
-    Form,
-    FormSectionRef,
-    FormText,
-    Meter,
     TextRange,
     assert_valid_document,
-    canonical_form_reference_sequence,
     parse_document,
     validate_document,
 )
@@ -27,51 +22,6 @@ def _parse(text: str) -> Document:
 
 def _issue(code: DocumentValidationCode, message: str) -> DocumentValidationIssue:
     return DocumentValidationIssue(code=code, message=message, span=TextRange.synthetic())
-
-
-def test_canonical_form_reference_sequence_prefers_plain_form_and_ignores_text() -> None:
-    document = Document(
-        meter=Meter(numerator=4),
-        forms=(
-            Form(name="lyrics", items=(FormText("intro "), FormSectionRef(name="A", ending="1"))),
-            Form(
-                items=(
-                    FormText("count "),
-                    FormSectionRef(name="A"),
-                    FormText(" tag "),
-                    FormSectionRef(name="B"),
-                )
-            ),
-        ),
-    )
-
-    assert canonical_form_reference_sequence(document) == (
-        FormSectionRef(name="A"),
-        FormSectionRef(name="B"),
-    )
-
-
-def test_canonical_form_reference_sequence_falls_back_to_first_form_when_no_plain_form_exists() -> None:
-    document = Document(
-        meter=Meter(numerator=4),
-        forms=(
-            Form(
-                name="lyrics",
-                items=(
-                    FormText("intro "),
-                    FormSectionRef(name="A", ending="1"),
-                    FormText(" outro"),
-                ),
-            ),
-            Form(name="roman", items=(FormSectionRef(name="B"),)),
-        ),
-    )
-
-    assert canonical_form_reference_sequence(document) == (FormSectionRef(name="A", ending="1"),)
-
-
-def test_canonical_form_reference_sequence_returns_empty_for_document_without_forms() -> None:
-    assert canonical_form_reference_sequence(Document(meter=Meter(numerator=4))) == ()
 
 
 def test_validate_document_accepts_matching_form_blocks_ignoring_text() -> None:
@@ -236,6 +186,82 @@ def test_validate_document_reports_form_sequence_mismatch_against_plain_form() -
     )
 
 
+def test_validate_document_reports_unresolved_initial_carry_in_canonical_form() -> None:
+    document = _parse(
+        """
+        [A]:
+        |-   G7  |
+        form:
+        [A]
+        """
+    )
+
+    assert validate_document(document) == (
+        _issue(
+            "unresolved_initial_carry",
+            "canonical form begins with a carry before any harmony has been established",
+        ),
+    )
+
+
+def test_validate_document_allows_carry_after_earlier_linearized_bar_establishes_harmony() -> None:
+    document = _parse(
+        """
+        [A]:
+        |C   |
+        [A:1]:
+        |-   |
+        form:
+        [A:1]
+        """
+    )
+
+    assert validate_document(document) == ()
+    assert_valid_document(document)
+
+
+def test_validate_document_reports_unresolved_initial_carry_even_when_noncanonical_form_is_invalid() -> None:
+    document = _parse(
+        """
+        [A]:
+        |-   G7  |
+        form:
+        [A]
+        form[lyrics]:
+        [A:1]
+        """
+    )
+
+    assert validate_document(document) == (
+        _issue(
+            "unexpected_ending",
+            "form[lyrics]: must reference section 'A' as [A] because the section has no endings",
+        ),
+        _issue(
+            "unresolved_initial_carry",
+            "canonical form begins with a carry before any harmony has been established",
+        ),
+    )
+
+
+def test_validate_document_skips_unresolved_initial_carry_when_canonical_form_is_invalid() -> None:
+    document = _parse(
+        """
+        [A]:
+        |-   G7  |
+        form:
+        [A:1]
+        """
+    )
+
+    assert validate_document(document) == (
+        _issue(
+            "unexpected_ending",
+            "form: must reference section 'A' as [A] because the section has no endings",
+        ),
+    )
+
+
 def test_assert_valid_document_raises_value_error_for_invalid_document() -> None:
     document = _parse(
         """
@@ -253,6 +279,5 @@ def test_assert_valid_document_raises_value_error_for_invalid_document() -> None
 
 
 def test_document_validation_api_is_exposed_from_package_root() -> None:
-    assert chord_charts.canonical_form_reference_sequence is canonical_form_reference_sequence
     assert chord_charts.validate_document is validate_document
     assert chord_charts.assert_valid_document is assert_valid_document
