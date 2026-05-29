@@ -9,7 +9,10 @@ from chord_charts.notes import ACCEPTED_INPUT_LEXEMES, pitch_class_for_lexeme
 from chord_charts.validation import assert_valid_bar
 
 __all__ = [
+    "FormItem",
     "FormHeader",
+    "FormSectionRef",
+    "FormText",
     "ParsedBlock",
     "ParsedFormBlock",
     "ParsedSectionBlock",
@@ -17,6 +20,7 @@ __all__ = [
     "parse_canonical_bar_cell",
     "parse_canonical_section_row",
     "parse_chord_token",
+    "parse_form_body_lines",
     "parse_form_header",
     "parse_source_blocks",
     "parse_section_header",
@@ -28,6 +32,9 @@ _SECTION_HEADER_RE = re.compile(
     rf"^\[(?P<name>{_IDENTIFIER_PATTERN})(?::(?P<ending>{_IDENTIFIER_PATTERN}))?\]:$"
 )
 _FORM_HEADER_RE = re.compile(rf"^form(?:\[(?P<name>{_IDENTIFIER_PATTERN})\])?:$")
+_FORM_REF_RE = re.compile(
+    rf"^(?P<name>{_IDENTIFIER_PATTERN})(?::(?P<ending>{_IDENTIFIER_PATTERN}))?$"
+)
 
 
 @final
@@ -41,6 +48,22 @@ class SectionHeader:
 @dataclass(frozen=True, slots=True)
 class FormHeader:
     name: str | None = None
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class FormText:
+    text: str
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class FormSectionRef:
+    name: str
+    ending: str | None = None
+
+
+FormItem = FormText | FormSectionRef
 
 
 @final
@@ -74,6 +97,38 @@ def parse_form_header(text: str) -> FormHeader:
         raise ValueError(f"invalid form header: {text!r}")
 
     return FormHeader(name=match.group("name"))
+
+
+def parse_form_body_lines(body_lines: tuple[str, ...]) -> tuple[FormItem, ...]:
+    source = "\n".join(body_lines)
+    items: list[FormItem] = []
+    text_buffer: list[str] = []
+    index = 0
+
+    while index < len(source):
+        character = source[index]
+
+        if character == "\\":
+            decoded_character, next_index = _decode_form_text_escape(source, index)
+            text_buffer.append(decoded_character)
+            index = next_index
+            continue
+
+        if character == "[":
+            ref_end = source.find("]", index + 1)
+            if ref_end >= 0:
+                ref = _parse_form_ref(source[index + 1 : ref_end])
+                if ref is not None:
+                    _flush_form_text(items, text_buffer)
+                    items.append(ref)
+                    index = ref_end + 1
+                    continue
+
+        text_buffer.append(character)
+        index += 1
+
+    _flush_form_text(items, text_buffer)
+    return tuple(items)
 
 
 def parse_source_blocks(text: str, *, beats: int) -> tuple[ParsedBlock, ...]:
@@ -259,3 +314,24 @@ def _parse_block_header(line: str) -> SectionHeader | FormHeader | None:
         return FormHeader(name=match.group("name"))
 
     return None
+
+
+def _decode_form_text_escape(source: str, index: int) -> tuple[str, int]:
+    next_index = index + 1
+    if next_index < len(source) and source[next_index] in "\\[]":
+        return source[next_index], next_index + 1
+    return "\\", next_index
+
+
+def _parse_form_ref(text: str) -> FormSectionRef | None:
+    match = _FORM_REF_RE.fullmatch(text)
+    if match is None:
+        return None
+    return FormSectionRef(name=match.group("name"), ending=match.group("ending"))
+
+
+def _flush_form_text(items: list[FormItem], text_buffer: list[str]) -> None:
+    if not text_buffer:
+        return
+    items.append(FormText("".join(text_buffer)))
+    text_buffer.clear()

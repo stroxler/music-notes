@@ -11,12 +11,16 @@ from chord_charts.model import Bar, CarryItem, ChordItem, ChordSymbol
 from chord_charts.notes import pitch_class_for_lexeme
 from chord_charts.parser import (
     FormHeader,
+    FormItem,
+    FormSectionRef,
+    FormText,
     ParsedFormBlock,
     ParsedSectionBlock,
     SectionHeader,
     parse_canonical_bar_cell,
     parse_canonical_section_row,
     parse_chord_token,
+    parse_form_body_lines,
     parse_form_header,
     parse_section_header,
     parse_source_blocks,
@@ -304,6 +308,99 @@ def test_parse_source_blocks_rejects_empty_section_block() -> None:
         parse_source_blocks("[A]:\n\nform:\n[A]", beats=4)
 
 
+@pytest.mark.parametrize(
+    ("body_lines", "expected"),
+    (
+        (("[A]",), (FormSectionRef(name="A"),)),
+        (("[A:1]",), (FormSectionRef(name="A", ending="1"),)),
+        (("[bridge]",), (FormSectionRef(name="bridge"),)),
+        (("[bridge:outro]",), (FormSectionRef(name="bridge", ending="outro"),)),
+    ),
+)
+def test_parse_form_body_lines_accepts_section_ref_examples(
+    body_lines: tuple[str, ...], expected: tuple[FormSectionRef, ...]
+) -> None:
+    assert parse_form_body_lines(body_lines) == expected
+
+
+def test_parse_form_body_lines_accepts_mixed_text_and_section_refs() -> None:
+    assert parse_form_body_lines(("intro [A:1] then [bridge]",)) == (
+        FormText("intro "),
+        FormSectionRef(name="A", ending="1"),
+        FormText(" then "),
+        FormSectionRef(name="bridge"),
+    )
+
+
+def test_parse_form_body_lines_decodes_supported_escapes_in_text() -> None:
+    assert parse_form_body_lines((r"\\ \[A\] \] [A]",)) == (
+        FormText(r"\ [A] ] "),
+        FormSectionRef(name="A"),
+    )
+
+
+def test_parse_form_body_lines_decodes_multiple_backslashes_in_text() -> None:
+    assert parse_form_body_lines((r"\\\\",)) == (FormText(r"\\"),)
+
+
+def test_parse_form_body_lines_leaves_unsupported_escapes_literal() -> None:
+    assert parse_form_body_lines((r"\q [A]",)) == (
+        FormText(r"\q "),
+        FormSectionRef(name="A"),
+    )
+
+
+def test_parse_form_body_lines_preserves_newlines_between_body_lines() -> None:
+    assert parse_form_body_lines(("verse", "[A]", "", "tag")) == (
+        FormText("verse\n"),
+        FormSectionRef(name="A"),
+        FormText("\n\ntag"),
+    )
+
+
+def test_parse_form_body_lines_keeps_invalid_ref_like_text_coalesced() -> None:
+    assert parse_form_body_lines(("intro [A B] outro",)) == (FormText("intro [A B] outro"),)
+
+
+def test_parse_form_body_lines_decodes_escaped_brackets_before_a_later_ref() -> None:
+    assert parse_form_body_lines((r"\[A\][B]",)) == (
+        FormText("[A]"),
+        FormSectionRef(name="B"),
+    )
+
+
+def test_parse_form_body_lines_accepts_adjacent_section_refs() -> None:
+    assert parse_form_body_lines(("[A][B]",)) == (
+        FormSectionRef(name="A"),
+        FormSectionRef(name="B"),
+    )
+
+
+def test_parse_form_body_lines_keeps_invalid_escaped_ref_like_text_before_later_ref() -> None:
+    assert parse_form_body_lines((r"[A\]][B]",)) == (
+        FormText("[A]]"),
+        FormSectionRef(name="B"),
+    )
+
+
+@pytest.mark.parametrize(
+    "body_lines",
+    (
+        ("[A B]",),
+        ("[A:]",),
+        ("[]",),
+        ("[:ending]",),
+        ("[A",),
+        (r"\[A\]",),
+    ),
+)
+def test_parse_form_body_lines_leaves_invalid_ref_like_text_as_text(
+    body_lines: tuple[str, ...]
+) -> None:
+    joined = "\n".join(body_lines).replace(r"\[", "[").replace(r"\]", "]")
+    assert parse_form_body_lines(body_lines) == (FormText(joined),)
+
+
 def test_parse_canonical_section_row_trims_leading_indentation() -> None:
     row = parse_canonical_section_row("    |C   |G7  |", beats=4)
 
@@ -352,12 +449,16 @@ def test_parse_chord_token_examples(
 
 
 def test_parser_functions_are_exposed_from_package_root() -> None:
+    assert chord_charts.FormItem is FormItem
     assert chord_charts.parse_chord_token is parse_chord_token
     assert chord_charts.parse_canonical_bar_cell is parse_canonical_bar_cell
     assert chord_charts.parse_section_header is parse_section_header
     assert chord_charts.parse_form_header is parse_form_header
+    assert chord_charts.parse_form_body_lines is parse_form_body_lines
     assert chord_charts.parse_source_blocks is parse_source_blocks
     assert chord_charts.parse_canonical_section_row is parse_canonical_section_row
+    assert chord_charts.FormText is FormText
+    assert chord_charts.FormSectionRef is FormSectionRef
 
 
 @pytest.mark.parametrize(
