@@ -3,7 +3,16 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal, final
 
-from chord_charts.model import Bar, BarItem, CarryItem, TextRange
+from chord_charts.model import (
+    Bar,
+    BarItem,
+    CarryItem,
+    Document,
+    Form,
+    FormSectionRef,
+    Section,
+    TextRange,
+)
 
 BarValidationCode = Literal[
     "beat_range",
@@ -14,11 +23,27 @@ BarValidationCode = Literal[
     "carry_only_first",
 ]
 
+DocumentValidationCode = Literal[
+    "unknown_section",
+    "ending_required",
+    "unexpected_ending",
+    "unknown_ending",
+    "form_sequence_mismatch",
+]
+
 
 @final
 @dataclass(frozen=True, slots=True)
 class BarValidationIssue:
     code: BarValidationCode
+    message: str
+    span: TextRange
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class DocumentValidationIssue:
+    code: DocumentValidationCode
     message: str
     span: TextRange
 
@@ -121,8 +146,63 @@ def validate_bar(bar: Bar) -> tuple[BarValidationIssue, ...]:
     return tuple(issues)
 
 
+def canonical_form_reference_sequence(document: Document) -> tuple[FormSectionRef, ...]:
+    canonical_form = _canonical_form(document)
+    if canonical_form is None:
+        return ()
+    return _form_reference_sequence(canonical_form)
+
+
+def validate_document(document: Document) -> tuple[DocumentValidationIssue, ...]:
+    sections_by_name = {section.name: section for section in document.sections}
+    canonical_form = _canonical_form(document)
+    validated_forms = [
+        (form, _form_reference_issues(form=form, sections_by_name=sections_by_name))
+        for form in document.forms
+    ]
+    issues = [issue for _, form_issues in validated_forms for issue in form_issues]
+
+    if canonical_form is None:
+        return tuple(issues)
+
+    canonical_issues = next(
+        form_issues for form, form_issues in validated_forms if form is canonical_form
+    )
+    if canonical_issues:
+        return tuple(issues)
+
+    canonical_sequence = _form_reference_sequence(canonical_form)
+    for form, reference_issues in validated_forms:
+        if reference_issues:
+            continue
+
+        reference_sequence = _form_reference_sequence(form)
+        if reference_sequence != canonical_sequence:
+            issues.append(
+                _document_issue(
+                    code="form_sequence_mismatch",
+                    message=(
+                        f"{_form_label(form)} must match the canonical reference sequence "
+                        f"{_render_reference_sequence(canonical_sequence)}; got "
+                        f"{_render_reference_sequence(reference_sequence)}"
+                    ),
+                )
+            )
+
+    return tuple(issues)
+
+
 def assert_valid_bar(bar: Bar) -> None:
     issues = validate_bar(bar)
+    if not issues:
+        return
+
+    joined_messages = "; ".join(issue.message for issue in issues)
+    raise ValueError(joined_messages)
+
+
+def assert_valid_document(document: Document) -> None:
+    issues = validate_document(document)
     if not issues:
         return
 
@@ -175,5 +255,99 @@ def _timeline_issues(
     return ()
 
 
+def _canonical_form(document: Document) -> Form | None:
+    for form in document.forms:
+        if form.name is None:
+            return form
+
+    if document.forms:
+        return document.forms[0]
+    return None
+
+
+def _form_reference_sequence(form: Form) -> tuple[FormSectionRef, ...]:
+    return tuple(item for item in form.items if isinstance(item, FormSectionRef))
+
+
+def _form_reference_issues(
+    *,
+    form: Form,
+    sections_by_name: dict[str, Section],
+) -> tuple[DocumentValidationIssue, ...]:
+    issues: list[DocumentValidationIssue] = []
+    form_label = _form_label(form)
+
+    for ref in _form_reference_sequence(form):
+        section = sections_by_name.get(ref.name)
+        rendered_ref = _render_ref(ref)
+
+        if section is None:
+            issues.append(
+                _document_issue(
+                    code="unknown_section",
+                    message=f"{form_label} references unknown section {rendered_ref}",
+                )
+            )
+            continue
+
+        endings_by_name = {ending.name for ending in section.endings}
+        if endings_by_name:
+            if ref.ending is None:
+                issues.append(
+                    _document_issue(
+                        code="ending_required",
+                        message=(
+                            f"{form_label} must reference section {ref.name!r} as "
+                            f"[{ref.name}:ending] because the section has endings"
+                        ),
+                    )
+                )
+                continue
+
+            if ref.ending not in endings_by_name:
+                issues.append(
+                    _document_issue(
+                        code="unknown_ending",
+                        message=f"{form_label} references unknown ending [{ref.name}:{ref.ending}]",
+                    )
+                )
+            continue
+
+        if ref.ending is not None:
+            issues.append(
+                _document_issue(
+                    code="unexpected_ending",
+                    message=(
+                        f"{form_label} must reference section {ref.name!r} as "
+                        f"[{ref.name}] because the section has no endings"
+                    ),
+                )
+            )
+
+    return tuple(issues)
+
+
 def _issue(*, code: BarValidationCode, message: str, span: TextRange) -> BarValidationIssue:
     return BarValidationIssue(code=code, message=message, span=span)
+
+
+def _document_issue(*, code: DocumentValidationCode, message: str) -> DocumentValidationIssue:
+    return DocumentValidationIssue(code=code, message=message, span=TextRange.synthetic())
+
+
+def _form_label(form: Form) -> str:
+    if form.name is None:
+        return "form:"
+    return f"form[{form.name}]:"
+
+
+def _render_reference_sequence(reference_sequence: tuple[FormSectionRef, ...]) -> str:
+    if not reference_sequence:
+        return "<empty>"
+    return " ".join(_render_ref(ref) for ref in reference_sequence)
+
+
+def _render_ref(ref: FormSectionRef) -> str:
+    if ref.ending is None:
+        return f"[{ref.name}]"
+    return f"[{ref.name}:{ref.ending}]"

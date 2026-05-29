@@ -7,7 +7,19 @@ import chord_charts
 from hypothesis import given
 from hypothesis import strategies as st
 
-from chord_charts.model import Bar, CarryItem, ChordItem, ChordSymbol
+from chord_charts.model import (
+    Bar,
+    CarryItem,
+    ChordItem,
+    ChordSymbol,
+    Document,
+    Form,
+    MetadataField,
+    Meter,
+    Section,
+    SectionBody,
+    SectionEnding,
+)
 from chord_charts.notes import pitch_class_for_lexeme
 from chord_charts.parser import (
     FormHeader,
@@ -20,6 +32,7 @@ from chord_charts.parser import (
     parse_canonical_bar_cell,
     parse_canonical_section_row,
     parse_chord_token,
+    parse_document,
     parse_form_body_lines,
     parse_form_header,
     parse_section_header,
@@ -33,9 +46,15 @@ _ROOT_EXTENSION_PREFIXES = {
     "B": "b",
     "C": "#",
     "D": "#b",
+    "E": "b",
     "F": "#",
     "G": "#b",
 }
+_AMBIGUOUS_NOTE_LEXEMES = tuple(
+    f"{root_lexeme}{extension}"
+    for root_lexeme, extensions in _ROOT_EXTENSION_PREFIXES.items()
+    for extension in extensions
+)
 _SUFFIX_TEXT = st.text(alphabet=_SUFFIX_ALPHABET, min_size=0, max_size=8)
 
 
@@ -308,6 +327,184 @@ def test_parse_source_blocks_rejects_empty_section_block() -> None:
         parse_source_blocks("[A]:\n\nform:\n[A]", beats=4)
 
 
+def test_parse_document_defaults_meter_and_preserves_metadata() -> None:
+    document = parse_document(
+        "\n".join(
+            (
+                "title: Just Friends",
+                "composer: John Klenner",
+                "",
+                "[A]:",
+                "|C   |",
+                "form:",
+                "[A]",
+            )
+        )
+    )
+
+    assert document == Document(
+        meter=Meter(numerator=4),
+        metadata=(
+            MetadataField(name="title", value="Just Friends"),
+            MetadataField(name="composer", value="John Klenner"),
+        ),
+        sections=(
+            Section(
+                name="A",
+                body=SectionBody(rows=((Bar(beats=4, items=(_chord_item("C", 1, 4),)),),)),
+            ),
+        ),
+        forms=(Form(items=(FormSectionRef(name="A"),)),),
+    )
+
+
+def test_parse_document_uses_explicit_meter_for_section_parsing() -> None:
+    document = parse_document(
+        "\n".join(
+            (
+                "meter: 3/4",
+                "",
+                "[A]:",
+                "|C  |",
+                "form:",
+                "[A]",
+            )
+        )
+    )
+
+    assert document.meter == Meter(numerator=3)
+    assert document.sections[0].body.rows[0][0].beats == 3
+    assert document.sections[0].body.rows[0][0].items == (_chord_item("C", 1, 3),)
+
+
+def test_parse_document_rejects_non_header_line_after_permissive_headers() -> None:
+    with pytest.raises(ValueError, match="before first section or form header"):
+        parse_document(
+            "\n".join(
+                (
+                    "title:   Just Friends   ",
+                    "meter:   4/4   ",
+                    "not a header",
+                    "[A]:",
+                    "|C   |",
+                )
+            )
+        )
+
+
+def test_parse_document_rejects_invalid_meter_header() -> None:
+    with pytest.raises(ValueError, match="invalid meter header"):
+        parse_document("meter: 6/8\n[A]:\n|C   |")
+
+
+def test_parse_document_rejects_duplicate_meter_header() -> None:
+    with pytest.raises(ValueError, match="duplicate meter header"):
+        parse_document("meter: 4/4\nmeter: 3/4\n[A]:\n|C   |")
+
+
+def test_parse_document_aggregates_section_body_and_endings() -> None:
+    document = parse_document(
+        "\n".join(
+            (
+                "[A]:",
+                "|C   |F   |",
+                "[A:1]:",
+                "|G7  |C   |",
+                "[A:2]:",
+                "|Dm7 |G7  |",
+            )
+        )
+    )
+
+    assert document.sections == (
+        Section(
+            name="A",
+            body=SectionBody(
+                rows=(
+                    (
+                        Bar(beats=4, items=(_chord_item("C", 1, 4),)),
+                        Bar(beats=4, items=(_chord_item("F", 1, 4),)),
+                    ),
+                )
+            ),
+            endings=(
+                SectionEnding(
+                    name="1",
+                    rows=(
+                        (
+                            Bar(beats=4, items=(_chord_item("G", 1, 4, suffix="7"),)),
+                            Bar(beats=4, items=(_chord_item("C", 1, 4),)),
+                        ),
+                    ),
+                ),
+                SectionEnding(
+                    name="2",
+                    rows=(
+                        (
+                            Bar(beats=4, items=(_chord_item("D", 1, 4, suffix="m7"),)),
+                            Bar(beats=4, items=(_chord_item("G", 1, 4, suffix="7"),)),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    )
+
+
+def test_parse_document_aggregates_forms_using_parsed_form_items() -> None:
+    document = parse_document(
+        "\n".join(
+            (
+                "[A]:",
+                "|C   |",
+                "[A:1]:",
+                "|G7  |",
+                "form:",
+                "[A:1]",
+                "form[lyrics]:",
+                "[A:1]",
+                "just friends",
+            )
+        )
+    )
+
+    assert document.forms == (
+        Form(items=(FormSectionRef(name="A", ending="1"),)),
+        Form(
+            name="lyrics",
+            items=(
+                FormSectionRef(name="A", ending="1"),
+                FormText("\njust friends"),
+            ),
+        ),
+    )
+
+
+def test_parse_document_rejects_ending_before_section_body() -> None:
+    with pytest.raises(ValueError, match="must follow its section body"):
+        parse_document("[A:1]:\n|G7  |")
+
+
+def test_parse_document_rejects_duplicate_section_body() -> None:
+    with pytest.raises(ValueError, match=r"duplicate section body: 'A'"):
+        parse_document("[A]:\n|C   |\n[A]:\n|F   |")
+
+
+def test_parse_document_rejects_duplicate_section_ending() -> None:
+    with pytest.raises(ValueError, match=r"duplicate section ending: 'A':'1'"):
+        parse_document("[A]:\n|C   |\n[A:1]:\n|G7  |\n[A:1]:\n|F   |")
+
+
+def test_parse_document_rejects_duplicate_plain_form_block() -> None:
+    with pytest.raises(ValueError, match="duplicate plain form block"):
+        parse_document("[A]:\n|C   |\nform:\n[A]\nform:\n[A]")
+
+
+def test_parse_document_rejects_duplicate_named_form_block() -> None:
+    with pytest.raises(ValueError, match=r"duplicate named form block: 'lyrics'"):
+        parse_document("[A]:\n|C   |\nform[lyrics]:\n[A]\nform[lyrics]:\n[A]")
+
+
 @pytest.mark.parametrize(
     ("body_lines", "expected"),
     (
@@ -383,6 +580,10 @@ def test_parse_form_body_lines_keeps_invalid_escaped_ref_like_text_before_later_
     )
 
 
+def test_parse_form_body_lines_treats_unclosed_bracket_at_eof_as_text() -> None:
+    assert parse_form_body_lines(("[A",)) == (FormText("[A"),)
+
+
 @pytest.mark.parametrize(
     "body_lines",
     (
@@ -390,7 +591,6 @@ def test_parse_form_body_lines_keeps_invalid_escaped_ref_like_text_before_later_
         ("[A:]",),
         ("[]",),
         ("[:ending]",),
-        ("[A",),
         (r"\[A\]",),
     ),
 )
@@ -449,9 +649,16 @@ def test_parse_chord_token_examples(
 
 
 def test_parser_functions_are_exposed_from_package_root() -> None:
+    assert chord_charts.Document is Document
+    assert chord_charts.Form is Form
+    assert chord_charts.MetadataField is MetadataField
+    assert chord_charts.Section is Section
+    assert chord_charts.SectionBody is SectionBody
+    assert chord_charts.SectionEnding is SectionEnding
     assert chord_charts.FormItem is FormItem
     assert chord_charts.parse_chord_token is parse_chord_token
     assert chord_charts.parse_canonical_bar_cell is parse_canonical_bar_cell
+    assert chord_charts.parse_document is parse_document
     assert chord_charts.parse_section_header is parse_section_header
     assert chord_charts.parse_form_header is parse_form_header
     assert chord_charts.parse_form_body_lines is parse_form_body_lines
@@ -486,6 +693,30 @@ def test_parse_chord_token_preserves_root_suffix_and_optional_bass(
     case: tuple[str, str, str | None]
 ) -> None:
     root_lexeme, suffix, bass_lexeme = case
+    text = f"{root_lexeme}{suffix}"
+    if bass_lexeme is not None:
+        text = f"{text}/{bass_lexeme}"
+
+    chord = parse_chord_token(text)
+
+    _assert_chord_symbol(
+        chord,
+        root_lexeme=root_lexeme,
+        suffix=suffix,
+        bass_lexeme=bass_lexeme,
+    )
+
+
+@given(
+    root_lexeme=st.sampled_from(_AMBIGUOUS_NOTE_LEXEMES),
+    suffix=_SUFFIX_TEXT,
+    bass_lexeme=st.one_of(st.none(), strategies.accepted_note_lexemes()),
+)
+def test_parse_chord_token_uses_longest_valid_root_lexeme_with_optional_bass(
+    root_lexeme: str,
+    suffix: str,
+    bass_lexeme: str | None,
+) -> None:
     text = f"{root_lexeme}{suffix}"
     if bass_lexeme is not None:
         text = f"{text}/{bass_lexeme}"

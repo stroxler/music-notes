@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass, field
 from typing import final
 
@@ -96,6 +97,103 @@ class Bar:
 BarItem = CarryItem | ChordItem
 
 
+@final
+@dataclass(frozen=True, slots=True)
+class MetadataField:
+    name: str
+    value: str
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class SectionBody:
+    rows: tuple[tuple[Bar, ...], ...]
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "rows", _normalize_non_empty_rows(self.rows, context="section body"))
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class SectionEnding:
+    name: str
+    rows: tuple[tuple[Bar, ...], ...]
+
+    def __post_init__(self) -> None:
+        object.__setattr__(
+            self,
+            "rows",
+            _normalize_non_empty_rows(self.rows, context="section ending"),
+        )
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class Section:
+    name: str
+    body: SectionBody
+    endings: tuple[SectionEnding, ...] = ()
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "endings", tuple(self.endings))
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class FormText:
+    text: str
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class FormSectionRef:
+    name: str
+    ending: str | None = None
+
+
+FormItem = FormText | FormSectionRef
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class Form:
+    name: str | None = None
+    items: tuple[FormItem, ...] = ()
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "items", tuple(self.items))
+
+
+@final
+@dataclass(frozen=True, slots=True)
+class Document:
+    meter: Meter
+    metadata: tuple[MetadataField, ...] = ()
+    sections: tuple[Section, ...] = ()
+    forms: tuple[Form, ...] = ()
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "metadata", tuple(self.metadata))
+        object.__setattr__(self, "sections", tuple(self.sections))
+        object.__setattr__(self, "forms", tuple(self.forms))
+
+
 def _validate_pitch_class(value: int, *, field_name: str) -> None:
     if not is_pitch_class(value):
         raise ValueError(f"{field_name} must be in 0..11, got {value}")
+
+
+def _normalize_rows(rows: Iterable[Iterable[Bar]]) -> tuple[tuple[Bar, ...], ...]:
+    normalized_rows = tuple(tuple(row) for row in rows)
+    if any(not row for row in normalized_rows):
+        raise ValueError("section rows must contain at least one bar")
+    return normalized_rows
+
+
+def _normalize_non_empty_rows(
+    rows: Iterable[Iterable[Bar]], *, context: str
+) -> tuple[tuple[Bar, ...], ...]:
+    normalized_rows = _normalize_rows(rows)
+    if not normalized_rows:
+        raise ValueError(f"{context} must contain at least one row")
+    return normalized_rows

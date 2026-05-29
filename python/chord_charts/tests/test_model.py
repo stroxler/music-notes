@@ -1,8 +1,17 @@
 from __future__ import annotations
 
+from collections.abc import Callable
+
 import pytest
 
-from chord_charts.model import ChordSymbol, Meter, TextRange
+from chord_charts.model import (
+    Bar,
+    ChordSymbol,
+    Meter,
+    SectionBody,
+    SectionEnding,
+    TextRange,
+)
 
 
 @pytest.mark.parametrize(
@@ -96,3 +105,17 @@ def test_chord_symbol_accepts_matching_bass_fields() -> None:
 
     assert chord.bass_pc == 7
     assert chord.bass_lexeme == "G"
+
+
+@pytest.mark.parametrize(
+    "factory",
+    (
+        SectionBody,
+        lambda rows: SectionEnding(name="1", rows=rows),
+    ),
+)
+def test_section_rows_require_at_least_one_bar_per_row(
+    factory: Callable[[tuple[tuple[Bar, ...], ...]], object],
+) -> None:
+    with pytest.raises(ValueError, match="section rows must contain at least one bar"):
+        factory(((),))

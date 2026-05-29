@@ -4,11 +4,27 @@ import re
 from dataclasses import dataclass
 from typing import final
 
-from chord_charts.model import Bar, CarryItem, ChordItem, ChordSymbol
+from chord_charts.model import (
+    Bar,
+    CarryItem,
+    ChordItem,
+    ChordSymbol,
+    Document,
+    Form,
+    FormItem,
+    FormSectionRef,
+    FormText,
+    MetadataField,
+    Meter,
+    Section,
+    SectionBody,
+    SectionEnding,
+)
 from chord_charts.notes import ACCEPTED_INPUT_LEXEMES, pitch_class_for_lexeme
 from chord_charts.validation import assert_valid_bar
 
 __all__ = [
+    "parse_document",
     "FormItem",
     "FormHeader",
     "FormSectionRef",
@@ -35,6 +51,8 @@ _FORM_HEADER_RE = re.compile(rf"^form(?:\[(?P<name>{_IDENTIFIER_PATTERN})\])?:$"
 _FORM_REF_RE = re.compile(
     rf"^(?P<name>{_IDENTIFIER_PATTERN})(?::(?P<ending>{_IDENTIFIER_PATTERN}))?$"
 )
+_HEADER_LINE_RE = re.compile(rf"^(?P<name>{_IDENTIFIER_PATTERN}):(?P<value>.*)$")
+_METER_RE = re.compile(r"^(?P<numerator>[1-9][0-9]*)/4$")
 
 
 @final
@@ -48,22 +66,6 @@ class SectionHeader:
 @dataclass(frozen=True, slots=True)
 class FormHeader:
     name: str | None = None
-
-
-@final
-@dataclass(frozen=True, slots=True)
-class FormText:
-    text: str
-
-
-@final
-@dataclass(frozen=True, slots=True)
-class FormSectionRef:
-    name: str
-    ending: str | None = None
-
-
-FormItem = FormText | FormSectionRef
 
 
 @final
@@ -84,19 +86,17 @@ ParsedBlock = ParsedSectionBlock | ParsedFormBlock
 
 
 def parse_section_header(text: str) -> SectionHeader:
-    match = _SECTION_HEADER_RE.fullmatch(text)
-    if match is None:
+    header = _match_section_header(text)
+    if header is None:
         raise ValueError(f"invalid section header: {text!r}")
-
-    return SectionHeader(name=match.group("name"), ending=match.group("ending"))
+    return header
 
 
 def parse_form_header(text: str) -> FormHeader:
-    match = _FORM_HEADER_RE.fullmatch(text)
-    if match is None:
+    header = _match_form_header(text)
+    if header is None:
         raise ValueError(f"invalid form header: {text!r}")
-
-    return FormHeader(name=match.group("name"))
+    return header
 
 
 def parse_form_body_lines(body_lines: tuple[str, ...]) -> tuple[FormItem, ...]:
@@ -119,7 +119,9 @@ def parse_form_body_lines(body_lines: tuple[str, ...]) -> tuple[FormItem, ...]:
             if ref_end >= 0:
                 ref = _parse_form_ref(source[index + 1 : ref_end])
                 if ref is not None:
-                    _flush_form_text(items, text_buffer)
+                    if text_buffer:
+                        items.append(FormText("".join(text_buffer)))
+                        text_buffer = []
                     items.append(ref)
                     index = ref_end + 1
                     continue
@@ -127,8 +129,18 @@ def parse_form_body_lines(body_lines: tuple[str, ...]) -> tuple[FormItem, ...]:
         text_buffer.append(character)
         index += 1
 
-    _flush_form_text(items, text_buffer)
+    if text_buffer:
+        items.append(FormText("".join(text_buffer)))
     return tuple(items)
+
+
+def parse_document(text: str) -> Document:
+    meter, metadata, block_text = _parse_document_headers(text)
+    return _build_document(
+        meter=meter,
+        metadata=metadata,
+        blocks=parse_source_blocks(block_text, beats=meter.numerator),
+    )
 
 
 def parse_source_blocks(text: str, *, beats: int) -> tuple[ParsedBlock, ...]:
@@ -305,15 +317,126 @@ def _build_block(
 
 
 def _parse_block_header(line: str) -> SectionHeader | FormHeader | None:
-    match = _SECTION_HEADER_RE.fullmatch(line)
-    if match is not None:
-        return SectionHeader(name=match.group("name"), ending=match.group("ending"))
+    return _match_section_header(line) or _match_form_header(line)
 
-    match = _FORM_HEADER_RE.fullmatch(line)
-    if match is not None:
-        return FormHeader(name=match.group("name"))
 
-    return None
+def _parse_document_headers(text: str) -> tuple[Meter, tuple[MetadataField, ...], str]:
+    lines = text.splitlines()
+    metadata: list[MetadataField] = []
+    meter: Meter | None = None
+    body_start_index = len(lines)
+
+    for index, line in enumerate(lines):
+        if _parse_block_header(line) is not None:
+            body_start_index = index
+            break
+
+        if not line.strip():
+            continue
+
+        header = _parse_header_line(line)
+        if header is None:
+            raise ValueError(
+                f"non-header line before first section or form header: {line!r}"
+            )
+
+        if header.name == "meter":
+            if meter is not None:
+                raise ValueError("duplicate meter header")
+            meter = _parse_meter_value(header.value)
+            continue
+
+        metadata.append(header)
+
+    if meter is None:
+        meter = Meter(numerator=4)
+
+    return meter, tuple(metadata), "\n".join(lines[body_start_index:])
+
+
+def _parse_header_line(line: str) -> MetadataField | None:
+    match = _HEADER_LINE_RE.fullmatch(line)
+    if match is None:
+        return None
+
+    return MetadataField(name=match.group("name"), value=match.group("value").strip())
+
+
+def _parse_meter_value(value: str) -> Meter:
+    match = _METER_RE.fullmatch(value.strip())
+    if match is None:
+        raise ValueError(f"invalid meter header: {value!r}")
+
+    return Meter(numerator=int(match.group("numerator")))
+
+
+def _build_document(
+    *,
+    meter: Meter,
+    metadata: tuple[MetadataField, ...],
+    blocks: tuple[ParsedBlock, ...],
+) -> Document:
+    section_order: list[str] = []
+    section_bodies: dict[str, SectionBody] = {}
+    section_endings: dict[str, list[SectionEnding]] = {}
+    forms: list[Form] = []
+    seen_names: set[str | None] = set()
+
+    for block in blocks:
+        if isinstance(block, ParsedSectionBlock):
+            section_name = block.header.name
+            ending_name = block.header.ending
+
+            if ending_name is None:
+                if section_name in section_bodies:
+                    raise ValueError(f"duplicate section body: {section_name!r}")
+                section_order.append(section_name)
+                section_bodies[section_name] = SectionBody(rows=block.rows)
+                section_endings[section_name] = []
+                continue
+
+            endings = section_endings.get(section_name)
+            if endings is None:
+                raise ValueError(
+                    f"section ending {section_name!r}:{ending_name!r} must follow its section body"
+                )
+            if any(existing.name == ending_name for existing in endings):
+                raise ValueError(f"duplicate section ending: {section_name!r}:{ending_name!r}")
+            endings.append(SectionEnding(name=ending_name, rows=block.rows))
+            continue
+
+        if block.header.name in seen_names:
+            raise ValueError(_duplicate_form_message(block.header.name))
+        seen_names.add(block.header.name)
+        forms.append(Form(name=block.header.name, items=parse_form_body_lines(block.body_lines)))
+
+    return Document(
+        meter=meter,
+        metadata=metadata,
+        sections=tuple(
+            Section(
+                name=section_name,
+                body=section_bodies[section_name],
+                endings=tuple(section_endings[section_name]),
+            )
+            for section_name in section_order
+        ),
+        forms=tuple(forms),
+    )
+
+
+def _match_section_header(text: str) -> SectionHeader | None:
+    match = _SECTION_HEADER_RE.fullmatch(text)
+    if match is None:
+        return None
+    return SectionHeader(name=match.group("name"), ending=match.group("ending"))
+
+
+def _match_form_header(text: str) -> FormHeader | None:
+    match = _FORM_HEADER_RE.fullmatch(text)
+    if match is None:
+        return None
+    return FormHeader(name=match.group("name"))
 
 
 def _decode_form_text_escape(source: str, index: int) -> tuple[str, int]:
@@ -330,8 +453,7 @@ def _parse_form_ref(text: str) -> FormSectionRef | None:
     return FormSectionRef(name=match.group("name"), ending=match.group("ending"))
 
 
-def _flush_form_text(items: list[FormItem], text_buffer: list[str]) -> None:
-    if not text_buffer:
-        return
-    items.append(FormText("".join(text_buffer)))
-    text_buffer.clear()
+def _duplicate_form_message(name: str | None) -> str:
+    if name is None:
+        return "duplicate plain form block"
+    return f"duplicate named form block: {name!r}"
