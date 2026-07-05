@@ -33,10 +33,12 @@ K: Cm
  || C G C' C | G "h" G' G G | C C E =A | A/2 D3/2 G B |
   | C D E =A, | D A G =B, | C C' C' G | F B B D |
  || E G B F' | E' G B E | =E G C =E, | B, G, C^ G | 
-  | F C' C' F | ^F =A C' ^C' | D' D A D | G F G =B |
- || C' C E A | D F G =B | C' C C' B | A D G _D |
-  | C =B, _B, A, | F, ^F, G, =B, | C E F ^F | G G D' _D' |
- || "5th" C' "h"G' 
+  | F C' C' F | ^F =A C' ^C' | D' D A D | G F G "8va?" =B, |
+ || "8va?" C C E A | D F G =B | C' C C' B | A D G _D |
+  | C =B, _B, =A, | A, D/2 G,3/2 =B, | C E F ^F | G G D' _D' |
+ || "5th" C' "h"G' E' C' | D' D G =B, | C =B, _B, =A, | D A G =B |
+  | C' =B _B =A | A B G "B?" _D | C D E F | A/2 D3/2 G =B |
+ || 
  
- I AM HERE: start of 5th chorus, around 2:50
+ I AM HERE: start of 5th second A, around 3:01
  
